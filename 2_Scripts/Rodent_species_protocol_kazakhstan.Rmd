@@ -526,6 +526,17 @@ p2 <- ggplot(family_monthly, aes(x = month_name, y = n_records, fill = family_cl
 seasonal_plot <- p1 / p2 + plot_layout(heights = c(1, 2))
 print(seasonal_plot)
 
+
+# Save as PDF instead
+ggsave(
+  filename = "3_Figures/1_Gbif_overview/Seasonal_plot_kz.pdf",  # Changed to .pdf
+  plot = seasonal_plot, 
+  width = 10,
+  height = 8,
+  units = "in",
+  device = "pdf"  # Explicitly specify PDF
+)
+
 # Statistical summary
 cat("\nSeasonal Sampling Summary:\n")
 cat("Peak collection month:", monthly_data$month_name[which.max(monthly_data$n_records)], 
@@ -737,4 +748,15 @@ p_provinces <- ggplot(provincial_summary,
   theme_minimal()
 
 print(p_provinces)
+
+
+# Save as PDF instead
+ggsave(
+  filename = "3_Figures/1_Gbif_overview/Sampling_effort_province_kz.pdf",  # Changed to .pdf
+  plot = p_provinces, 
+  width = 10,
+  height = 8,
+  units = "in",
+  device = "pdf"  # Explicitly specify PDF
+)
 ```
