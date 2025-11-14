@@ -1,0 +1,1157 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={GBIF Rodent Occurrence Analysis for Central Asia: Kazakhstan Field Guide},
+  pdfauthor={Central Asia One Health Project - ZSL},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{GBIF Rodent Occurrence Analysis for Central Asia: Kazakhstan
+Field Guide}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{A comprehensive protocol for rodent surveillance planning}
+\author{Central Asia One Health Project - ZSL}
+\date{2025-11-14}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\section{Introduction}\label{introduction}
+
+This document provides a comprehensive analysis of rodent occurrence
+data from Kazakhstan using GBIF (Global Biodiversity Information
+Facility) records. It is designed to help field teams prepare for rodent
+surveillance activities by understanding:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{What species} you might encounter
+\item
+  \textbf{Where} different species have been recorded
+\item
+  \textbf{When} rodents are most likely to be captured
+\item
+  \textbf{How reliable} the existing data is
+\end{itemize}
+
+\begin{quote}
+\textbf{Note}: This analysis is based on opportunistic occurrence
+records from GBIF. Patterns may reflect sampling effort and researcher
+activity rather than true biological patterns.
+\end{quote}
+
+\section{Data Loading and Initial
+Exploration}\label{data-loading-and-initial-exploration}
+
+\subsection{Load the GBIF Data}\label{load-the-gbif-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Read the GBIF data}
+\CommentTok{\# TO MODIFY: Change this path to your data file location}
+\NormalTok{gbif\_data\_raw }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"1\_Data\_Sets/01\_GBIF/Rodents\_kazakhstan.csv"}\NormalTok{, }
+                          \AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }
+                          \AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Display basic information}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Dataset Overview:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Dataset Overview:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Total records:"}\NormalTok{, }\FunctionTok{format}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gbif\_data\_raw), }\AttributeTok{big.mark =} \StringTok{","}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Total records: 2,845
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Number of variables:"}\NormalTok{, }\FunctionTok{ncol}\NormalTok{(gbif\_data\_raw), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Number of variables: 50
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Date range:"}\NormalTok{, }\FunctionTok{min}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{year, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\StringTok{"{-}"}\NormalTok{, }
+    \FunctionTok{max}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{year, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Date range: 1839 - 2025
+\end{verbatim}
+
+\subsection{Data Cleaning and
+Preparation}\label{data-cleaning-and-preparation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# How many records have coordinates?}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Records WITH coordinates:"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLatitude) }\SpecialCharTok{\&} 
+                                      \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLongitude)), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Records WITH coordinates: 1953
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Records WITHOUT coordinates:"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLatitude) }\SpecialCharTok{|} 
+                                         \FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLongitude)), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Records WITHOUT coordinates: 892
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Are there any invalid coordinates?}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Invalid latitudes:"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLatitude }\SpecialCharTok{\textless{}} \SpecialCharTok{{-}}\DecValTok{90} \SpecialCharTok{|} 
+\NormalTok{                               gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLatitude }\SpecialCharTok{\textgreater{}} \DecValTok{90}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Invalid latitudes: 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Invalid longitudes:"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLongitude }\SpecialCharTok{\textless{}} \SpecialCharTok{{-}}\DecValTok{180} \SpecialCharTok{|} 
+\NormalTok{                                gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{decimalLongitude }\SpecialCharTok{\textgreater{}} \DecValTok{180}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Invalid longitudes: 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What\textquotesingle{}s in the original species column?}
+\FunctionTok{table}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{species) }\SpecialCharTok{|}\NormalTok{ gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{species }\SpecialCharTok{==} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  TRUE 
+##  2634   211
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What\textquotesingle{}s in genus column?}
+\FunctionTok{table}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{genus) }\SpecialCharTok{|}\NormalTok{ gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{genus }\SpecialCharTok{==} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  TRUE 
+##  2821    24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Data Cleaning and Preparation}
+
+\NormalTok{gbif\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data\_raw }\SpecialCharTok{\%\textgreater{}\%}
+  \CommentTok{\# Remove records without coordinates}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(decimalLatitude) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(decimalLongitude)) }\SpecialCharTok{\%\textgreater{}\%}
+  \CommentTok{\# Remove invalid coordinates}
+  \FunctionTok{filter}\NormalTok{(}
+\NormalTok{    decimalLatitude }\SpecialCharTok{\textgreater{}=} \SpecialCharTok{{-}}\DecValTok{90} \SpecialCharTok{\&}\NormalTok{ decimalLatitude }\SpecialCharTok{\textless{}=} \DecValTok{90}\NormalTok{,}
+\NormalTok{    decimalLongitude }\SpecialCharTok{\textgreater{}=} \SpecialCharTok{{-}}\DecValTok{180} \SpecialCharTok{\&}\NormalTok{ decimalLongitude }\SpecialCharTok{\textless{}=} \DecValTok{180}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \CommentTok{\# Add cleaned/standardised variables (keep originals)}
+  \FunctionTok{mutate}\NormalTok{(}
+    \CommentTok{\# Standardise species names}
+    \AttributeTok{species\_clean =} \FunctionTok{case\_when}\NormalTok{(}
+      \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(species) }\SpecialCharTok{\&}\NormalTok{ species }\SpecialCharTok{!=} \StringTok{""} \SpecialCharTok{\textasciitilde{}}\NormalTok{ species,}
+      \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(genus) }\SpecialCharTok{\&}\NormalTok{ genus }\SpecialCharTok{!=} \StringTok{""} \SpecialCharTok{\textasciitilde{}} \FunctionTok{paste}\NormalTok{(genus, }\StringTok{"sp."}\NormalTok{),}
+      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}}\NormalTok{ scientificName}
+\NormalTok{    ),}
+    \CommentTok{\# Standardise family names}
+    \AttributeTok{family\_clean =} \FunctionTok{if\_else}\NormalTok{(}
+      \FunctionTok{is.na}\NormalTok{(family) }\SpecialCharTok{|}\NormalTok{ family }\SpecialCharTok{==} \StringTok{""}\NormalTok{,}
+      \StringTok{"Unknown"}\NormalTok{,}
+\NormalTok{      family}
+\NormalTok{    ),}
+    \CommentTok{\# Ensure dates are correct format}
+    \AttributeTok{year =} \FunctionTok{as.integer}\NormalTok{(year),}
+    \AttributeTok{month =} \FunctionTok{as.integer}\NormalTok{(month),}
+    \AttributeTok{day =} \FunctionTok{as.integer}\NormalTok{(day),}
+    \CommentTok{\# Categorise coordinate precision}
+    \AttributeTok{coord\_precision =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{      coordinateUncertaintyInMeters }\SpecialCharTok{\textless{}=} \DecValTok{100} \SpecialCharTok{\textasciitilde{}} \StringTok{"High (\textless{}100m)"}\NormalTok{,}
+\NormalTok{      coordinateUncertaintyInMeters }\SpecialCharTok{\textless{}=} \DecValTok{1000} \SpecialCharTok{\textasciitilde{}} \StringTok{"Medium (100{-}1000m)"}\NormalTok{,}
+\NormalTok{      coordinateUncertaintyInMeters }\SpecialCharTok{\textless{}=} \DecValTok{10000} \SpecialCharTok{\textasciitilde{}} \StringTok{"Low (1{-}10km)"}\NormalTok{,}
+\NormalTok{      coordinateUncertaintyInMeters }\SpecialCharTok{\textgreater{}} \DecValTok{10000} \SpecialCharTok{\textasciitilde{}} \StringTok{"Very Low (\textgreater{}10km)"}\NormalTok{,}
+      \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Unknown"}
+\NormalTok{    )}
+\NormalTok{  )}
+
+\CommentTok{\# Show first 20 species\_clean values to check logic}
+\FunctionTok{head}\NormalTok{(gbif\_data}\SpecialCharTok{$}\NormalTok{species\_clean, }\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Alticola roylei"           "Alticola roylei"          
+##  [3] "Alticola sp."              "Microtus arvalis"         
+##  [5] "Microtus arvalis"          "Microtus arvalis"         
+##  [7] "Microtus arvalis"          "Spermophilus brevicauda"  
+##  [9] "Spermophilus erythrogenys" "Spermophilus fulvus"      
+## [11] "Spermophilus fulvus"       "Urocitellus undulatus"    
+## [13] "Stylodipus telum"          "Stylodipus telum"         
+## [15] "Dipus sagitta"             "Dipus sagitta"            
+## [17] "Pygeretmus platyurus"      "Allactaga major"          
+## [19] "Allactaga major"           "Salpingotus crassicauda"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What\textquotesingle{}s in original family column?}
+\FunctionTok{table}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{family) }\SpecialCharTok{|}\NormalTok{ gbif\_data\_raw}\SpecialCharTok{$}\NormalTok{family }\SpecialCharTok{==} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## FALSE  TRUE 
+##  2843     2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Show unique families}
+\FunctionTok{unique}\NormalTok{(gbif\_data}\SpecialCharTok{$}\NormalTok{family\_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Cricetidae"      "Sciuridae"       "Dipodidae"       "Muridae"        
+##  [5] "Hystricidae"     "Gliridae"        "Spalacidae"      "Myocastoridae"  
+##  [9] "Castoridae"      "Chapattimyidae"  "Yuomyidae"       "Ischyromyidae"  
+## [13] "Unknown"         "Ctenodactylidae" "Aplodontiidae"   "Eomyidae"       
+## [17] "Tsaganomyidae"   "Allomyidae"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Print summary}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Data Cleaning Summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data Cleaning Summary:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Records with coordinates:"}\NormalTok{, }\FunctionTok{format}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gbif\_data), }\AttributeTok{big.mark =} \StringTok{","}\NormalTok{),}
+    \StringTok{"("}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gbif\_data) }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(gbif\_data\_raw) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{), }\StringTok{"\% retained)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Records with coordinates: 1,953 ( 68.6 % retained)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Unique species:"}\NormalTok{, }\FunctionTok{n\_distinct}\NormalTok{(gbif\_data}\SpecialCharTok{$}\NormalTok{species\_clean), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unique species: 149
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Unique families:"}\NormalTok{, }\FunctionTok{n\_distinct}\NormalTok{(gbif\_data}\SpecialCharTok{$}\NormalTok{family\_clean), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unique families: 18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Unique genera:"}\NormalTok{, }\FunctionTok{n\_distinct}\NormalTok{(gbif\_data}\SpecialCharTok{$}\NormalTok{genus), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Unique genera: 88
+\end{verbatim}
+
+\section{Species Diversity Analysis}\label{species-diversity-analysis}
+
+\subsection{Complete Species
+Inventory}\label{complete-species-inventory}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create comprehensive species list}
+\NormalTok{species\_summary }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(species\_clean, family\_clean) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_locations =} \FunctionTok{n\_distinct}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\FunctionTok{round}\NormalTok{(decimalLatitude, }\DecValTok{2}\NormalTok{), }
+                                   \FunctionTok{round}\NormalTok{(decimalLongitude, }\DecValTok{2}\NormalTok{))),}
+    \AttributeTok{year\_range =} \FunctionTok{paste}\NormalTok{(}\FunctionTok{min}\NormalTok{(year, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{), }\StringTok{"{-}"}\NormalTok{, }
+                      \FunctionTok{max}\NormalTok{(year, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{n\_provinces =} \FunctionTok{n\_distinct}\NormalTok{(stateProvince, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_records)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{percent\_records =} \FunctionTok{round}\NormalTok{(n\_records }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n\_records) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+    \AttributeTok{cumulative\_percent =} \FunctionTok{round}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(n\_records) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n\_records) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  )}
+
+\ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{::}\FunctionTok{is\_html\_output}\NormalTok{()) \{}
+  \FunctionTok{datatable}\NormalTok{(species\_summary,}
+            \AttributeTok{options =} \FunctionTok{list}\NormalTok{(}\AttributeTok{pageLength =} \DecValTok{15}\NormalTok{, }\AttributeTok{scrollX =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{caption =} \StringTok{"Complete inventory of rodent species"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(species\_summary, }\DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+          \FunctionTok{select}\NormalTok{(species\_clean, family\_clean, n\_records, n\_locations),}
+        \AttributeTok{caption =} \StringTok{"Top 10 most common rodent species"}\NormalTok{,}
+        \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Species"}\NormalTok{, }\StringTok{"Family"}\NormalTok{, }\StringTok{"Records"}\NormalTok{, }\StringTok{"Locations"}\NormalTok{),}
+        \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{latex\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"HOLD\_position"}\NormalTok{),}
+                  \AttributeTok{font\_size =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{column\_spec}\NormalTok{(}\DecValTok{1}\NormalTok{, }\AttributeTok{italic =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{longtable}[t]{>{}llrr}
+\caption{\label{tab:species-inventory}Top 10 most common rodent species}\\
+\toprule
+Species & Family & Records & Locations\\
+\midrule
+\em{\cellcolor{gray!10}{Sciurus vulgaris}} & \cellcolor{gray!10}{Sciuridae} & \cellcolor{gray!10}{334} & \cellcolor{gray!10}{110}\\
+\em{Rhombomys opimus} & Muridae & 152 & 111\\
+\em{\cellcolor{gray!10}{Apodemus agrarius}} & \cellcolor{gray!10}{Muridae} & \cellcolor{gray!10}{137} & \cellcolor{gray!10}{133}\\
+\em{Marmota baibacina} & Sciuridae & 135 & 61\\
+\em{\cellcolor{gray!10}{Marmota bobak}} & \cellcolor{gray!10}{Sciuridae} & \cellcolor{gray!10}{110} & \cellcolor{gray!10}{87}\\
+\addlinespace
+\em{Ondatra zibethicus} & Cricetidae & 102 & 52\\
+\em{\cellcolor{gray!10}{Spermophilus fulvus}} & \cellcolor{gray!10}{Sciuridae} & \cellcolor{gray!10}{81} & \cellcolor{gray!10}{71}\\
+\em{Spermophilus erythrogenys} & Sciuridae & 77 & 16\\
+\em{\cellcolor{gray!10}{Allactaga elater}} & \cellcolor{gray!10}{Dipodidae} & \cellcolor{gray!10}{58} & \cellcolor{gray!10}{21}\\
+\em{Ellobius talpinus} & Cricetidae & 53 & 14\\
+\bottomrule
+\end{longtable}
+\endgroup{}
+
+\subsection{Species Accumulation
+Curve}\label{species-accumulation-curve}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate species accumulation by year}
+\NormalTok{species\_accumulation }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(year)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{new\_species =} \FunctionTok{list}\NormalTok{(}\FunctionTok{unique}\NormalTok{(species\_clean)),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{cumulative\_species =} \FunctionTok{accumulate}\NormalTok{(new\_species, union),}
+    \AttributeTok{n\_cumulative =} \FunctionTok{map\_int}\NormalTok{(cumulative\_species, length),}
+    \AttributeTok{n\_new =} \FunctionTok{map\_int}\NormalTok{(new\_species, length)}
+\NormalTok{  )}
+
+\CommentTok{\# Plot accumulation curve}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(species\_accumulation, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ year)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ n\_cumulative), }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#2E7D32"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ n\_cumulative), }\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#2E7D32"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ n\_new }\SpecialCharTok{*} \DecValTok{3}\NormalTok{), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#81C784"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{name =} \StringTok{"Cumulative number of species"}\NormalTok{,}
+    \AttributeTok{sec.axis =} \FunctionTok{sec\_axis}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{.}\SpecialCharTok{/}\DecValTok{3}\NormalTok{, }\AttributeTok{name =} \StringTok{"New species per year"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Species Discovery Timeline"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Cumulative species recorded (line) and new species per year (bars)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.title.y.right =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#81C784"}\NormalTok{),}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+
+\FunctionTok{print}\NormalTok{(p1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/species-accumulation-1} \end{center}
+
+\subsection{Family Composition}\label{family-composition}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prepare family data}
+\NormalTok{family\_summary }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(family\_clean) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_species =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{n\_genera =} \FunctionTok{n\_distinct}\NormalTok{(genus),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_records)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{family\_clean =} \FunctionTok{factor}\NormalTok{(family\_clean, }\AttributeTok{levels =}\NormalTok{ family\_clean),}
+    \AttributeTok{percent =}\NormalTok{ n\_records }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n\_records) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  )}
+
+\CommentTok{\# Create two{-}panel plot}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(family\_summary, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ family\_clean, }\AttributeTok{y =}\NormalTok{ n\_records, }\AttributeTok{fill =}\NormalTok{ family\_clean)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ family\_colors[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(family\_summary)]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ comma) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"A. Number of Records per Family"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{),}
+    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(family\_summary, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ family\_clean, }\AttributeTok{y =}\NormalTok{ n\_species, }\AttributeTok{fill =}\NormalTok{ family\_clean)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ family\_colors[}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(family\_summary)]) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"B. Species Diversity per Family"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of species"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{),}
+    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+
+\CommentTok{\# Combine plots}
+\NormalTok{family\_plot }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{/}\NormalTok{ p2}
+\FunctionTok{print}\NormalTok{(family\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/family-composition-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary statistics}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Family Diversity Summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Family Diversity Summary:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Most recorded family:"}\NormalTok{, family\_summary}\SpecialCharTok{$}\NormalTok{family\_clean[}\DecValTok{1}\NormalTok{], }
+    \StringTok{"with"}\NormalTok{, family\_summary}\SpecialCharTok{$}\NormalTok{n\_records[}\DecValTok{1}\NormalTok{], }\StringTok{"records}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Most recorded family: 1 with 843 records
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Most species{-}rich family:"}\NormalTok{, }
+\NormalTok{    family\_summary}\SpecialCharTok{$}\NormalTok{family\_clean[}\FunctionTok{which.max}\NormalTok{(family\_summary}\SpecialCharTok{$}\NormalTok{n\_species)],}
+    \StringTok{"with"}\NormalTok{, }\FunctionTok{max}\NormalTok{(family\_summary}\SpecialCharTok{$}\NormalTok{n\_species), }\StringTok{"species}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Most species-rich family: 3 with 35 species
+\end{verbatim}
+
+\section{Spatial Distribution
+Patterns}\label{spatial-distribution-patterns}
+
+\subsection{Geographic Coverage Map}\label{geographic-coverage-map}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Get Kazakhstan boundaries}
+\NormalTok{kazakhstan }\OtherTok{\textless{}{-}} \FunctionTok{ne\_countries}\NormalTok{(}\AttributeTok{country =} \StringTok{"Kazakhstan"}\NormalTok{, }\AttributeTok{scale =} \StringTok{"medium"}\NormalTok{, }\AttributeTok{returnclass =} \StringTok{"sf"}\NormalTok{)}
+
+\CommentTok{\# Create coverage map with all points}
+\NormalTok{p\_coverage }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_sf}\NormalTok{(}\AttributeTok{data =}\NormalTok{ kazakhstan, }\AttributeTok{fill =} \StringTok{"grey95"}\NormalTok{, }\AttributeTok{color =} \StringTok{"grey60"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ gbif\_data,}
+             \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ decimalLongitude, }\AttributeTok{y =}\NormalTok{ decimalLatitude),}
+             \AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Geographic Coverage of Rodent Records in Kazakhstan"}\NormalTok{,}
+    \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Total:"}\NormalTok{, }\FunctionTok{format}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(gbif\_data), }\AttributeTok{big.mark =} \StringTok{","}\NormalTok{), }\StringTok{"georeferenced records"}\NormalTok{),}
+    \AttributeTok{x =} \StringTok{"Longitude"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Latitude"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{coord\_sf}\NormalTok{(}\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{46}\NormalTok{, }\DecValTok{88}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{56}\NormalTok{))}
+
+\FunctionTok{print}\NormalTok{(p\_coverage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/coverage-map-1} \end{center}
+
+\subsection{Species Richness Hotspots}\label{species-richness-hotspots}
+
+Where is rodent diversity highest?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create grid for species richness}
+\NormalTok{grid\_size }\OtherTok{\textless{}{-}} \FloatTok{0.5}  \CommentTok{\# degrees}
+
+\NormalTok{richness\_grid }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{lat\_grid =} \FunctionTok{floor}\NormalTok{(decimalLatitude }\SpecialCharTok{/}\NormalTok{ grid\_size) }\SpecialCharTok{*}\NormalTok{ grid\_size }\SpecialCharTok{+}\NormalTok{ grid\_size}\SpecialCharTok{/}\DecValTok{2}\NormalTok{,}
+    \AttributeTok{lon\_grid =} \FunctionTok{floor}\NormalTok{(decimalLongitude }\SpecialCharTok{/}\NormalTok{ grid\_size) }\SpecialCharTok{*}\NormalTok{ grid\_size }\SpecialCharTok{+}\NormalTok{ grid\_size}\SpecialCharTok{/}\DecValTok{2}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(lat\_grid, lon\_grid) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{species\_richness =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_families =} \FunctionTok{n\_distinct}\NormalTok{(family\_clean),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  )}
+
+\CommentTok{\# Plot species richness}
+\NormalTok{p\_richness }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_sf}\NormalTok{(}\AttributeTok{data =}\NormalTok{ kazakhstan, }\AttributeTok{fill =} \StringTok{"grey95"}\NormalTok{, }\AttributeTok{color =} \StringTok{"grey60"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{(}\AttributeTok{data =}\NormalTok{ richness\_grid,}
+            \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ lon\_grid, }\AttributeTok{y =}\NormalTok{ lat\_grid, }\AttributeTok{fill =}\NormalTok{ species\_richness),}
+            \AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_viridis}\NormalTok{(}
+    \AttributeTok{name =} \StringTok{"Species}\SpecialCharTok{\textbackslash{}n}\StringTok{richness"}\NormalTok{,}
+    \AttributeTok{option =} \StringTok{"plasma"}\NormalTok{,}
+    \AttributeTok{breaks =} \FunctionTok{pretty\_breaks}\NormalTok{(}\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Rodent Species Richness Hotspots"}\NormalTok{,}
+    \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Grid size:"}\NormalTok{, grid\_size, }\StringTok{"degrees"}\NormalTok{),}
+    \AttributeTok{x =} \StringTok{"Longitude"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Latitude"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{coord\_sf}\NormalTok{(}\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{46}\NormalTok{, }\DecValTok{88}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{56}\NormalTok{))}
+
+\FunctionTok{print}\NormalTok{(p\_richness)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/richness-map-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Identify top diversity hotspots}
+\NormalTok{top\_hotspots }\OtherTok{\textless{}{-}}\NormalTok{ richness\_grid }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(species\_richness)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{location =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\FunctionTok{round}\NormalTok{(lat\_grid, }\DecValTok{1}\NormalTok{), }\StringTok{"°N, "}\NormalTok{, }\FunctionTok{round}\NormalTok{(lon\_grid, }\DecValTok{1}\NormalTok{), }\StringTok{"°E)"}\NormalTok{)}
+\NormalTok{  )}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Top 10 Diversity Hotspots:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Top 10 Diversity Hotspots:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(top\_hotspots)) \{}
+  \FunctionTok{cat}\NormalTok{(i, }\StringTok{". "}\NormalTok{, top\_hotspots}\SpecialCharTok{$}\NormalTok{location[i], }\StringTok{": "}\NormalTok{, }
+\NormalTok{      top\_hotspots}\SpecialCharTok{$}\NormalTok{species\_richness[i], }\StringTok{" species ("}\NormalTok{, }
+\NormalTok{      top\_hotspots}\SpecialCharTok{$}\NormalTok{n\_records[i], }\StringTok{" records)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep =} \StringTok{""}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1. (43.2°N, 76.8°E): 20 species (428 records)
+## 2. (48.2°N, 84.2°E): 17 species (19 records)
+## 3. (50.2°N, 57.2°E): 17 species (26 records)
+## 4. (46.8°N, 60.8°E): 13 species (16 records)
+## 5. (43.8°N, 79.2°E): 11 species (17 records)
+## 6. (45.2°N, 80.2°E): 11 species (17 records)
+## 7. (43.2°N, 77.2°E): 10 species (70 records)
+## 8. (47.2°N, 60.8°E): 10 species (11 records)
+## 9. (46.8°N, 60.2°E): 9 species (13 records)
+## 10. (47.8°N, 85.2°E): 9 species (22 records)
+\end{verbatim}
+
+\subsection{Individual Species Distribution
+Maps}\label{individual-species-distribution-maps}
+
+Interactive maps for the most common species AND rare species
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select species to map: top 6 common + 3 rare species with \textgreater{}1 record}
+\NormalTok{common\_species }\OtherTok{\textless{}{-}}\NormalTok{ species\_summary }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{6}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(species\_clean)}
+
+\NormalTok{rare\_species }\OtherTok{\textless{}{-}}\NormalTok{ species\_summary }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(n\_records }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tail}\NormalTok{(}\DecValTok{3}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pull}\NormalTok{(species\_clean)}
+
+\NormalTok{species\_to\_map }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(common\_species, rare\_species)}
+
+\CommentTok{\# Create individual maps}
+\NormalTok{species\_maps }\OtherTok{\textless{}{-}} \FunctionTok{map}\NormalTok{(species\_to\_map, }\ControlFlowTok{function}\NormalTok{(sp) \{}
+\NormalTok{  sp\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(species\_clean }\SpecialCharTok{==}\NormalTok{ sp)}
+  
+\NormalTok{  p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_sf}\NormalTok{(}\AttributeTok{data =}\NormalTok{ kazakhstan, }\AttributeTok{fill =} \StringTok{"grey95"}\NormalTok{, }\AttributeTok{color =} \StringTok{"grey60"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ sp\_data,}
+               \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ decimalLongitude, }\AttributeTok{y =}\NormalTok{ decimalLatitude),}
+               \AttributeTok{color =} \StringTok{"\#E53935"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =}\NormalTok{ sp,}
+      \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"n ="}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(sp\_data), }\StringTok{"records"}\NormalTok{)}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}
+      \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"italic"}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{),}
+      \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{8}\NormalTok{)}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{coord\_sf}\NormalTok{(}\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{46}\NormalTok{, }\DecValTok{88}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{56}\NormalTok{))}
+  
+  \FunctionTok{return}\NormalTok{(p)}
+\NormalTok{\})}
+
+\CommentTok{\# Arrange in grid}
+\NormalTok{species\_grid }\OtherTok{\textless{}{-}} \FunctionTok{wrap\_plots}\NormalTok{(species\_maps, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{plot\_annotation}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Distribution Maps: Common Species (top 2 rows) and Rare Species (bottom row)"}\NormalTok{,}
+    \AttributeTok{theme =} \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+\NormalTok{  )}
+
+\FunctionTok{print}\NormalTok{(species\_grid)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/species-maps-1} \end{center}
+
+\section{Temporal Patterns}\label{temporal-patterns}
+
+\subsection{Seasonal Activity
+Patterns}\label{seasonal-activity-patterns}
+
+\textbf{Critical Note}: Seasonal patterns may reflect researcher
+activity (holidays, field seasons) rather than true rodent activity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Prepare monthly data}
+\NormalTok{monthly\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(month)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(month) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_species =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{month\_name =}\NormalTok{ month.abb[month],}
+    \AttributeTok{month\_name =} \FunctionTok{factor}\NormalTok{(month\_name, }\AttributeTok{levels =}\NormalTok{ month.abb)}
+\NormalTok{  )}
+
+\CommentTok{\# Overall monthly pattern}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(monthly\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ month\_name, }\AttributeTok{y =}\NormalTok{ n\_records)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =}\NormalTok{ month\_colors) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =} \DecValTok{1}\NormalTok{, }\AttributeTok{y =}\NormalTok{ n\_species }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(n\_records) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(n\_species)), }
+            \AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{name =} \StringTok{"Number of records"}\NormalTok{,}
+    \AttributeTok{labels =}\NormalTok{ comma,}
+    \AttributeTok{sec.axis =} \FunctionTok{sec\_axis}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{. }\SpecialCharTok{*} \FunctionTok{max}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_species) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_records), }
+                        \AttributeTok{name =} \StringTok{"Number of species (red line)"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"A. Overall Seasonal Pattern"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"⚠️ May reflect sampling effort rather than biological patterns"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Month"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.title.y.right =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"red"}\NormalTok{),}
+    \AttributeTok{plot.subtitle =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkorange"}\NormalTok{, }\AttributeTok{face =} \StringTok{"italic"}\NormalTok{)}
+\NormalTok{  )}
+
+\CommentTok{\# Family{-}specific patterns}
+\NormalTok{family\_monthly }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(month), family\_clean }\SpecialCharTok{\%in\%} \FunctionTok{head}\NormalTok{(family\_summary}\SpecialCharTok{$}\NormalTok{family\_clean, }\DecValTok{6}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(family\_clean, month) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(), }\AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{month\_name =} \FunctionTok{factor}\NormalTok{(month.abb[month], }\AttributeTok{levels =}\NormalTok{ month.abb))}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(family\_monthly, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ month\_name, }\AttributeTok{y =}\NormalTok{ n\_records, }\AttributeTok{fill =}\NormalTok{ family\_clean)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{family\_clean, }\AttributeTok{scales =} \StringTok{"free\_y"}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ family\_colors[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"B. Seasonal Patterns by Family"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Month"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{size =} \DecValTok{8}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{seasonal\_plot }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{/}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(seasonal\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/seasonal-patterns-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Statistical summary}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Seasonal Sampling Summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Seasonal Sampling Summary:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Peak collection month:"}\NormalTok{, monthly\_data}\SpecialCharTok{$}\NormalTok{month\_name[}\FunctionTok{which.max}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_records)], }
+    \StringTok{"with"}\NormalTok{, }\FunctionTok{max}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_records), }\StringTok{"records}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Peak collection month: 5 with 376 records
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Lowest collection month:"}\NormalTok{, monthly\_data}\SpecialCharTok{$}\NormalTok{month\_name[}\FunctionTok{which.min}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_records)], }
+    \StringTok{"with"}\NormalTok{, }\FunctionTok{min}\NormalTok{(monthly\_data}\SpecialCharTok{$}\NormalTok{n\_records), }\StringTok{"records}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Lowest collection month: 2 with 17 records
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Months with no records:"}\NormalTok{, }\FunctionTok{paste}\NormalTok{(month.abb[}\SpecialCharTok{!}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{12} \SpecialCharTok{\%in\%}\NormalTok{ monthly\_data}\SpecialCharTok{$}\NormalTok{month)], }\AttributeTok{collapse =} \StringTok{", "}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Months with no records:
+\end{verbatim}
+
+\subsection{Long-term Temporal Trends}\label{long-term-temporal-trends}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Yearly patterns}
+\NormalTok{yearly\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(year), year }\SpecialCharTok{\textgreater{}=} \DecValTok{1950}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Focus on modern records}
+  \FunctionTok{group\_by}\NormalTok{(year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_species =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{n\_collectors =} \FunctionTok{n\_distinct}\NormalTok{(recordedBy, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  )}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(yearly\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ year)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ n\_records), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#2E7D32"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ n\_species }\SpecialCharTok{*} \DecValTok{10}\NormalTok{), }\AttributeTok{color =} \StringTok{"\#D84315"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}
+    \AttributeTok{name =} \StringTok{"Number of records"}\NormalTok{,}
+    \AttributeTok{labels =}\NormalTok{ comma,}
+    \AttributeTok{sec.axis =} \FunctionTok{sec\_axis}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{.}\SpecialCharTok{/}\DecValTok{10}\NormalTok{, }\AttributeTok{name =} \StringTok{"Number of species"}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Collection Effort Over Time"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Bars: records per year | Line: species diversity"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y.right =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#D84315"}\NormalTok{))}
+
+\CommentTok{\# Decade comparison}
+\NormalTok{decade\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(year), year }\SpecialCharTok{\textgreater{}=} \DecValTok{1950}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{decade =} \FunctionTok{floor}\NormalTok{(year}\SpecialCharTok{/}\DecValTok{10}\NormalTok{) }\SpecialCharTok{*} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(decade) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_species =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{decade\_label =} \FunctionTok{paste0}\NormalTok{(decade, }\StringTok{"s"}\NormalTok{))}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(decade\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ decade\_label, }\AttributeTok{y =}\NormalTok{ n\_species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1976D2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ n\_species), }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Species Recorded per Decade"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Decade"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of species"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\NormalTok{temporal\_plot }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{/}\NormalTok{ p2}
+\FunctionTok{print}\NormalTok{(temporal\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/temporal-trends-1} \end{center}
+
+\section{Elevation Analysis}\label{elevation-analysis}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filter for records with elevation data}
+\NormalTok{elevation\_data }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(elevation), elevation }\SpecialCharTok{\textgreater{}=} \DecValTok{0}\NormalTok{, elevation }\SpecialCharTok{\textless{}} \DecValTok{5000}\NormalTok{)  }\CommentTok{\# Remove outliers}
+
+\ControlFlowTok{if}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(elevation\_data) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+  \CommentTok{\# Overall elevation distribution}
+\NormalTok{  p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(elevation\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ elevation)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{50}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#5E35B1"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ ..count..), }\AttributeTok{color =} \StringTok{"\#1A237E"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Elevation Distribution of Rodent Records"}\NormalTok{,}
+      \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"n ="}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(elevation\_data), }\StringTok{"records with elevation data"}\NormalTok{),}
+      \AttributeTok{x =} \StringTok{"Elevation (m)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{()}
+  
+  \CommentTok{\# Species elevation ranges}
+\NormalTok{  species\_elevation }\OtherTok{\textless{}{-}}\NormalTok{ elevation\_data }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(species\_clean) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{summarise}\NormalTok{(}
+      \AttributeTok{min\_elev =} \FunctionTok{min}\NormalTok{(elevation),}
+      \AttributeTok{max\_elev =} \FunctionTok{max}\NormalTok{(elevation),}
+      \AttributeTok{mean\_elev =} \FunctionTok{mean}\NormalTok{(elevation),}
+      \AttributeTok{median\_elev =} \FunctionTok{median}\NormalTok{(elevation),}
+      \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+      \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{    ) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(n\_records }\SpecialCharTok{\textgreater{}=} \DecValTok{5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Only species with sufficient data}
+    \FunctionTok{arrange}\NormalTok{(median\_elev) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{species\_clean =} \FunctionTok{factor}\NormalTok{(species\_clean, }\AttributeTok{levels =}\NormalTok{ species\_clean))}
+  
+\NormalTok{  p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(species\_elevation, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ species\_clean)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ min\_elev, }\AttributeTok{xend =}\NormalTok{ max\_elev, }\AttributeTok{yend =}\NormalTok{ species\_clean),}
+                 \AttributeTok{color =} \StringTok{"grey60"}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ median\_elev), }\AttributeTok{color =} \StringTok{"\#E53935"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mean\_elev), }\AttributeTok{color =} \StringTok{"\#1976D2"}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+      \AttributeTok{title =} \StringTok{"Elevation Ranges by Species"}\NormalTok{,}
+      \AttributeTok{subtitle =} \StringTok{"Grey bar: min{-}max range | Red: median | Blue: mean"}\NormalTok{,}
+      \AttributeTok{x =} \StringTok{"Elevation (m)"}\NormalTok{, }\AttributeTok{y =} \StringTok{""}
+\NormalTok{    ) }\SpecialCharTok{+}
+    \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.y =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"italic"}\NormalTok{, }\AttributeTok{size =} \DecValTok{9}\NormalTok{))}
+  
+\NormalTok{  elevation\_plot }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{/}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{plot\_layout}\NormalTok{(}\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+  \FunctionTok{print}\NormalTok{(elevation\_plot)}
+  
+  \CommentTok{\# Summary statistics}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Elevation Summary:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Elevation range:"}\NormalTok{, }\FunctionTok{min}\NormalTok{(elevation\_data}\SpecialCharTok{$}\NormalTok{elevation), }\StringTok{"{-}"}\NormalTok{, }
+      \FunctionTok{max}\NormalTok{(elevation\_data}\SpecialCharTok{$}\NormalTok{elevation), }\StringTok{"m}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Mean elevation:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(elevation\_data}\SpecialCharTok{$}\NormalTok{elevation)), }\StringTok{"m}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Median elevation:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{median}\NormalTok{(elevation\_data}\SpecialCharTok{$}\NormalTok{elevation)), }\StringTok{"m}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"No elevation data available for analysis}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/elevation-analysis-1} \end{center}
+
+\begin{verbatim}
+## 
+## Elevation Summary:
+## Elevation range: 1410 - 2000 m
+## Mean elevation: 1785 m
+## Median elevation: 1850 m
+\end{verbatim}
+
+\section{Data Quality Assessment}\label{data-quality-assessment}
+
+\subsection{Coordinate Precision
+Analysis}\label{coordinate-precision-analysis}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Coordinate precision}
+\NormalTok{precision\_summary }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(coord\_precision) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{percent =} \FunctionTok{round}\NormalTok{(}\FunctionTok{n}\NormalTok{() }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(gbif\_data) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{coord\_precision =} \FunctionTok{factor}\NormalTok{(coord\_precision, }
+                                  \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"High (\textless{}100m)"}\NormalTok{, }\StringTok{"Medium (100{-}1000m)"}\NormalTok{, }
+                                           \StringTok{"Low (1{-}10km)"}\NormalTok{, }\StringTok{"Very Low (\textgreater{}10km)"}\NormalTok{, }\StringTok{"Unknown"}\NormalTok{)))}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(precision\_summary, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ coord\_precision, }\AttributeTok{y =}\NormalTok{ n\_records, }\AttributeTok{fill =}\NormalTok{ coord\_precision)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(percent, }\StringTok{"\%"}\NormalTok{)), }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#2E7D32"}\NormalTok{, }\StringTok{"\#FDD835"}\NormalTok{, }\StringTok{"\#FF8A65"}\NormalTok{, }\StringTok{"\#E53935"}\NormalTok{, }\StringTok{"grey60"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Coordinate Precision of Records"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Higher precision = more reliable location data"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Precision Category"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+    \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)}
+\NormalTok{  )}
+
+\CommentTok{\# Basis of record}
+\NormalTok{basis\_summary }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data\_raw }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(basisOfRecord) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{percent =} \FunctionTok{round}\NormalTok{(}\FunctionTok{n}\NormalTok{() }\SpecialCharTok{/} \FunctionTok{nrow}\NormalTok{(gbif\_data\_raw) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_records))}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{head}\NormalTok{(basis\_summary, }\DecValTok{8}\NormalTok{), }
+             \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(basisOfRecord, n\_records), }\AttributeTok{y =}\NormalTok{ n\_records)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1976D2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Basis of Records"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Data source types"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\NormalTok{quality\_plot }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+}\NormalTok{ p2}
+\FunctionTok{print}\NormalTok{(quality\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/data-quality-1} \end{center}
+
+\subsection{Sampling Effort by
+Province}\label{sampling-effort-by-province}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Provincial summary}
+\NormalTok{provincial\_summary }\OtherTok{\textless{}{-}}\NormalTok{ gbif\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(stateProvince), stateProvince }\SpecialCharTok{!=} \StringTok{""}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(stateProvince) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n\_records =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{n\_species =} \FunctionTok{n\_distinct}\NormalTok{(species\_clean),}
+    \AttributeTok{n\_locations =} \FunctionTok{n\_distinct}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\FunctionTok{round}\NormalTok{(decimalLatitude, }\DecValTok{2}\NormalTok{), }
+                                   \FunctionTok{round}\NormalTok{(decimalLongitude, }\DecValTok{2}\NormalTok{))),}
+    \AttributeTok{.groups =} \StringTok{\textquotesingle{}drop\textquotesingle{}}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(n\_records)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{15}\NormalTok{)  }\CommentTok{\# Top 15 provinces}
+
+\NormalTok{p\_provinces }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(provincial\_summary, }
+                      \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(stateProvince, n\_records), }\AttributeTok{y =}\NormalTok{ n\_records)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#00897B"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(n\_species, }\StringTok{" sp."}\NormalTok{)), }
+            \AttributeTok{hjust =} \SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#E53935"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Sampling Effort by Province"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Bars: number of records | Red text: number of species"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =} \StringTok{"Number of records"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\FunctionTok{print}\NormalTok{(p\_provinces)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Rodent_species_protocol_kazakhstan_files/figure-latex/provincial-effort-1} \end{center}
+
+\end{document}

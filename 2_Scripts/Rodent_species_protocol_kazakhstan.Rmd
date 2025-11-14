@@ -1,9 +1,11 @@
 ---
-title: "GBIF Rodent Occurrence Analysis for Central Asia: Kazakhstan Field Guide"
-subtitle: "A comprehensive protocol for rodent surveillance planning"
+title: 'GBIF Rodent Occurrence Analysis for Central Asia: Kazakhstan Field Guide'
 author: "Central Asia One Health Project - ZSL"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: '3'
   html_document:
     toc: true
     toc_float: true
@@ -14,6 +16,7 @@ output:
     code_folding: show
     fig_width: 10
     fig_height: 8
+subtitle: A comprehensive protocol for rodent surveillance planning
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -24,6 +27,9 @@ knitr::opts_chunk$set(
   fig.width = 10,
   fig.height = 8
 )
+
+# Set root directory for all chunks
+knitr::opts_knit$set(root.dir = "~/GitHub/Rodent_CA/")
 
 # Load all required libraries
 library(tidyverse)
@@ -61,7 +67,7 @@ This document provides a comprehensive analysis of rodent occurrence data from K
 - **When** rodents are most likely to be captured
 - **How reliable** the existing data is
 
-> **Note**: This analysis is based on opportunistic occurrence records from GBIF. Patterns may reflect sampling effort and researcher activity rather than true biological patterns. Use this as a guide, not absolute truth.
+> **Note**: This analysis is based on opportunistic occurrence records from GBIF. Patterns may reflect sampling effort and researcher activity rather than true biological patterns. 
 
 # Data Loading and Initial Exploration
 
@@ -83,33 +89,56 @@ cat("Date range:", min(gbif_data_raw$year, na.rm = TRUE), "-",
 
 ## Data Cleaning and Preparation
 ```{r clean-data}
-# Create a cleaned dataset with essential fields
+# How many records have coordinates?
+cat("Records WITH coordinates:", sum(!is.na(gbif_data_raw$decimalLatitude) & 
+                                      !is.na(gbif_data_raw$decimalLongitude)), "\n")
+
+cat("Records WITHOUT coordinates:", sum(is.na(gbif_data_raw$decimalLatitude) | 
+                                         is.na(gbif_data_raw$decimalLongitude)), "\n")
+
+# Are there any invalid coordinates?
+cat("Invalid latitudes:", sum(gbif_data_raw$decimalLatitude < -90 | 
+                               gbif_data_raw$decimalLatitude > 90, na.rm = TRUE), "\n")
+
+cat("Invalid longitudes:", sum(gbif_data_raw$decimalLongitude < -180 | 
+                                gbif_data_raw$decimalLongitude > 180, na.rm = TRUE), "\n")
+
+# What's in the original species column?
+table(is.na(gbif_data_raw$species) | gbif_data_raw$species == "")
+
+# What's in genus column?
+table(is.na(gbif_data_raw$genus) | gbif_data_raw$genus == "")
+
+
+## Data Cleaning and Preparation
+
 gbif_data <- gbif_data_raw %>%
-  # Select relevant columns
-  dplyr::select(gbifID, scientificName, species, genus, family,
-         decimalLatitude, decimalLongitude, 
-         coordinateUncertaintyInMeters,
-         elevation, year, month, day, eventDate,
-         stateProvince, locality,
-         basisOfRecord, institutionCode, 
-         recordedBy, identifiedBy) %>%
   # Remove records without coordinates
   filter(!is.na(decimalLatitude) & !is.na(decimalLongitude)) %>%
-  # Remove records with impossible coordinates
-  filter(decimalLatitude >= -90 & decimalLatitude <= 90,
-         decimalLongitude >= -180 & decimalLongitude <= 180) %>%
-  # Clean species names
+  # Remove invalid coordinates
+  filter(
+    decimalLatitude >= -90 & decimalLatitude <= 90,
+    decimalLongitude >= -180 & decimalLongitude <= 180
+  ) %>%
+  # Add cleaned/standardised variables (keep originals)
   mutate(
-    species_clean = ifelse(is.na(species) | species == "", 
-                          paste(genus, "sp."), 
-                          species),
-    family_clean = ifelse(is.na(family) | family == "", 
-                          "Unknown", 
-                          family),
-    # Create date columns
+    # Standardise species names
+    species_clean = case_when(
+      !is.na(species) & species != "" ~ species,
+      !is.na(genus) & genus != "" ~ paste(genus, "sp."),
+      TRUE ~ scientificName
+    ),
+    # Standardise family names
+    family_clean = if_else(
+      is.na(family) | family == "",
+      "Unknown",
+      family
+    ),
+    # Ensure dates are correct format
     year = as.integer(year),
     month = as.integer(month),
-    # Create coordinate precision categories
+    day = as.integer(day),
+    # Categorise coordinate precision
     coord_precision = case_when(
       coordinateUncertaintyInMeters <= 100 ~ "High (<100m)",
       coordinateUncertaintyInMeters <= 1000 ~ "Medium (100-1000m)",
@@ -119,10 +148,18 @@ gbif_data <- gbif_data_raw %>%
     )
   )
 
-# Summary of data cleaning
+# Show first 20 species_clean values to check logic
+head(gbif_data$species_clean, 20)
+
+# What's in original family column?
+table(is.na(gbif_data_raw$family) | gbif_data_raw$family == "")
+
+# Show unique families
+unique(gbif_data$family_clean)
+# Print summary
 cat("Data Cleaning Summary:\n")
-cat("Records with coordinates:", format(nrow(gbif_data), big.mark = ","), 
-    "(", round(nrow(gbif_data)/nrow(gbif_data_raw)*100, 1), "% retained)\n")
+cat("Records with coordinates:", format(nrow(gbif_data), big.mark = ","),
+    "(", round(nrow(gbif_data) / nrow(gbif_data_raw) * 100, 1), "% retained)\n")
 cat("Unique species:", n_distinct(gbif_data$species_clean), "\n")
 cat("Unique families:", n_distinct(gbif_data$family_clean), "\n")
 cat("Unique genera:", n_distinct(gbif_data$genus), "\n")
@@ -132,7 +169,6 @@ cat("Unique genera:", n_distinct(gbif_data$genus), "\n")
 
 ## Complete Species Inventory
 
-This table shows ALL species recorded in Kazakhstan, sorted by frequency. Every species matters for surveillance planning!
 ```{r species-inventory}
 # Create comprehensive species list
 species_summary <- gbif_data %>%
@@ -152,20 +188,24 @@ species_summary <- gbif_data %>%
     cumulative_percent = round(cumsum(n_records) / sum(n_records) * 100, 1)
   )
 
-# Display interactive table
-datatable(species_summary,
-          options = list(pageLength = 15, scrollX = TRUE),
-          caption = "Complete inventory of rodent species in Kazakhstan GBIF data") %>%
-  formatStyle('n_records',
-              background = styleColorBar(species_summary$n_records, 'lightblue'),
-              backgroundSize = '100% 90%',
-              backgroundRepeat = 'no-repeat',
-              backgroundPosition = 'center')
+if (knitr::is_html_output()) {
+  datatable(species_summary,
+            options = list(pageLength = 15, scrollX = TRUE),
+            caption = "Complete inventory of rodent species")
+} else {
+  kable(head(species_summary, 10) %>% 
+          select(species_clean, family_clean, n_records, n_locations),
+        caption = "Top 10 most common rodent species",
+        col.names = c("Species", "Family", "Records", "Locations"),
+        booktabs = TRUE) %>%
+    kable_styling(latex_options = c("striped", "HOLD_position"),
+                  font_size = 10) %>%
+    column_spec(1, italic = TRUE)
+}
 ```
 
 ## Species Accumulation Curve
 
-How complete is our knowledge? This shows if we're still discovering new species.
 ```{r species-accumulation, fig.height=6}
 # Calculate species accumulation by year
 species_accumulation <- gbif_data %>%
@@ -207,7 +247,6 @@ print(p1)
 
 ## Family Composition
 
-Understanding which rodent families dominate can help with trap selection and identification training.
 ```{r family-composition, fig.height=8}
 # Prepare family data
 family_summary <- gbif_data %>%
@@ -279,7 +318,7 @@ p_coverage <- ggplot() +
   geom_sf(data = kazakhstan, fill = "grey95", color = "grey60") +
   geom_point(data = gbif_data,
              aes(x = decimalLongitude, y = decimalLatitude),
-             alpha = 0.5, size = 0.8, color = "#2E7D32") +
+             alpha = 0.5, size = 0.8, color = "red") +
   labs(
     title = "Geographic Coverage of Rodent Records in Kazakhstan",
     subtitle = paste("Total:", format(nrow(gbif_data), big.mark = ","), "georeferenced records"),
@@ -289,11 +328,22 @@ p_coverage <- ggplot() +
   coord_sf(xlim = c(46, 88), ylim = c(40, 56))
 
 print(p_coverage)
+
+
+# Save as PDF instead
+ggsave(
+  filename = "3_Figures/1_Gbif_overview/Geographic_coverage_kz.pdf",  # Changed to .pdf
+  plot = p_coverage, 
+  width = 10,
+  height = 8,
+  units = "in",
+  device = "pdf"  # Explicitly specify PDF
+)
 ```
 
 ## Species Richness Hotspots
 
-Where is rodent diversity highest? This helps prioritize surveillance locations.
+Where is rodent diversity highest? 
 ```{r richness-map, fig.height=8}
 # Create grid for species richness
 grid_size <- 0.5  # degrees
@@ -346,11 +396,21 @@ for(i in 1:nrow(top_hotspots)) {
       top_hotspots$species_richness[i], " species (", 
       top_hotspots$n_records[i], " records)\n", sep = "")
 }
+
+# Save as PDF instead
+ggsave(
+  filename = "3_Figures/1_Gbif_overview/Species_richness_kz.pdf",  # Changed to .pdf
+  plot = p_richness, 
+  width = 10,
+  height = 8,
+  units = "in",
+  device = "pdf"  # Explicitly specify PDF
+)
 ```
 
 ## Individual Species Distribution Maps
 
-Interactive maps for the most common species AND rare species (important for surveillance!).
+Interactive maps for the most common species AND rare species
 ```{r species-maps, fig.height=12}
 # Select species to map: top 6 common + 3 rare species with >1 record
 common_species <- species_summary %>%
@@ -395,13 +455,16 @@ species_grid <- wrap_plots(species_maps, ncol = 3) +
   )
 
 print(species_grid)
+
+
+
 ```
 
 # Temporal Patterns
 
 ## Seasonal Activity Patterns
 
-**Critical Note**: Seasonal patterns may reflect researcher activity (holidays, field seasons) rather than true rodent activity!
+**Critical Note**: Seasonal patterns may reflect researcher activity (holidays, field seasons) rather than true rodent activity
 ```{r seasonal-patterns, fig.height=10}
 # Prepare monthly data
 monthly_data <- gbif_data %>%
@@ -528,7 +591,6 @@ print(temporal_plot)
 
 # Elevation Analysis
 
-Understanding elevation preferences helps with site selection in mountainous regions.
 ```{r elevation-analysis, fig.height=10}
 # Filter for records with elevation data
 elevation_data <- gbif_data %>%
@@ -592,7 +654,6 @@ if(nrow(elevation_data) > 0) {
 
 ## Coordinate Precision Analysis
 
-Understanding data quality helps assess reliability of distribution patterns.
 ```{r data-quality, fig.height=8}
 # Coordinate precision
 precision_summary <- gbif_data %>%
@@ -677,128 +738,3 @@ p_provinces <- ggplot(provincial_summary,
 
 print(p_provinces)
 ```
-
-# Field Planning Recommendations
-
-Based on this analysis, here are key recommendations for field teams:
-
-## Spatial Priorities
-```{r recommendations-spatial}
-# Identify undersampled areas
-undersampled <- richness_grid %>%
-  filter(n_records < 10, species_richness > 0) %>%
-  arrange(desc(species_richness)) %>%
-  head(5) %>%
-  mutate(location = paste0(round(lat_grid, 1), "°N, ", round(lon_grid, 1), "°E"))
-
-cat("UNDERSAMPLED AREAS WITH KNOWN DIVERSITY:\n")
-cat("These locations have species records but low sampling effort:\n\n")
-for(i in 1:nrow(undersampled)) {
-  cat("• ", undersampled$location[i], ": ", 
-      undersampled$species_richness[i], " species from only ", 
-      undersampled$n_records[i], " records\n", sep = "")
-}
-
-cat("\n")
-cat("HIGH PRIORITY SPECIES (rare but important):\n")
-rare_important <- species_summary %>%
-  filter(n_records <= 10, n_records > 1) %>%
-  head(10)
-for(i in 1:nrow(rare_important)) {
-  cat("• ", rare_important$species_clean[i], ": only ", 
-      rare_important$n_records[i], " records from ", 
-      rare_important$n_locations[i], " location(s)\n", sep = "")
-}
-```
-
-## Temporal Recommendations
-```{r recommendations-temporal}
-# Best months for sampling
-best_months <- monthly_data %>%
-  arrange(desc(n_species)) %>%
-  head(3)
-
-cat("OPTIMAL SAMPLING MONTHS (based on historical species diversity):\n")
-for(i in 1:nrow(best_months)) {
-  cat(i, ". ", best_months$month_name[i], ": ", 
-      best_months$n_species[i], " species recorded\n", sep = "")
-}
-
-cat("\n⚠️ Remember: These patterns may reflect researcher availability!\n")
-cat("Consider year-round monitoring to capture true seasonal patterns.\n")
-```
-
-## Species-Specific Considerations
-```{r species-considerations}
-# Create a summary table for field identification
-field_guide <- species_summary %>%
-  head(20) %>%
-  dplyr::select(Species = species_clean, 
-         Family = family_clean,
-         `Records` = n_records,
-         `Locations` = n_locations,
-         `Provinces` = n_provinces) %>%
-  mutate(Species = cell_spec(Species, italic = TRUE))
-
-kable(field_guide, escape = FALSE, caption = "Top 20 Species Quick Reference") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), 
-                full_width = FALSE) %>%
-  column_spec(1, bold = TRUE) %>%
-  row_spec(1:5, background = "#E8F5E9")
-```
-
-# Data Export for Field Use
-```{r export-data}
-# Create field-ready datasets
-# TO MODIFY: Change export paths as needed
-
-# 1. Species checklist
-species_checklist <- species_summary %>%
-  dplyr::select(species = species_clean, 
-         family = family_clean, 
-         n_records, 
-         n_locations,
-         year_range)
-
-write.csv(species_checklist, 
-          "kazakhstan_rodent_checklist.csv", 
-          row.names = FALSE)
-
-# 2. Hotspot locations
-hotspot_export <- richness_grid %>%
-  arrange(desc(species_richness)) %>%
-  head(50) %>%
-  mutate(
-    latitude = lat_grid,
-    longitude = lon_grid
-  ) %>%
-  dplyr::select(latitude, longitude, species_richness, n_records, n_families)
-
-write.csv(hotspot_export, 
-          "kazakhstan_rodent_hotspots.csv", 
-          row.names = FALSE)
-
-# 3. Monthly activity calendar
-monthly_export <- monthly_data %>%
-  dplyr::select(month, month_name, n_records, n_species)
-
-write.csv(monthly_export, 
-          "kazakhstan_rodent_seasonal.csv", 
-          row.names = FALSE)
-
-cat("✅ Data exported to 'outputs' folder:\n")
-cat("• kazakhstan_rodent_checklist.csv\n")
-cat("• kazakhstan_rodent_hotspots.csv\n")
-cat("• kazakhstan_rodent_seasonal.csv\n")
-```
-
-# Session Information
-```{r session-info}
-sessionInfo()
-```
-
----
-
-*Document generated on `r Sys.Date()` for the Central Asia One Health Project*
-
-*Remember: GBIF data represents opportunistic sampling. Absence of records doesn't mean absence of species!*
