@@ -1,5 +1,5 @@
 ---
-title: 'GBIF Rodent Occurrence Analysis for Central Asia: Kazakhstan Field Guide'
+title: 'GBIF Small Mammal Occurrence Analysis for Central Asia: Kazakhstan Field Guide'
 author: "Central Asia One Health Project - ZSL"
 date: "`r Sys.Date()`"
 output:
@@ -16,7 +16,7 @@ output:
     code_folding: show
     fig_width: 10
     fig_height: 8
-subtitle: A comprehensive protocol for rodent surveillance planning
+subtitle: A comprehensive protocol for small mammal surveillance planning
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -58,13 +58,23 @@ family_colors <- c("#E53935", "#D81B60", "#8E24AA", "#5E35B1",
                    "#00897B", "#43A047", "#7CB342", "#C0CA33")
 ```
 
+```{r params}
+# Analysis parameters
+# TO MODIFY: Change these to analyse a different dataset or focal country
+# The previous file ("1_Data_Sets/01_GBIF/Rodents_kazakhstan.csv", Rodentia and
+# Kazakhstan only) still works if substituted here
+data_file <- "1_Data_Sets/01_GBIF/Small_mammals_CA.csv"
+focal_iso <- "KZ"
+focal_name <- "Kazakhstan"
+```
+
 # Introduction
 
-This document provides a comprehensive analysis of rodent occurrence data from Kazakhstan using GBIF (Global Biodiversity Information Facility) records. It is designed to help field teams prepare for rodent surveillance activities by understanding:
+This document provides a comprehensive analysis of small mammal occurrence data from Kazakhstan using GBIF (Global Biodiversity Information Facility) records. It is designed to help field teams prepare for small mammal surveillance activities by understanding:
 
 - **What species** you might encounter
 - **Where** different species have been recorded
-- **When** rodents are most likely to be captured
+- **When** small mammals are most likely to be captured
 - **How reliable** the existing data is
 
 > **Note**: This analysis is based on opportunistic occurrence records from GBIF. Patterns may reflect sampling effort and researcher activity rather than true biological patterns. 
@@ -74,9 +84,9 @@ This document provides a comprehensive analysis of rodent occurrence data from K
 ## Load the GBIF Data
 ```{r load-data}
 # Read the GBIF data
-# TO MODIFY: Change this path to your data file location
-gbif_data_raw <- read.csv("1_Data_Sets/01_GBIF/Rodents_kazakhstan.csv", 
-                          sep = "\t", 
+# TO MODIFY: Change data_file in the params chunk to your data file location
+gbif_data_raw <- read.csv(data_file,
+                          sep = "\t",
                           stringsAsFactors = FALSE)
 
 # Display basic information
@@ -112,14 +122,18 @@ table(is.na(gbif_data_raw$genus) | gbif_data_raw$genus == "")
 
 ## Data Cleaning and Preparation
 
-gbif_data <- gbif_data_raw %>%
-  # Remove records without coordinates
-  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude)) %>%
-  # Remove invalid coordinates
-  filter(
-    decimalLatitude >= -90 & decimalLatitude <= 90,
-    decimalLongitude >= -180 & decimalLongitude <= 180
-  ) %>%
+# Report how many records the fossil exclusion removes
+n_fossil <- sum(gbif_data_raw$basisOfRecord == "FOSSIL_SPECIMEN" |
+                  gbif_data_raw$datasetKey == "bb5b30b4-827e-4d5e-a86a-825d65cb6583",
+                na.rm = TRUE)
+cat("Palaeontological records excluded (PBDB dataset or FOSSIL_SPECIMEN):", n_fossil, "\n")
+
+gbif_nofossil <- gbif_data_raw %>%
+  # Exclude palaeontological records: the Paleobiology Database publishes
+  # fossil occurrences mostly as MATERIAL_CITATION, so basisOfRecord alone
+  # does not catch them
+  filter(basisOfRecord != "FOSSIL_SPECIMEN",
+         datasetKey != "bb5b30b4-827e-4d5e-a86a-825d65cb6583") %>%
   # Add cleaned/standardised variables (keep originals)
   mutate(
     # Standardise species names
@@ -134,6 +148,8 @@ gbif_data <- gbif_data_raw %>%
       "Unknown",
       family
     ),
+    # Standardise order names
+    order_clean = if_else(is.na(order) | order == "", "Unknown", order),
     # Ensure dates are correct format
     year = as.integer(year),
     month = as.integer(month),
@@ -148,6 +164,17 @@ gbif_data <- gbif_data_raw %>%
     )
   )
 
+# Mapping dataset: keep georeferenced records only. The species inventory is
+# built from gbif_nofossil, so records without coordinates still count there
+gbif_data <- gbif_nofossil %>%
+  # Remove records without coordinates
+  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude)) %>%
+  # Remove invalid coordinates
+  filter(
+    decimalLatitude >= -90 & decimalLatitude <= 90,
+    decimalLongitude >= -180 & decimalLongitude <= 180
+  )
+
 # Show first 20 species_clean values to check logic
 head(gbif_data$species_clean, 20)
 
@@ -158,11 +185,39 @@ table(is.na(gbif_data_raw$family) | gbif_data_raw$family == "")
 unique(gbif_data$family_clean)
 # Print summary
 cat("Data Cleaning Summary:\n")
-cat("Records with coordinates:", format(nrow(gbif_data), big.mark = ","),
-    "(", round(nrow(gbif_data) / nrow(gbif_data_raw) * 100, 1), "% retained)\n")
+cat("Non-fossil records:", format(nrow(gbif_nofossil), big.mark = ","), "\n")
+cat("Georeferenced records for mapping:", format(nrow(gbif_data), big.mark = ","),
+    "(", round(nrow(gbif_data) / nrow(gbif_nofossil) * 100, 1), "% retained)\n")
 cat("Unique species:", n_distinct(gbif_data$species_clean), "\n")
 cat("Unique families:", n_distinct(gbif_data$family_clean), "\n")
 cat("Unique genera:", n_distinct(gbif_data$genus), "\n")
+
+
+## Split into two levels: whole Central Asia (reference) and focal country
+
+# Keep the full cleaned Central Asia dataset as a reference layer
+gbif_ca <- gbif_data
+
+# Restrict gbif_data to the focal country so all downstream chunks
+# analyse the focal country only
+gbif_data <- gbif_ca %>%
+  filter(countryCode == focal_iso)
+
+# Compare record counts: total Central Asia vs focal country, per order
+cat("\nRecord Counts: Central Asia vs", focal_name, "\n")
+cat("Total Central Asia records:", format(nrow(gbif_ca), big.mark = ","), "\n")
+cat(focal_name, "records:", format(nrow(gbif_data), big.mark = ","), "\n\n")
+
+order_comparison <- gbif_ca %>%
+  group_by(order_clean) %>%
+  summarise(
+    n_ca = n(),
+    n_focal = sum(countryCode == focal_iso, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(n_ca))
+
+print(order_comparison)
 ```
 
 # Species Diversity Analysis
@@ -170,38 +225,90 @@ cat("Unique genera:", n_distinct(gbif_data$genus), "\n")
 ## Complete Species Inventory
 
 ```{r species-inventory}
-# Create comprehensive species list
-species_summary <- gbif_data %>%
-  group_by(species_clean, family_clean) %>%
+# Create comprehensive species list from all non-fossil records: a museum
+# specimen without coordinates is still evidence a species occurs
+species_summary <- gbif_nofossil %>%
+  filter(countryCode == focal_iso) %>%
+  mutate(
+    is_georef = !is.na(decimalLatitude) & !is.na(decimalLongitude) &
+      decimalLatitude >= -90 & decimalLatitude <= 90 &
+      decimalLongitude >= -180 & decimalLongitude <= 180
+  ) %>%
+  group_by(species_clean, order_clean, family_clean) %>%
   summarise(
     n_records = n(),
-    n_locations = n_distinct(paste(round(decimalLatitude, 2), 
-                                   round(decimalLongitude, 2))),
-    year_range = paste(min(year, na.rm = TRUE), "-", 
+    n_georeferenced = sum(is_georef),
+    n_locations = n_distinct(paste(round(decimalLatitude, 2),
+                                   round(decimalLongitude, 2))[is_georef]),
+    year_range = paste(min(year, na.rm = TRUE), "-",
                       max(year, na.rm = TRUE)),
+    latest_year = if (all(is.na(year))) NA_integer_ else max(year, na.rm = TRUE),
     n_provinces = n_distinct(stateProvince, na.rm = TRUE),
     .groups = 'drop'
   ) %>%
   arrange(desc(n_records)) %>%
   mutate(
     percent_records = round(n_records / sum(n_records) * 100, 2),
-    cumulative_percent = round(cumsum(n_records) / sum(n_records) * 100, 1)
+    cumulative_percent = round(cumsum(n_records) / sum(n_records) * 100, 1),
+    note = if_else(n_georeferenced == 0,
+                   "collection records only, none georeferenced", "")
   )
+
+# Duplicate species rows would corrupt the common/rare species selection downstream
+stopifnot(!any(duplicated(species_summary$species_clean)))
 
 if (knitr::is_html_output()) {
   datatable(species_summary,
             options = list(pageLength = 15, scrollX = TRUE),
-            caption = "Complete inventory of rodent species")
+            caption = "Complete inventory of small mammal species")
 } else {
   kable(head(species_summary, 10) %>% 
-          select(species_clean, family_clean, n_records, n_locations),
-        caption = "Top 10 most common rodent species",
-        col.names = c("Species", "Family", "Records", "Locations"),
+          select(species_clean, family_clean, n_records, n_locations, latest_year),
+        caption = "Top 10 most common small mammal species",
+        col.names = c("Species", "Family", "Records", "Locations", "Latest year"),
         booktabs = TRUE) %>%
     kable_styling(latex_options = c("striped", "HOLD_position"),
                   font_size = 10) %>%
     column_spec(1, italic = TRUE)
 }
+
+# Export species inventories for the field guide
+dir.create("4_Tables", showWarnings = FALSE)
+
+# Focal-country inventory (expected species list for the trapping trip)
+write.csv(species_summary, paste0("4_Tables/species_inventory_", focal_iso, ".csv"),
+          row.names = FALSE)
+
+# Whole Central Asia inventory (reference layer for cross-border species)
+species_summary_ca <- gbif_nofossil %>%
+  mutate(
+    is_georef = !is.na(decimalLatitude) & !is.na(decimalLongitude) &
+      decimalLatitude >= -90 & decimalLatitude <= 90 &
+      decimalLongitude >= -180 & decimalLongitude <= 180
+  ) %>%
+  group_by(species_clean, order_clean, family_clean) %>%
+  summarise(
+    n_records = n(),
+    n_georeferenced = sum(is_georef),
+    n_locations = n_distinct(paste(round(decimalLatitude, 2),
+                                   round(decimalLongitude, 2))[is_georef]),
+    year_range = paste(min(year, na.rm = TRUE), "-",
+                      max(year, na.rm = TRUE)),
+    latest_year = if (all(is.na(year))) NA_integer_ else max(year, na.rm = TRUE),
+    n_provinces = n_distinct(stateProvince, na.rm = TRUE),
+    countries = paste(sort(unique(countryCode)), collapse = ", "),
+    in_focal = any(countryCode == focal_iso, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  arrange(desc(n_records)) %>%
+  mutate(
+    percent_records = round(n_records / sum(n_records) * 100, 2),
+    cumulative_percent = round(cumsum(n_records) / sum(n_records) * 100, 1),
+    note = if_else(n_georeferenced == 0,
+                   "collection records only, none georeferenced", "")
+  )
+
+write.csv(species_summary_ca, "4_Tables/species_inventory_CA.csv", row.names = FALSE)
 ```
 
 ## Species Accumulation Curve
@@ -320,7 +427,7 @@ p_coverage <- ggplot() +
              aes(x = decimalLongitude, y = decimalLatitude),
              alpha = 0.5, size = 0.8, color = "red") +
   labs(
-    title = "Geographic Coverage of Rodent Records in Kazakhstan",
+    title = "Geographic Coverage of Small Mammal Records in Kazakhstan",
     subtitle = paste("Total:", format(nrow(gbif_data), big.mark = ","), "georeferenced records"),
     x = "Longitude", y = "Latitude"
   ) +
@@ -341,9 +448,44 @@ ggsave(
 )
 ```
 
+## Regional Coverage Map (Central Asia)
+```{r coverage-map-ca, fig.height=8}
+# Get boundaries for the five Central Asian countries
+central_asia <- ne_countries(country = c("Kazakhstan", "Kyrgyzstan", "Tajikistan",
+                                         "Turkmenistan", "Uzbekistan"),
+                             scale = "medium", returnclass = "sf")
+
+# Create regional coverage map with all points, coloured by order
+p_coverage_ca <- ggplot() +
+  geom_sf(data = central_asia, fill = "grey95", color = "grey60") +
+  geom_point(data = gbif_ca,
+             aes(x = decimalLongitude, y = decimalLatitude, color = order_clean),
+             alpha = 0.5, size = 0.8) +
+  labs(
+    title = "Geographic Coverage of Small Mammal Records in Central Asia",
+    subtitle = paste("Total:", format(nrow(gbif_ca), big.mark = ","), "georeferenced records"),
+    x = "Longitude", y = "Latitude",
+    color = "Order"
+  ) +
+  theme_minimal() +
+  coord_sf(xlim = c(46, 88), ylim = c(35, 56))
+
+print(p_coverage_ca)
+
+
+ggsave(
+  filename = "3_Figures/1_Gbif_overview/Geographic_coverage_CA.pdf",
+  plot = p_coverage_ca,
+  width = 10,
+  height = 8,
+  units = "in",
+  device = "pdf"  # Explicitly specify PDF
+)
+```
+
 ## Species Richness Hotspots
 
-Where is rodent diversity highest? 
+Where is small mammal diversity highest? 
 ```{r richness-map, fig.height=8}
 # Create grid for species richness
 grid_size <- 0.5  # degrees
@@ -373,7 +515,7 @@ p_richness <- ggplot() +
     breaks = pretty_breaks(n = 5)
   ) +
   labs(
-    title = "Rodent Species Richness Hotspots",
+    title = "Small Mammal Species Richness Hotspots",
     subtitle = paste("Grid size:", grid_size, "degrees"),
     x = "Longitude", y = "Latitude"
   ) +
@@ -412,13 +554,15 @@ ggsave(
 
 Interactive maps for the most common species AND rare species
 ```{r species-maps, fig.height=12}
-# Select species to map: top 6 common + 3 rare species with >1 record
+# Select species to map: top 6 common + 3 rare species with >1 georeferenced
+# record (species without georeferenced records cannot be mapped)
 common_species <- species_summary %>%
+  filter(n_georeferenced > 1) %>%
   head(6) %>%
   pull(species_clean)
 
 rare_species <- species_summary %>%
-  filter(n_records > 1) %>%
+  filter(n_georeferenced > 1) %>%
   tail(3) %>%
   pull(species_clean)
 
@@ -464,7 +608,7 @@ print(species_grid)
 
 ## Seasonal Activity Patterns
 
-**Critical Note**: Seasonal patterns may reflect researcher activity (holidays, field seasons) rather than true rodent activity
+**Critical Note**: Seasonal patterns may reflect researcher activity (holidays, field seasons) rather than true small mammal activity
 ```{r seasonal-patterns, fig.height=10}
 # Prepare monthly data
 monthly_data <- gbif_data %>%
@@ -613,7 +757,7 @@ if(nrow(elevation_data) > 0) {
     geom_histogram(bins = 50, fill = "#5E35B1", alpha = 0.7) +
     geom_density(aes(y = ..count..), color = "#1A237E", size = 1.2) +
     labs(
-      title = "Elevation Distribution of Rodent Records",
+      title = "Elevation Distribution of Small Mammal Records",
       subtitle = paste("n =", nrow(elevation_data), "records with elevation data"),
       x = "Elevation (m)", y = "Number of records"
     ) +
@@ -693,12 +837,17 @@ p1 <- ggplot(precision_summary, aes(x = coord_precision, y = n_records, fill = c
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
 
-# Basis of record
-basis_summary <- gbif_data_raw %>%
+# Basis of record (focal country only, fossils excluded, to match the other panels)
+gbif_raw_focal <- gbif_data_raw %>%
+  filter(basisOfRecord != "FOSSIL_SPECIMEN",
+         datasetKey != "bb5b30b4-827e-4d5e-a86a-825d65cb6583") %>%
+  filter(countryCode == focal_iso)
+
+basis_summary <- gbif_raw_focal %>%
   group_by(basisOfRecord) %>%
   summarise(
     n_records = n(),
-    percent = round(n() / nrow(gbif_data_raw) * 100, 1),
+    percent = round(n() / nrow(gbif_raw_focal) * 100, 1),
     .groups = 'drop'
   ) %>%
   arrange(desc(n_records))
