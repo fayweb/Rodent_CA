@@ -1,0 +1,383 @@
+# -*- coding: utf-8 -*-
+"""Render Merke field cards from species_data.json.
+
+Two-part card by design:
+  1. Facts table  - measurements/activity/burrow dimensions. Safe to publish as is.
+  2. Source block - Plazi/HMW text quoted verbatim, clearly delimited so it can be
+                    deleted and replaced with protocol prose before publication.
+"""
+import io, json, html
+
+DATA = "species_data.json"
+OUT = "merke_cards.html"
+
+# H. B. Sherman Traps model tiers, from the manufacturer's own compare-traps page
+# (shermantraps.com/compare-traps/). Dimensions and target animals are the
+# manufacturer's; assigning a Central Asian species to a tier is our judgement and
+# is shown on the card so it can be checked.
+TIERS = {
+    "small":  ("Small",  "SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)",
+               "mice, shrews, voles"),
+    "medium": ("Medium", "LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)",
+               "chipmunks, rats, flying squirrels"),
+    "large":  ("Large",  "XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)",
+               "kangaroo rats, ground squirrels, squirrels"),
+    "too_large": ("Too large", "no Sherman model fits",
+                  "record the sighting or sign; do not expect a capture"),
+}
+
+# Above this mass no Sherman model in the range is appropriate. The largest model
+# is offered for ground squirrels, so the ceiling sits above them and below marmots.
+TOO_LARGE_G = 1500
+
+
+def hi(s):
+    """Return (low, high) ints from a '90-120' style range string."""
+    try:
+        parts = [int(x) for x in str(s).replace("–", "-").split("-") if x.strip().isdigit()]
+        return (parts[0], parts[-1]) if parts else (None, None)
+    except Exception:
+        return (None, None)
+
+
+def sherman_tier(sp):
+    """Map a species to a manufacturer trap tier.
+
+    Body size sets the default; body_type can override it. Jerboas are mapped to
+    the large tier because the manufacturer lists kangaroo rats there, and a
+    saltatorial animal needs the length its hind legs and tail demand.
+    """
+    if sp.get("sherman_tier"):
+        return sp["sherman_tier"], sp.get("sherman_basis", "set manually")
+
+    wt_hi = hi(sp["measurements"].get("weight_g", ""))[1]
+    if wt_hi and wt_hi > TOO_LARGE_G:
+        return "too_large", "reaches %d g, well above the largest model's intended animals" % wt_hi
+
+    if sp.get("body_type") == "saltatorial":
+        return "large", ("bipedal hopper; manufacturer places kangaroo rats, "
+                         "the closest body type it names, in this tier")
+
+    hb = hi(sp["measurements"]["head_body_mm"])[1]
+    wt = hi(sp["measurements"].get("weight_g", ""))[1]
+    if hb is None:
+        return "unknown", "no head-body figure"
+    basis = "head-body to %d mm, to %s g" % (hb, wt if wt else "?")
+    if hb <= 110 and (wt or 0) <= 45:
+        return "small", basis
+    if hb <= 200 and (wt or 0) <= 350:
+        return "medium", basis
+    return "large", basis
+
+
+def diel_class(sp):
+    a = sp["activity_class"].lower()
+    if "diurnal" in a and "nocturnal" not in a and "crepuscular" not in a:
+        return "day"
+    if "diurnal" in a or "day" in a:
+        return "both"
+    return "night"
+
+
+CSS = """
+/* PT Serif and PT Sans were designed by ParaType for the languages of the Russian
+   Federation. The manual is translated into Russian, so the type carries over
+   instead of falling back to a substitute face. */
+:root{
+  --paper:#FBFAF8; --card:#FFFFFF; --ink:#16211D; --mut:#5C6763; --faint:#8A938F;
+  --line:#DDE3E0; --rule:#EEF1EF;
+  --zsl:#00694E; --zsl-tint:#E9F1EE; --zsl-deep:#004F3A;
+  --alert:#9A3B12; --alert-tint:#FBEDE5;
+  --calm:#3A3F6B; --calm-tint:#ECEDF5;
+  --serif:"PT Serif",Georgia,"Times New Roman",serif;
+  --sans:"PT Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1512; --card:#18201D; --ink:#E7ECE9; --mut:#A3AEA9; --faint:#7C8783;
+  --line:#2C3733; --rule:#232D29;
+  --zsl:#5FBFA1; --zsl-tint:#0E2C23; --zsl-deep:#8FD6BE;
+  --alert:#E08A5A; --alert-tint:#2E1B10;
+  --calm:#A2A7DA; --calm-tint:#1A1D33;
+}}
+:root[data-theme="dark"]{
+  --paper:#0F1512; --card:#18201D; --ink:#E7ECE9; --mut:#A3AEA9; --faint:#7C8783;
+  --line:#2C3733; --rule:#232D29;
+  --zsl:#5FBFA1; --zsl-tint:#0E2C23; --zsl-deep:#8FD6BE;
+  --alert:#E08A5A; --alert-tint:#2E1B10;
+  --calm:#A2A7DA; --calm-tint:#1A1D33;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:840px;margin:0 auto;padding:32px 20px 72px;
+  display:flex;flex-direction:column;gap:28px}
+
+.masthead{border-bottom:3px solid var(--zsl);padding-bottom:14px}
+.masthead h1{font-family:var(--serif);font-size:30px;line-height:1.15;margin:0 0 6px;
+  text-wrap:balance;color:var(--zsl-deep)}
+.masthead p{margin:0;color:var(--mut);font-size:14px;max-width:62ch}
+
+.banner{background:var(--alert-tint);border-left:4px solid var(--alert);
+  border-radius:0 4px 4px 0;padding:14px 18px;font-size:14.5px;line-height:1.5}
+.banner b{color:var(--alert)}
+.banner:last-child{margin-bottom:0}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:5px;
+  padding:26px 28px;page-break-after:always;
+  display:flex;flex-direction:column;gap:0}
+.card:last-child{page-break-after:auto}
+
+h2{font-family:var(--serif);font-size:25px;line-height:1.2;margin:0;
+  text-wrap:balance;color:var(--ink)}
+.sci{font-family:var(--serif);font-style:italic;color:var(--mut);font-size:16px;margin:3px 0 0}
+.aka{color:var(--faint);font-size:13px;margin:3px 0 0}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:3px;
+  letter-spacing:.02em;border:1px solid}
+.t-grp{background:var(--zsl-tint);border-color:transparent;color:var(--zsl-deep)}
+.t-here{background:transparent;border-color:var(--line);color:var(--mut)}
+.t-day,.t-both{background:var(--alert-tint);border-color:var(--alert);color:var(--alert)}
+.t-night{background:var(--calm-tint);border-color:var(--calm);color:var(--calm)}
+
+.scroll{overflow-x:auto;margin:0 0 2px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--sans);background:var(--zsl-tint);color:var(--zsl-deep);
+  font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  border-bottom:1px solid var(--zsl)}
+tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+
+.sec{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
+  font-weight:700;margin:24px 0 8px}
+.verdict{font-weight:700}
+.v-small{color:var(--zsl)} .v-medium{color:var(--ink)}
+.v-large{color:var(--alert)} .v-too_large,.v-unknown{color:var(--faint)}
+.note{font-size:12.5px;color:var(--faint);margin:6px 0 0;max-width:62ch}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.fig{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  background:var(--paper);display:flex;flex-direction:column}
+.fig img{display:block;width:100%;height:auto;object-fit:cover}
+.fig figcaption{padding:8px 10px;font-size:12.5px;line-height:1.4;color:var(--mut);
+  display:flex;flex-direction:column;gap:3px}
+.fig .credit{font-size:11.5px;color:var(--faint)}
+.fig .credit a{color:var(--faint)}
+.fig.empty{border-style:dashed;background:transparent}
+.ph{padding:16px 12px;min-height:104px;display:flex;flex-direction:column;
+  justify-content:center;gap:6px;text-align:center}
+.phlab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--zsl)}
+.phbrief{font-size:12.5px;line-height:1.4;color:var(--faint)}
+
+.quoted{border:1px solid var(--line);border-left:3px solid var(--faint);
+  background:var(--paper);border-radius:0 4px 4px 0;padding:16px 18px;margin-top:4px}
+.qhead{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);
+  font-weight:700;margin-bottom:12px}
+.qh{font-weight:700;font-size:13px;margin:14px 0 3px;color:var(--zsl-deep)}
+.qh:first-of-type{margin-top:0}
+.qt{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--mut);
+  margin:0;max-width:68ch}
+.cite{font-size:12.5px;color:var(--faint);margin-top:14px;padding-top:11px;
+  border-top:1px solid var(--rule)}
+.cite a{color:var(--zsl);text-decoration:none;border-bottom:1px solid var(--line)}
+.cite a:hover,.cite a:focus{border-bottom-color:var(--zsl)}
+
+.check{background:var(--alert-tint);border-left:3px solid var(--alert);
+  border-radius:0 4px 4px 0;padding:12px 16px;margin-top:18px;font-size:13.5px}
+.check b{color:var(--alert)}
+.check ul{margin:7px 0 0 18px;padding:0}
+.check li+li{margin-top:5px}
+
+a:focus-visible,.cite a:focus-visible{outline:2px solid var(--zsl);outline-offset:2px}
+
+@media print{
+  body{background:#fff}
+  .wrap{max-width:none;padding:0;gap:0}
+  .card{border:none;border-radius:0;padding:0 0 12px;margin:0}
+  .masthead{page-break-after:avoid}
+  .quoted,.check,.banner,.fig{break-inside:avoid}
+}
+"""
+
+MEAS = [("head_body_mm", "Head-body", "mm"), ("tail_mm", "Tail", "mm"),
+        ("ear_mm", "Ear", "mm"), ("hindfoot_mm", "Hind foot", "mm"),
+        ("weight_g", "Weight", "g")]
+
+# Three image slots per card. An empty slot renders as the shot to take, so the
+# card doubles as the photographic shot list until the picture exists.
+IMG_SLOTS = [
+    ("animal", "Whole animal",
+     "In the hand, dorsal view, whole animal in frame with a scale bar."),
+    ("detail", "Diagnostic detail",
+     "The feature that separates this species from its confusion pair, with a scale bar."),
+    ("sign", "Burrow or field sign",
+     "Burrow entrance, runway, mound or hay pile, with a scale object for size."),
+]
+
+
+def figures(sp):
+    """Image strip. Filled slots show the picture; empty slots show what to shoot."""
+    e = html.escape
+    imgs = sp.get("images", {})
+    o = ['<div class="sec">Pictures</div><div class="figs">']
+    for key, label, default_brief in IMG_SLOTS:
+        img = imgs.get(key)
+        brief = sp.get("shot_list", {}).get(key, default_brief)
+        if img and img.get("file"):
+            cap = img.get("caption", label)
+            credit = img.get("credit", "")
+            lic = img.get("licence", "")
+            src = img.get("source_url", "")
+            meta = " · ".join(x for x in [credit, lic] if x)
+            if src:
+                meta = '<a href="%s">%s</a>' % (e(src), e(meta or "source"))
+            else:
+                meta = e(meta)
+            o.append('<figure class="fig"><img src="%s" alt="%s">'
+                     '<figcaption>%s<span class="credit">%s</span></figcaption></figure>'
+                     % (e(img["file"]), e(cap), e(cap), meta))
+        else:
+            o.append('<figure class="fig empty"><div class="ph">'
+                     '<span class="phlab">%s</span><span class="phbrief">%s</span>'
+                     '</div></figure>' % (e(label), e(brief)))
+    o.append('</div>')
+    return "\n".join(o)
+
+
+def card(sp):
+    e = html.escape
+    o = ['<div class="card">']
+    o.append('<h2>%s</h2>' % e(sp["common"]))
+    o.append('<p class="sci">%s</p>' % e(sp["binomial"]))
+    if sp.get("also_known_as"):
+        o.append('<p class="aka">Also listed as <i>%s</i></p>' % e(sp["also_known_as"]))
+
+    o.append('<div class="tags">')
+    o.append('<span class="tag t-grp">%s</span>' % e(sp["group"]))
+    o.append('<span class="tag t-here">%s</span>' % e(sp["merke_status"]))
+    o.append('<span class="tag t-%s">%s</span>' % (diel_class(sp), e(sp["activity_class"])))
+    o.append('</div>')
+
+    m = sp["measurements"]
+    o.append('<div class="sec">Measurements</div><div class="scroll"><table><tr>')
+    o.append("".join('<th>%s</th>' % lbl for _, lbl, _ in MEAS))
+    o.append('</tr><tr>')
+    o.append("".join('<td class="n">%s %s</td>' % (e(m.get(k, "—")), u) for k, _, u in MEAS))
+    o.append('</tr></table></div>')
+
+    o.append('<div class="sec">When to trap</div><div class="scroll"><table>')
+    o.append('<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>')
+    o.append('<tr><td>%s</td><td>%s</td><td>%s</td></tr></table></div>' % (
+        e(sp["activity_class"]), e(sp["emerges"]), e(sp["september"])))
+
+    tier, basis = sherman_tier(sp)
+    label, dims, targets = TIERS.get(tier, ("Unknown", "—", "—"))
+    o.append('<div class="sec">Which Sherman</div><div class="scroll"><table>')
+    o.append('<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>')
+    o.append('<tr><td class="verdict v-%s">%s</td><td>%s</td><td>%s</td></tr></table></div>'
+             % (tier, e(label), e(dims), e(targets)))
+    o.append('<p class="note">Assigned on %s. Tiers and dimensions are the '
+             'manufacturer\'s; placing this species in one is our judgement.</p>' % e(basis))
+
+    o.append(figures(sp))
+
+    o.append('<div class="sec">Source text</div><div class="quoted">')
+    o.append('<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>')
+    for h, t in sp["quotes"].items():
+        o.append('<div class="qh">%s</div><p class="qt">%s</p>' % (e(h), e(t)))
+    o.append('<div class="cite">%s. Plazi treatment, <a href="%s">%s</a>, licence %s.</div>'
+             % (e(sp["citation"]), e(sp["zenodo"]), e(sp["doi"]), e(sp["licence"])))
+    o.append('</div>')
+
+    if sp.get("ocr_check"):
+        o.append('<div class="check"><b>Check against the printed page before field use</b><ul>')
+        o.extend('<li>%s</li>' % e(c) for c in sp["ocr_check"])
+        o.append('</ul></div>')
+
+    o.append('</div>')
+    return "\n".join(o)
+
+
+DIEL_LABEL = {"day": "Day", "both": "Day and night", "night": "Night"}
+
+
+def summary(species):
+    """Overview page: what is catchable at Merke in September, and when."""
+    e = html.escape
+    o = ['<div class="card">']
+    o.append('<h2>September at Merke — what is catchable, and when</h2>')
+
+    o.append('<div class="banner"><b>Traps run through the day, checked twice: dawn and '
+             'midday.</b> Much of this community is active while an overnight-only line is shut. '
+             'The species below marked Day or Day and night are the reason for the second check. '
+             'Shade every trap that stays set through the day.</div>')
+
+    active_day = [s for s in species if diel_class(s) in ("day", "both")
+                  and sherman_tier(s)[0] != "too_large"]
+    asleep = [s for s in species if s["september"].split(".")[0].strip().lower()
+              in ("largely unavailable", "going underground", "juveniles only", "marginal")]
+
+    o.append('<div class="sec">Active while the traps are closed</div><div class="scroll"><table>')
+    o.append('<tr><th>Species</th><th>Group</th><th>Active</th><th>Emerges</th><th>Trap</th></tr>')
+    for s in sorted(active_day, key=lambda x: (diel_class(x) != "day", x["common"])):
+        tier = sherman_tier(s)[0]
+        o.append('<tr><td><b>%s</b><br><i style="color:var(--mut)">%s</i></td><td>%s</td>'
+                 '<td class="verdict t-%s">%s</td><td>%s</td><td>%s</td></tr>'
+                 % (e(s["common"]), e(s["binomial"]), e(s["group"].split(" - ")[0]),
+                    diel_class(s), e(DIEL_LABEL[diel_class(s)]), e(s["emerges"]),
+                    e(TIERS[tier][0])))
+    o.append('</table></div>')
+
+    o.append('<div class="sec">Reduced or gone by September</div><div class="scroll"><table>')
+    o.append('<tr><th>Species</th><th>Status in September</th></tr>')
+    for s in sorted(asleep, key=lambda x: x["common"]):
+        o.append('<tr><td><b>%s</b><br><i style="color:var(--mut)">%s</i></td><td>%s</td></tr>'
+                 % (e(s["common"]), e(s["binomial"]), e(s["september"])))
+    o.append('</table></div>')
+
+    o.append('<div class="check"><b>Bait: one size does not fit this community</b><ul>'
+             '<li>Shrews are insectivores. The lesser white-toothed shrew eats over 100% of its '
+             'body weight daily, so a seed bait does not feed it and it starves quickly in a trap. '
+             'An animal-protein component and a short check interval both matter.</li>'
+             '<li>Voles and the dwarf fat-tailed jerboa are folivores, eating green material '
+             'rather than seed.</li>'
+             '<li>The eastern mole vole eats underground tubers and rarely comes to the surface '
+             'at all.</li>'
+             '<li>Brown rats are neophobic and may avoid a new trap for a night or two, which '
+             'argues for pre-baiting.</li></ul></div>')
+
+    o.append('</div>')
+    return "\n".join(o)
+
+
+def main():
+    d = json.load(io.open(DATA, encoding="utf-8"))
+    o = ['<title>Merke Small Mammal Cards</title>',
+         '<link rel="preconnect" href="https://fonts.googleapis.com">',
+         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2'
+         '?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400'
+         '&display=swap">',
+         '<style>%s</style>' % CSS, '<div class="wrap">']
+    o.append('<header class="masthead"><h1>Merke small mammal cards</h1>'
+             '<p>Merke State Regional Nature Park, Zhambyl Region, Kazakhstan. '
+             'September 2026 trapping season. %d species covering everything in the region '
+             'that could enter a Sherman trap, plus the larger animals whose sign is easily '
+             'confused with theirs.</p></header>' % len(d["species"]))
+    o.append('<div class="banner"><b>Trip draft.</b> '
+             'Boxed source text is quoted verbatim from Plazi treatments on Zenodo (CC0), '
+             'extracted from the Handbook of the Mammals of the World. It is cited but not yet '
+             'rewritten into protocol voice; before publication each boxed block is replaced. '
+             'Plazi OCR loses decimal points, so any figure flagged for checking must be verified '
+             'against the printed page before it is relied on in the field.</div>')
+    o.append(summary(d["species"]))
+    o.extend(card(sp) for sp in d["species"])
+    o.append('</div>')
+    io.open(OUT, "w", encoding="utf-8").write("\n".join(o))
+    print("wrote %s (%d cards)" % (OUT, len(d["species"])))
+
+
+if __name__ == "__main__":
+    main()

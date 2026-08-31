@@ -1,0 +1,905 @@
+{
+  "_meta": {
+    "purpose": "Central Asian small mammal field cards, Merke September 2026. Source text quoted verbatim from Plazi taxonomic treatments on Zenodo (CC0), extracted from Handbook of the Mammals of the World (Lynx Edicions).",
+    "status": "TRIP DRAFT - quoted source blocks are provisional and must be replaced with protocol prose before publication",
+    "ocr_warning": "Plazi OCR of HMW renders decimal points as hyphens. '2-5 m' may mean '2.5 m'. Every flagged figure must be checked against the cited printed page before field use.",
+    "scope": "Built broad on purpose. Merke has almost no survey history, so species are included when range-plausible, not only when recorded."
+  },
+  "species": [
+    {
+      "binomial": "Cricetulus migratorius",
+      "common": "Grey dwarf hamster",
+      "group": "Cricetidae - hamsters",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6706471",
+      "doi": "10.5281/zenodo.6706471",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 283-284",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "85-150",
+        "tail_mm": "19-39",
+        "ear_mm": "15-21",
+        "hindfoot_mm": "14-18",
+        "weight_g": "20-58"
+      },
+      "activity_class": "Nocturnal and crepuscular, sometimes diurnal",
+      "emerges": "Not stated",
+      "september": "Active. Does not usually hibernate.",
+      "quotes": {
+        "Habitat": "Arid habitats such as dry grassland, steppe, desert, semi-desert, and alpine meadows at elevations up to 3600 m. In Mongolia, Gray Dwarf Hamsters occupy hills and mountains, oases, and valleys with shrubs and herbaceous plants in deserts and semi-deserts. They also occur in agricultural land and gardens.",
+        "Activity patterns": "Gray Dwarf Hamsters are nocturnal and crepuscular and sometimes active during the day even when temperatures are low. They usually do not hibernate.",
+        "Burrow": "It digs burrow systems with nesting chambers, food storage areas, and 2-5 entrances. Burrows can be 1-5 m deep and 2 m long. It also uses natural holes and fissures in soil.",
+        "Food and Feeding": "The Gray Dwarf Hamster eats roots, shoots, seeds, small fruits, green vegetation, snails, insects, and rarely small reptiles, amphibians, and other rodents. The Gray Dwarf Hamster stores up to 400-500 g of food in storage chambers and gathers plants to store in \"hay piles\" for winter use."
+      },
+      "ocr_check": [
+        "'2-5 entrances' probably a true range 2-5",
+        "'Burrows can be 1-5 m deep' - 1.5 m or 1-5 m? verify p. 283"
+      ]
+    },
+    {
+      "binomial": "Cricetulus longicaudatus",
+      "common": "Long-tailed dwarf hamster",
+      "group": "Cricetidae - hamsters",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6706477",
+      "doi": "10.5281/zenodo.6706477",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), p. 284",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "80-135",
+        "tail_mm": "35-48",
+        "ear_mm": "15-20",
+        "hindfoot_mm": "15-21",
+        "weight_g": "15-50"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark",
+      "september": "Active. Does not hibernate.",
+      "quotes": {
+        "Habitat": "Arid areas with shrubby slopes, dry forests, mountain steppes, and foothills and southern slopes of mountains to elevations of c.1900 m. The Long-tailed Dwarf Hamster is particularly abundant in piedmont semi-desert, a type of desert grassland with mixed shrubs and succulent plants.",
+        "Activity patterns": "The Long-tailed Dwarf Hamster is nocturnal and does not hibernate.",
+        "Burrow": "The Long-tailed Dwarf Hamster occupies shallow, simple burrows that extend horizontally beneath the ground's surface, often constructed under rocks. Abandoned burrows of other small mammals are sometimes used, and side passages are created leading to grass-lined nest chambers.",
+        "Food and Feeding": "The Long-tailed Dwarf Hamster eats plant material, mainly seeds, and insects. In late summer, it gathers and stores plants in hay piles for winter use."
+      },
+      "ocr_check": [
+        "Separating this from Cricetulus migratorius in the hand needs the tail: 35-48 mm here against 19-39 mm. Photograph the tail against a scale."
+      ]
+    },
+    {
+      "binomial": "Microtus arvalis",
+      "common": "Common vole",
+      "group": "Cricetidae - voles",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6725325",
+      "doi": "10.5281/zenodo.6725325",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 351-352",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "93-120",
+        "tail_mm": "24-38",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "18-40"
+      },
+      "activity_class": "Crepuscular and diurnal",
+      "emerges": "Varies with season and density",
+      "september": "Active. Does not hibernate.",
+      "quotes": {
+        "Habitat": "Well-drained open landscapes, typically grasslands and pastures within forest zone and alpine meadows above tree line up to elevations of c.3000 m. This Common Vole can be abundant in grain and alfalfa fields and is regarded as an agricultural pest. In short-grass habitat, it is exposed to avian predation, and therefore it seeks protection by digging underground galleries.",
+        "Activity patterns": "Common Voles are active year-round and do not hibernate. Surface activity is crepuscular and diurnal, depending on season and density. In winter, they are more active during day.",
+        "Burrow": "Burrows are usually short (100-150 cm long and 35 cm deep) and terminate in nest chamber and caches. Nests (8-15 cm in diameter) are woven of dry grass and are 5-15 cm below the ground's surface; they usually have 2-3 exits.",
+        "Food and Feeding": "Diet consists of leaves, stems, and roots of various herbs and grasses. More than 80 plants have been identified in its diet. Depending on season, they also eat fungi, lichens, berries, nuts, seeds, bulbs, tubers, and bark. Daily consumption is c.3-6 g of dry matter."
+      },
+      "ocr_check": [
+        "Folivore rather than granivore - a seed-and-oil bait ball is a poor match for this species"
+      ]
+    },
+    {
+      "binomial": "Ellobius tancrei",
+      "common": "Eastern mole vole",
+      "group": "Cricetidae - voles",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6706812",
+      "doi": "10.5281/zenodo.6706812",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), p. 314",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "96-125",
+        "tail_mm": "10-15",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "38-60"
+      },
+      "activity_class": "Active day and night, year-round",
+      "emerges": "Digging peaks 06:00-10:00 and 14:00-17:00",
+      "september": "Active. Annual digging peak is September-October, so fresh mounds are at their most visible.",
+      "quotes": {
+        "Habitat": "Semi-deserts and deserts on plains and in hilly regions, steppes, alpine pastures, and rocky slopes in mountains and on high plateaus. In the Tian Shan and on the Pamir Mountains, Eastern Mole Voles have been recorded up to elevations of c.4000 m. Humid places in valleys, along streams, and around lakes are preferred; moving sands are avoided.",
+        "Activity patterns": "Eastern Mole Voles are active day and night and year-round. Annual peaks of digging are in March-April and September-October, and daily peaks are at 06:00-10:00 h and 14:00-17:00 h. With increase in elevation, activity is progressively more diurnal, giving individuals advantage of higher soil temperatures. Eastern Mole Voles are fossorial and spend little time aboveground.",
+        "Burrow": "They live in complex burrow systems, with one or several main tunnels and numerous short side branches. Tunnels are 5-6 cm in diameter and usually at depths of 5-40 cm. About 30-40% of tunnels are plugged with soil. Mounds contain 310-4750 g (mean 1698 g) of excavated soil. Although entrances to tunnels are sealed by mounds of soil, individuals occasionally open them, presumably for ventilation.",
+        "Food and Feeding": "Eastern Mole Voles feed on underground plant parts, especially starchy bulbs and tubers. Frequencies of various diet items in stomach samples were: underground plant parts 94-9%, green plant parts 39-2%, seeds 0-5%, bark 0-3%, and animals 0-5%."
+      },
+      "ocr_check": [
+        "Diet percentages '94-9%', '39-2%', '0-5%' are decimals: 94.9%, 39.2%, 0.5%",
+        "Fossorial and rarely aboveground - a surface Sherman line may not catch this species at all"
+      ]
+    },
+    {
+      "binomial": "Lasiopodomys gregalis",
+      "also_known_as": "Microtus gregalis",
+      "common": "Narrow-headed vole",
+      "group": "Cricetidae - voles",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6711500",
+      "doi": "10.5281/zenodo.6711500",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), p. 322",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "81-148",
+        "tail_mm": "17-46",
+        "ear_mm": "8-16",
+        "hindfoot_mm": "12-21",
+        "weight_g": "18-68"
+      },
+      "activity_class": "Seasonal; autumn activity shifts toward daytime",
+      "emerges": "Short bouts through the day",
+      "september": "Active. In autumn night activity falls and daytime bouts lengthen to 15 minutes.",
+      "quotes": {
+        "Habitat": "Tundra, forest-tundra, coniferous forest, forest steppe, steppe, semi-desert and desert zones, and mountain meadows up to elevations of 4200 m. In tundra, semidesert, and desert, Narrow-headed Voles prefer river valleys and lake depressions. In forests, they occur in open dry meadows.",
+        "Activity patterns": "Activity patterns of Narrow-headed Voles vary seasonally. In spring, they are active round-the-clock, appearing aboveground in short bouts 100-200 times/day. In summer, they are more active at twilight, with four-minute activity bouts, and diurnal bouts of aboveground activity last 2-4 minutes every two hours. With decreasing temperatures in autumn, night activity decreases and daily activity increases to 15 minutes/bout.",
+        "Burrow": "Family burrows have several large nest chambers, 12-16 cm in diameter and c.12 cm deep in summer and 21 cm deep in winter. A burrow also contains several storage chambers and system of tunnels at depths of 7-9 cm. Burrow systems of average family groups have an average of 17 entrances. Larger burrows with 100-120 entrances were also recorded.",
+        "Food and Feeding": "Diet varies seasonally, but in every season, green parts of grasses, onions, and forbs are eaten. In early autumn, seeds, berries, fungi, and roots make up 7-10% of diet."
+      },
+      "ocr_check": [
+        "The autumn shift toward daytime activity bears directly on the September trapping schedule"
+      ]
+    },
+    {
+      "binomial": "Alticola argentatus",
+      "common": "Silver mountain vole",
+      "group": "Cricetidae - voles",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6706688",
+      "doi": "10.5281/zenodo.6706688",
+      "citation": "HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 304-305",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "87-119",
+        "tail_mm": "36-64",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "20.8-54.6"
+      },
+      "activity_class": "Diurnal",
+      "emerges": "Peaks 05:00-07:00 and 18:00-20:00",
+      "september": "Active. Active throughout the year.",
+      "quotes": {
+        "Habitat": "Rocky areas, talus slopes, and accumulations of boulders at elevations of 500-4300 m. Silver Mountain Voles avoid dense vegetation, and southern exposures are preferred.",
+        "Activity patterns": "Silver Mountain Voles are diurnal, with peaks in activity at 05:00-07:00 h and 18:00-20:00 h. They are active throughout the year. They do not dig burrows but seek shelter in fissures and cracks. Rocky shelters can be protected against adverse environmental conditions by walls constructed of stones, excrement, and urine. A shelter found in Kazakhstan was 1 m long and 10-18 cm high.",
+        "Food and Feeding": "Silver Mountain Voles eat primarily roots and seeds in winter and green plants for the rest of the year. When vegetation starts growing, plants are collected, dried, and cached for winter. Seeds are transported in cheek pouches."
+      },
+      "ocr_check": [
+        "Does not dig burrows - set at rock fissures and talus, not at burrow entrances",
+        "Its two diurnal peaks bracket the standard evening set and dawn check, so a daytime set would add exposure to this species"
+      ]
+    },
+    {
+      "binomial": "Pygeretmus pumilio",
+      "common": "Dwarf fat-tailed jerboa",
+      "group": "Dipodidae - jerboas",
+      "merke_status": "recorded within 100 km",
+      "body_type": "saltatorial",
+      "zenodo": "https://zenodo.org/records/6591642",
+      "doi": "10.5281/zenodo.6591642",
+      "citation": "HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 94-95",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "95-135",
+        "tail_mm": "125-175",
+        "ear_mm": "23-31",
+        "hindfoot_mm": "40-56",
+        "weight_g": "30-78"
+      },
+      "activity_class": "Crepuscular and nocturnal",
+      "emerges": "40-60 min after sunset in autumn",
+      "september": "Marginal. Hibernation can begin at the end of September.",
+      "quotes": {
+        "Habitat": "Semi-desert and desert habitat in patches of sparse saltwort vegetation; in western part of the distribution, only on clay soils; in northern and eastern parts of the distribution, on clay and gravel soils.",
+        "Activity patterns": "The Dwarf Fat-tailed Jerboa is crepuscular and nocturnal. Aboveground activity usually starts 40-60 minutes after sunset in spring and autumn and 20-30 minutes after sunset in summer. Activity ends immediately before sunrise. Activity has 2-3 peaks, in the first one-half, middle, and end of the night.",
+        "Burrow": "Summer burrows usually consist of the initial tunnel filled with soil; nest chambers are 6-7 cm in diameter for males and non-breeding females, 10-12 cm for breeding females, and 37-51 cm deep. Night shelter burrows are simple, with one tunnel 25-90 cm long.",
+        "Food and Feeding": "The Dwarf Fat-tailed Jerboa is mainly folivorous. Green plant parts dominate its diet in all parts of its distribution and in almost all seasons, comprising 60-90% by volume. Seeds can be 8-25% of diets. Insects are always minor parts of the diet."
+      },
+      "ocr_check": [
+        "Mainly folivorous - a seed bait ball is a poor match for this species"
+      ]
+    },
+    {
+      "binomial": "Allactaga major",
+      "common": "Great jerboa",
+      "group": "Dipodidae - jerboas",
+      "merke_status": "recorded within 100 km",
+      "body_type": "saltatorial",
+      "zenodo": "https://zenodo.org/records/6591608",
+      "doi": "10.5281/zenodo.6591608",
+      "citation": "HMW Vol. 7 (Dipodidae, pp. 81-100)",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "187-230",
+        "tail_mm": "250-305",
+        "ear_mm": "48-62",
+        "hindfoot_mm": "85-101",
+        "weight_g": "260-415"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "40-45 min after sunset",
+      "september": "Marginal. Hibernation can begin as early as the end of September.",
+      "quotes": {
+        "Habitat": "Forest steppe, steppe, semi-desert, and desert. In forest steppe and steppe, the Great Jerboa selects open areas with sparse grass cover such as pastures, along sides of dirt roads, crop fields, shores of salt lakes, and high terraces of river valleys.",
+        "Activity patterns": "The Great Jerboa is nocturnal. Aboveground activity usually starts 40-45 minutes after sunset and ends 0-5-1-5 hours before sunrise, with peak activity near end of the first one-half of night. Hibernation lasts from as early as the end of September to April.",
+        "Burrow": "Summer burrows usually have two main tunnels branching off the initial tunnel; nest chambers are 9-13 cm in diameter and 40-100 cm deep (usually 50-70 cm). Night shelter burrows are simple, with one tunnel 80-200 cm long.",
+        "Food and Feeding": "The Great Jerboa is omnivorous. It eats seeds, insects, and green and underground parts of plants in equal amounts."
+      },
+      "ocr_check": [
+        "'0-5-1-5 hours before sunrise' is 0.5-1.5 hours",
+        "At 260-415 g with a 85-101 mm hind foot this is a large animal needing the longest Sherman"
+      ]
+    },
+    {
+      "binomial": "Dipus sagitta",
+      "common": "Northern three-toed jerboa",
+      "group": "Dipodidae - jerboas",
+      "merke_status": "regional, range-plausible",
+      "body_type": "saltatorial",
+      "zenodo": "https://zenodo.org/records/6591646",
+      "doi": "10.5281/zenodo.6591646",
+      "citation": "HMW Vol. 7 (Dipodidae, pp. 81-100), p. 96",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "115-145",
+        "tail_mm": "140-180",
+        "ear_mm": "16-23",
+        "hindfoot_mm": "57-67",
+        "weight_g": "46-128"
+      },
+      "activity_class": "Crepuscular and nocturnal",
+      "emerges": "20-90 min after sunset in autumn",
+      "september": "Active. Hibernation runs end of October to mid-March in Kazakhstan.",
+      "quotes": {
+        "Habitat": "Sand massifs at different stages of sand stabilization in desert, semi-desert, and steppe zones but always with patches of pure sand without grass or forb vegetation; in the south-eastern distribution, sands, sandy-gravel, and gravel plains in desert zones.",
+        "Activity patterns": "The Northern Three-toed Jerboa is crepuscular and nocturnal. Aboveground activity starts at sunset in summer and 20-90 minutes after sunset in spring and autumn. In autumn, individuals are active only during the first one-half of the night, and length of activity can decrease to one hour. Hibernation in Russian Dagestan and Kazakhstan lasts 4-5 months from end of October to mid-March.",
+        "Burrow": "Burrows are simple and have one main entrance, one emergency entrance (dug up from the inside to 5-7 cm below the ground's surface), and one nest chamber 5-7 cm in diameter at depths of 35-110 cm; total lengths of tunnels are 50-400 cm. Main entrance in spring and summer usually is closed with sand plug.",
+        "Food and Feeding": "Diets contain seeds and flowers (36-73%, average 51%), green plant material (16-54%, average 35%), roots and bulbs (0-40%, average 10%), and insects (1-11%, average 4%)."
+      },
+      "ocr_check": [
+        "In autumn activity may last only one hour after emergence, sharply narrowing the September window"
+      ]
+    },
+    {
+      "binomial": "Scarturus elater",
+      "also_known_as": "Allactaga elater",
+      "common": "Small five-toed jerboa",
+      "group": "Dipodidae - jerboas",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6591634",
+      "doi": "10.5281/zenodo.6591634",
+      "citation": "HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 92-93",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "90-120",
+        "tail_mm": "140-190",
+        "ear_mm": "28-41",
+        "hindfoot_mm": "43-58",
+        "weight_g": "32-77"
+      },
+      "activity_class": "Crepuscular and nocturnal",
+      "emerges": "15-25 min after sunset",
+      "september": "Active. Hibernation begins mid-October at the earliest.",
+      "quotes": {
+        "Habitat": "Desert and semi-desert zones, avoiding only large open spaces completely lacking shrubs and areas with very dense vegetation. The Small Five-toed Jerboa does not live in sand but is able to cross sandy areas and occupy small patches of hard soil in large sand massifs.",
+        "Activity patterns": "The Small Five-toed Jerboa is crepuscular and nocturnal. Most individuals become active at dusk, 15-25 minutes after sunset. In spring and summer, individuals are active all night, but in autumn, their activity is usually limited to the first one-half of the night. Hibernation in Kazakhstan and Central Asia lasts 2-5—4-5 months from mid-October to early December to mid-February/March, with interruptions during thaws.",
+        "Burrow": "Summer burrows are simple and usually have one main tunnel starting at the ground's surface, typically with a plugged entrance and ending in a nest chamber 10-13 cm in diameter and 10-115 cm deep (usually 40-70 cm); lengths of tunnels are 45-300 cm. In most cases, burrows have 1-2 additional tunnels ending with emergency exits and several (up to seven) additional chambers. Small Five-toed Jerboas usually do not build special night shelter burrows but use burrows of other rodents as night shelters.",
+        "Food and Feeding": "In northern parts of the distribution, they feed mainly (c.80% by volume) on seeds, but in southern parts, seeds and green plant parts are eaten in equal proportions. Insects and underground plant parts are consistent but minor parts of the diet."
+      },
+      "ocr_check": [
+        "'2-5—4-5 months' is almost certainly 2.5-4.5 months",
+        "'10-115 cm deep' - verify range against p. 92"
+      ],
+      "body_type": "saltatorial"
+    },
+    {
+      "binomial": "Stylodipus telum",
+      "common": "Thick-tailed three-toed jerboa",
+      "group": "Dipodidae - jerboas",
+      "merke_status": "regional, range-plausible",
+      "body_type": "saltatorial",
+      "zenodo": "https://zenodo.org/records/6591651",
+      "doi": "10.5281/zenodo.6591651",
+      "citation": "HMW Vol. 7 (Dipodidae, pp. 81-100), p. 97",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "110-130",
+        "tail_mm": "130-170",
+        "ear_mm": "15-20",
+        "hindfoot_mm": "46-55",
+        "weight_g": "45-73"
+      },
+      "activity_class": "Crepuscular and nocturnal",
+      "emerges": "30-60 min after sunset in autumn",
+      "september": "Active. Hibernation runs end of October to March/April.",
+      "quotes": {
+        "Habitat": "In western and northern peripheries of the distribution, stabilized sands in steppe zone; in central part of distribution, sandy-loam soils in semi-desert and desert zones; in southern part of distribution, clay soils in desert zone; and in eastern part of distribution, coarse-gravel hill slopes in semi-desert zone.",
+        "Activity patterns": "The Thick-tailed Three-toed Jerboa is crepuscular and nocturnal. Aboveground activity starts 60-90 minutes before sunset in spring and 30-60 minutes after sunset in summer and autumn. Autumn activity ends after midnight.",
+        "Burrow": "Burrows have one main entrance, 1-3 emergency entrances, one nest chamber 12-15 cm in diameter at depths of 80-130 cm, and 1-3 additional chambers 9-10 cm in diameter; total lengths of tunnels are 130-530 cm, usually 150-200 cm. Main entrance usually is closed with soil plug. Night shelter burrows are simple, with one tunnel 30-300 cm long. One individual has 3-12 shelter burrows in its home range.",
+        "Food and Feeding": "Diet contains about equal amounts of seeds and green plant material; insects are rarely eaten. Seeds dominated diets in autumn and green plant parts in spring."
+      },
+      "ocr_check": []
+    },
+    {
+      "binomial": "Hemiechinus auritus",
+      "common": "Long-eared hedgehog",
+      "group": "Erinaceidae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6632542",
+      "doi": "10.5281/zenodo.6632542",
+      "citation": "HMW Vol. 8 (Erinaceidae, pp. 288-330), pp. 325-326",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "160-278",
+        "tail_mm": "10-55",
+        "ear_mm": "24-60",
+        "hindfoot_mm": "30-55",
+        "weight_g": "230-400"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "Early evening",
+      "september": "Active. Torpor is facultative and mostly later in the year.",
+      "quotes": {
+        "Habitat": "Dry riverbeds, dunes, oases, valleys with shrubs, semiarid country, and steppes over most of its distribution. It favors mesic sites such as suburban parks and gardens, olive groves, and agricultural lands and is commonly associated with humans. It selects soft ground such as sandy dunes where it can dig relatively deep burrows that slope at a slight angle.",
+        "Activity patterns": "The Common Long-eared Hedgehog is nocturnal and begins foraging early in the evening. Day-resting sites usually are in burrows that are under small shrubs or bushes. Burrows are 20-150 cm long and have a single opening. It can enter torpor in any season during droughts, shortages of food, and cold or hot weather.",
+        "Food and Feeding": "The Common Long-eared Hedgehog is omnivorous, it is a voracious feeder, and it can survive for up to ten weeks without eating or drinking. Diet primarily is insects (bugs, beetles, grasshoppers, termites, lepidopterans, ants), but it also eats other invertebrates (worms, millipedes, and snails), small vertebrates, eggs, carrion, fruits, and seeds."
+      },
+      "ocr_check": [
+        "At 230-400 g this is at or beyond the top of the largest Sherman tier. Recorded here so a team meeting one is not left guessing."
+      ]
+    },
+    {
+      "binomial": "Rhombomys opimus",
+      "common": "Great gerbil",
+      "group": "Gerbillinae",
+      "merke_status": "regional, not recorded near Merke",
+      "zenodo": "https://zenodo.org/records/6788117",
+      "doi": "10.5281/zenodo.6788117",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), pp. 649-650",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "150-185",
+        "tail_mm": "130-160",
+        "ear_mm": "12-19",
+        "hindfoot_mm": "36-47",
+        "weight_g": "169-275"
+      },
+      "activity_class": "Diurnal, most active at dawn",
+      "emerges": "Dawn",
+      "september": "Active. No hibernation stated.",
+      "quotes": {
+        "Habitat": "Sandy or clay deserts, with a local preference for dry riverbeds and shrubby vegetation.",
+        "Activity patterns": "Diurnal, and most active at dawn. Great Gerbils are terrestrial, digging very elaborate burrow systems with long, deep tunnels, nest chambers, and foraging chambers. In winter the nest may be situated 2-5 m below the surface.",
+        "Food and Feeding": "Diet is based on high plant diversity. It includes stems, leaves, and branches of small bushes, especially Haloxylon ammodendron, or succulent bushes such as Salsola. Diet varies seasonally, depending on plant availability."
+      },
+      "ocr_check": [
+        "'2-5 m below the surface' is either 2-5 m or 2.5 m - verify p. 650",
+        "Diurnal and dawn-active. An overnight line that is closed by day misses this species almost entirely."
+      ]
+    },
+    {
+      "binomial": "Meriones libycus",
+      "common": "Libyan jird",
+      "group": "Gerbillinae",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6827166",
+      "doi": "10.5281/zenodo.6827166",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), pp. 643-644",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "123-170",
+        "tail_mm": "115-190",
+        "ear_mm": "15-22",
+        "hindfoot_mm": "32-41",
+        "weight_g": "60-140"
+      },
+      "activity_class": "Generally nocturnal, sometimes diurnal",
+      "emerges": "After dark; feeds by day in Pakistan",
+      "september": "Active. Torpor only in colder regions and later in the year.",
+      "quotes": {
+        "Habitat": "Libyan Jirds prefer low-lying areas in arid and semiarid areas (steppes, semideserts, deserts) with compact and hard soil. They avoid mountain slopes and rocky regions. They require sparse and bushy vegetation, such as tamarisk, palm, or acacia groves.",
+        "Activity patterns": "Although generally nocturnal, the Libyan Jird may be diurnal in north-western China. It is terrestrial, digging burrows in ephemeral riverbeds and in shallow depressions where small bushes are present. In Pakistan it feeds during day and signals danger with foot-drumming.",
+        "Burrow": "Burrows are established at base of small bushes and on small hills. Burrows have 2-8 entrances with tunnels leading to at least one food-storage room of c.30 cm diameter. There may be two systems of sinuous galleries connected by a single tunnel.",
+        "Food and Feeding": "Libyan Jirds are granivorous and herbivorous. Seeds and grasses, cereals, fruit seeds, rhizomes, bulbs, and succulent plants are favored, and these are stored in burrows. Libyan Jirds require very limited amounts of water."
+      },
+      "ocr_check": [
+        "The source gives a burrow 'large diameter of c.10 m' which is garbled; verify p. 643"
+      ]
+    },
+    {
+      "binomial": "Meriones meridianus",
+      "common": "Midday jird",
+      "group": "Gerbillinae",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6788104",
+      "doi": "10.5281/zenodo.6788104",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 647",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "90-144",
+        "tail_mm": "85-135",
+        "ear_mm": "10-19",
+        "hindfoot_mm": "25-34",
+        "weight_g": "24-60"
+      },
+      "activity_class": "Primarily nocturnal, sometimes daytime in winter",
+      "emerges": "After dark",
+      "september": "Active. Does not hibernate.",
+      "quotes": {
+        "Habitat": "Found in all sandy deserts of Central Asia, but may occasionally live in steppic zones. The Midday Jird inhabits sand dunes, steppes, grasslands, cultivated fields, and fallow lands in arid zones.",
+        "Activity patterns": "The Midday Jird is primarily nocturnal, but active also in morning or during day in winter. This terrestrial rodent digs deep burrows at base and under roots of thorn scrub.",
+        "Food and Feeding": "Plants, seeds, and insects constitute the diet of Midday Jirds. They store food in their burrows and do not hibernate."
+      },
+      "ocr_check": []
+    },
+    {
+      "binomial": "Meriones tamariscinus",
+      "common": "Tamarisk jird",
+      "group": "Gerbillinae",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6788106",
+      "doi": "10.5281/zenodo.6788106",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), pp. 647-648",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "135-190",
+        "tail_mm": "115-150",
+        "ear_mm": "15-21",
+        "hindfoot_mm": "32-39",
+        "weight_g": "60-180"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark",
+      "september": "Active. No hibernation stated.",
+      "quotes": {
+        "Habitat": "Deserts and semi-deserts with small bushes and grasslands, wadis, and saline marshes.",
+        "Activity patterns": "Nocturnal and terrestrial, the Tamarisk Jird digs burrows beneath tree roots and bushes. Burrows have several openings and can reach 6 m in length and 2:5 m in depth.",
+        "Food and Feeding": "Tamarisk Jirds are omnivorous, consuming vegetable matter, fruits, seeds, and insects. They will store food in burrows, and up to 4-5 kg of dry plants and seeds have been reported in some cases.",
+        "Identification note": "A large jird. The Tamarisk Jird has rusty-brown dorsal pelage and pure white venter. Soles of hindfeet are hairy. Tail is bicolored, smaller than body length, and has no pencil at end."
+      },
+      "ocr_check": [
+        "'2:5 m in depth' is 2.5 m",
+        "'4-5 kg' of cached material is probably 4.5 kg"
+      ]
+    },
+    {
+      "binomial": "Hystrix indica",
+      "common": "Indian crested porcupine",
+      "group": "Hystricidae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6612309",
+      "doi": "10.5281/zenodo.6612309",
+      "citation": "HMW Vol. 6 (Hystricidae, pp. 304-312), pp. 311-312",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "455-930",
+        "tail_mm": "60-170",
+        "ear_mm": "40-47",
+        "hindfoot_mm": "95-104",
+        "weight_g": "8000-27000"
+      },
+      "activity_class": "Strictly nocturnal",
+      "emerges": "Varies with season; avoids bright moonlight in winter",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Wide variety of natural, agricultural, and urbanized habitats. Distribution of the Indian Crested Porcupine is centered in steppe biomes and also includes desert margins and relatively mesic zones.",
+        "Activity patterns": "Indian Crested Porcupines are strictly nocturnal. They spend daytime hours in dens (natural caves or excavated burrows). In winter, they largely confine their behavior to darker nights or darker periods of the night and strongly avoid bright moonlight.",
+        "Burrow": "In deserts east of the Caspian Sea, Indian Crested Porcupines dig complicated burrow systems in compacted dunes and clay embankments. Main tunnels are more than 10-16 m long, ending in a deep living chamber. Chambers may be used by clans for decades.",
+        "Food and Feeding": "The Indian Crested Porcupine is generalist herbivore. It eats at least 18 species of geophytes (tubers, bulbs, corms, rhizomes and other subterranean structures) and hemicryptophytes. It also eats grains and fruits."
+      },
+      "ocr_check": [
+        "Will not enter any Sherman. Its large burrow systems can be mistaken for those of a target species.",
+        "SAFETY: quills. Included so teams recognise the burrow and keep clear."
+      ]
+    },
+    {
+      "binomial": "Lepus tolai",
+      "common": "Tolai hare",
+      "group": "Leporidae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6632784",
+      "doi": "10.5281/zenodo.6632784",
+      "citation": "HMW Vol. 6 (Leporidae, pp. 107-148), p. 133",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "400-590",
+        "tail_mm": "72-110",
+        "ear_mm": "80-120",
+        "hindfoot_mm": "110-127",
+        "weight_g": "1700-2700"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark; rests in forms by day",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Grassland and forest meadows (never true forests), with tall grasses or shrubby areas for cover in China and semi-desert, mountain-steppe, forest steppe, and rocky habitat in Mongolia. Forms are created using the front paws. Depths of forms are less during hot weather than when it is cold and windy.",
+        "Activity patterns": "The Tolai Hare is nocturnal. Forms are used for resting during daytime.",
+        "Food and Feeding": "Diet of the Tolai Hare consists of grass, roots, and herbaceous vegetation. Individuals use fixed and restricted routes while foraging."
+      },
+      "ocr_check": [
+        "Will not enter any Sherman. Its surface forms and fixed foraging routes are easily mistaken for rodent runways."
+      ]
+    },
+    {
+      "binomial": "Rattus norvegicus",
+      "common": "Brown rat",
+      "group": "Muridae - mice and rats",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6827852",
+      "doi": "10.5281/zenodo.6827852",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 829",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "160-290",
+        "tail_mm": "122-250",
+        "ear_mm": "15-26",
+        "hindfoot_mm": "30-50",
+        "weight_g": "195-540"
+      },
+      "activity_class": "Primarily nocturnal, most activity before midnight",
+      "emerges": "Shortly before or after sunset",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Historically, moist primary forests and fields and now typically disturbed habitats of all kinds, including almost every major city and agricultural and arable land. In cities, it generally stays in moist, wet areas that are dark and provide secluded nesting areas.",
+        "Activity patterns": "Brown Rats are primarily nocturnal, and most activity tends to occur before midnight, after which very few rats are seen. For the most part, foraging occurs shortly before or after sunset. Bad weather will generally discourage rats from doing anything outside their nests/shelters.",
+        "Food and Feeding": "Brown Rats are very opportunistic omnivores and eat a wide variety of fruits, seeds, vegetation, carrion, birds, small mammals, invertebrates, and human trash.",
+        "Trapping note": "Exploration is common, but they can be neophobic toward food and other objects; individuals will cautiously approach and smell or touch an unfamiliar object and then dart away quickly."
+      },
+      "ocr_check": [
+        "Neophobia is directly trap-relevant: a new trap may be avoided for the first night or two, which argues for pre-baiting"
+      ]
+    },
+    {
+      "binomial": "Apodemus uralensis",
+      "common": "Herb field mouse",
+      "group": "Muridae - mice and rats",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6868753",
+      "doi": "10.5281/zenodo.6868753",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 782",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "70-105",
+        "tail_mm": "65-110",
+        "ear_mm": "12-16",
+        "hindfoot_mm": "17-22",
+        "weight_g": "13-28"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark",
+      "september": "Active. No hibernation stated.",
+      "quotes": {
+        "Habitat": "Prefers forest edge and open habitats adjacent to woodland. In Europe, the Herb Field Mouse is found in a variety of habitats, including arable fields, dry grassland, and humid woodland. It is an ecotonic species, occurring where forests adjoin open habitat, and rarely found inside forests. Found from sea level to at least 1400 m.",
+        "Activity patterns": "Herb Field Mice are nocturnal, arboreal, and subterranean. Nests are either in trees or in burrows or natural subterranean shelters.",
+        "Food and Feeding": "The dominant food of this species is seeds of plants and grasses, followed by fruits and a low proportion of insects. The Herb Field Mouse is a good climber and jumper. It forages in trees or in/on the ground."
+      },
+      "ocr_check": [
+        "Confusable with Apodemus agrarius in the hand. Photograph the dorsal stripe, ear and hind foot against a scale."
+      ]
+    },
+    {
+      "binomial": "Mus musculus",
+      "common": "House mouse",
+      "group": "Muridae - mice and rats",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6827279",
+      "doi": "10.5281/zenodo.6827279",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 789",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "70-103",
+        "tail_mm": "67-104",
+        "ear_mm": "12-17",
+        "hindfoot_mm": "14-20",
+        "weight_g": "12-39"
+      },
+      "activity_class": "Crepuscular and nocturnal",
+      "emerges": "After dark",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Mostly commensal and found in a very wide range of man-made habitats. It does not make sophisticated burrows and can nest in a wide variety of environments.",
+        "Activity patterns": "House Mice are terrestrial, and crepuscular and nocturnal.",
+        "Food and Feeding": "House Mice are omnivorous, with invertebrates forming the greater part of the diet, followed by seeds and other plant material."
+      },
+      "ocr_check": []
+    },
+    {
+      "binomial": "Nesokia indica",
+      "common": "Short-tailed bandicoot rat",
+      "group": "Muridae - mice and rats",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6788461",
+      "doi": "10.5281/zenodo.6788461",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 817",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "150-205",
+        "tail_mm": "91-150",
+        "ear_mm": "16-23",
+        "hindfoot_mm": "29-39",
+        "weight_g": "96-320"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Tropical and subtropical dry deciduous forests, scrublands, grasslands, arable land, pastures, and plantations from sea level to elevations of c.1600 m. Short-tailed Bandicoot Rats prefer areas with moist soil near permanent water sources.",
+        "Activity patterns": "The Short-tailed Bandicoot Rat is nocturnal; foraging, general movements on the ground's surface, and probably breeding occur at night. It is terrestrial but primarily fossorial, creating burrow systems in moist soils, consisting of a few to many tunnels, storage chambers, and nesting chamber.",
+        "Burrow": "Storage chambers are not lined with vegetation and are expansive; nesting chambers are lined with finely chewed vegetation and are smaller (c.30 cm wide). Burrows are usually 15-60 cm underground and have been found in canals. Burrows can be as long as 23 m.",
+        "Food and Feeding": "The Short-tailed Bandicoot Rat is herbivorous, subsisting on foods found while digging burrows and plants around their burrow. Diets contain roots, grasses, grains, vegetables, and fruits from cultivated fields."
+      },
+      "ocr_check": []
+    },
+    {
+      "binomial": "Sylvaemus witherbyi",
+      "also_known_as": "Apodemus witherbyi",
+      "common": "Steppe field mouse",
+      "group": "Muridae - mice and rats",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6827273",
+      "doi": "10.5281/zenodo.6827273",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884), p. 783",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "77-110",
+        "tail_mm": "75-118",
+        "ear_mm": "14-18",
+        "hindfoot_mm": "19-24",
+        "weight_g": "16-34"
+      },
+      "activity_class": "Nocturnal",
+      "emerges": "After dark",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "The Steppe Field Mouse can live in wide variety of environments. In Turkey it has been found both in open habitats and in cedar forests, as well as in shrublands and degraded forest. It needs shrub cover as well as some rocky areas in open grasslands and is found at up to 2800 m.",
+        "Activity patterns": "Steppe Field Mice are nocturnal and terrestrial.",
+        "Food and Feeding": "The Steppe Field Mouse is an omnivorous species, but food consists predominantly of seeds and acorns, followed by fruits, flowers, stems, mushrooms, insects, snails, and earthworms."
+      },
+      "ocr_check": [
+        "Confusable with Apodemus uralensis and A. agrarius - photograph dorsal stripe, ear and hind foot against a scale"
+      ]
+    },
+    {
+      "binomial": "Apodemus agrarius",
+      "common": "Striped field mouse",
+      "group": "Muridae - mice and rats",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6816070",
+      "doi": "10.5281/zenodo.6816070",
+      "citation": "HMW Vol. 7 (Muridae, pp. 536-884)",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "75-120",
+        "tail_mm": "65-115",
+        "ear_mm": "12-15",
+        "hindfoot_mm": "17-22",
+        "weight_g": "16-38"
+      },
+      "activity_class": "DIURNAL or crepuscular",
+      "emerges": "Daytime and twilight",
+      "september": "Active. No hibernation stated.",
+      "quotes": {
+        "Habitat": "Striped Field Mice prefer edges of forest or woodland. They are found also in cultivated fields, gardens, reedbeds, and marshes, and sometimes enter barns and buildings in autumn. A microhabitat study showed that this species non-randomly selects habitats with dense shrub layer and very dense Rubus hirtus (Rosaceae) undergrowth with little or no tree-canopy cover.",
+        "Activity patterns": "Striped Field Mice are terrestrial, and diurnal or crepuscular. Climbing activity is moderate compared with that of congeners. They dig simple underground burrows of 30-40 cm depth, with nest chamber lined with dry plants, and with three or four entrances.",
+        "Food and Feeding": "Diet consists of seeds, buds, fruits, and berries in variable proportions, supplemented by insects, worms, and mollusks."
+      },
+      "ocr_check": []
+    },
+    {
+      "binomial": "Ochotona rutila",
+      "common": "Turkestan red pika",
+      "group": "Ochotonidae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6620036",
+      "doi": "10.5281/zenodo.6620036",
+      "citation": "HMW Vol. 6 (Ochotonidae, pp. 28-43), p. 42",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "190-260",
+        "tail_mm": "none",
+        "ear_mm": "26-30",
+        "hindfoot_mm": "33-39",
+        "weight_g": "220-320"
+      },
+      "activity_class": "Mainly diurnal",
+      "emerges": "Sunrise to evening dusk",
+      "september": "Active. Hay-hoarding lasts until September, so hay piles are a reliable sign.",
+      "quotes": {
+        "Habitat": "Talus composed of large stones in mountain gorges and valleys of forest and subalpine areas at elevations of 1800-3700 m. The Turkestan Red Pika is a typical rock dweller, using crevices among stones as shelters and pathways.",
+        "Activity patterns": "Turkestan Red Pikas are mainly diurnal. As in all rock-dwelling pikas, activity depends on insolation and weather. During high heat in Central Asia, Turkestan Red Pikas avoid emerging on talus surfaces. In other seasons, they are active throughout the day. Activity starts at sunrise and stops with evening dusk.",
+        "Food and Feeding": "The Turkestan Red Pika eats a very wide variety of plants such as herbs, some trees and bushes, green mosses, and lichens. Turkestan Red Pikas hoard hay in hay piles. Hoarding starts in the first part of summer and lasts until September. Hay piles are 0.3-2 kg, but very large piles of 3-8 kg are also common. Hay piles are situated in rock crevices or under cover of large stones."
+      },
+      "ocr_check": [
+        "No burrow section - a rock-crevice dweller. Set at crevices and talus, not at burrow entrances."
+      ]
+    },
+    {
+      "binomial": "Marmota baibacina",
+      "common": "Grey marmot",
+      "group": "Sciuridae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6840688",
+      "doi": "10.5281/zenodo.6840688",
+      "citation": "HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "460-650",
+        "tail_mm": "130-154",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "4200-6500"
+      },
+      "activity_class": "Diurnal",
+      "emerges": "Active 4-5 months each summer",
+      "september": "Going underground. Hibernates for 7-8 months of the year.",
+      "quotes": {
+        "Habitat": "Gently sloping open or boulder strewn mountain steppes, meadows, and rocky outcroppings at elevations up to c.4000 m.",
+        "Activity patterns": "The Gray Marmot is diurnal and only active for 4-5 months each summer; it hibernates in burrows for the remaining 7-8 months of the year.",
+        "Burrow": "The Gray Marmot is social and lives in multiburrow colonies usually in groups of up to ten individuals that may communally hibernate. They frequently sit on burrow mounds and remain vigilant; alarm calls are short high-pitched whistles.",
+        "Food and Feeding": "The Gray Marmot is herbivorous and feeds primarily on young grasses, shoots of forbs, and herbaceous material growing in open grasslands."
+      },
+      "ocr_check": [
+        "Will not enter any Sherman. Included so its burrow systems and alarm calls are recognised and not mistaken for a target species' sign."
+      ]
+    },
+    {
+      "binomial": "Marmota caudata",
+      "common": "Long-tailed marmot",
+      "group": "Sciuridae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6840690",
+      "doi": "10.5281/zenodo.6840690",
+      "citation": "HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "500",
+        "tail_mm": "182",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "3000-5000"
+      },
+      "activity_class": "Diurnal",
+      "emerges": "Late spring or early summer",
+      "september": "Going underground. Aboveground only 4-5 months.",
+      "quotes": {
+        "Habitat": "High elevation, low productivity alpine flats and meadows, often associated with glacial and terminal moraines. Alpine scrub with some dwarf juniper is also selected.",
+        "Activity patterns": "Long-tailed Marmots are diurnal. They are only aboveground for 4-5 months, emerging from burrows in late spring or early summer. Individuals often bask on rocks or at burrow entrances.",
+        "Food and Feeding": "The Long-tailed Marmot is an herbivore that feeds primarily on young grasses, shoots of forbs, legumes, and small shrubs in open grasslands."
+      },
+      "ocr_check": [
+        "Source gives 'weight 3-5 kg' which may be 3-5 kg or 3.5 kg. Verify p. 818.",
+        "Will not enter any Sherman."
+      ]
+    },
+    {
+      "binomial": "Spermophilus fulvus",
+      "common": "Yellow ground squirrel",
+      "group": "Sciuridae",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6819002",
+      "doi": "10.5281/zenodo.6819002",
+      "citation": "HMW Vol. 6 (Sciuridae, pp. 648-837), p. 812",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "224-284",
+        "tail_mm": "71-85",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "273-1100"
+      },
+      "activity_class": "Diurnal",
+      "emerges": "Aboveground March-April",
+      "september": "Largely unavailable. Adults begin hibernating late July to September; juveniles September or October.",
+      "quotes": {
+        "Habitat": "Semi-desert and desert arid grasslands, sometimes extending into open arid forests.",
+        "Activity patterns": "Yellow Ground Squirrels are diurnal and active aboveground in late spring, usually March-April. They are obligate hibernators in burrows, beginning in late July to September for adults and September or October for juveniles.",
+        "Burrow": "It is territorial and defends a large area around a single burrow; adult male home ranges are c.3 ha.",
+        "Food and Feeding": "The Yellow Ground Squirrel is an herbivore, feeding mostly on bulbs, tubers, leaves, and shoots of desert grasses and forbs. It occasionally eats insects or scavenges animal matter."
+      },
+      "ocr_check": [
+        "Source reads 'Head-body mean 284-3 mm (males) and 224 mm (females)' - 284.3 mm",
+        "Weight '0-29-11 kg (males)' is garbled; likely 0.29-1.1 kg. Verify p. 812"
+      ]
+    },
+    {
+      "binomial": "Sicista tianshanica",
+      "common": "Tian Shan birch mouse",
+      "group": "Sminthidae - birch mice",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6603420",
+      "doi": "10.5281/zenodo.6603420",
+      "citation": "HMW Vol. 7 (Sminthidae, pp. 9-48), p. 40",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "57-73",
+        "tail_mm": "102-113",
+        "ear_mm": "12.5-15",
+        "hindfoot_mm": "17-19",
+        "weight_g": "7.2-13"
+      },
+      "activity_class": "Mainly crepuscular and nocturnal, sometimes diurnal",
+      "emerges": "Twilight and night",
+      "september": "Juveniles only. Adults probably enter hibernation in August.",
+      "quotes": {
+        "Habitat": "Foothills to subalpine zone at elevations of 400-3500 m. Highest densities of Tian Shan Birch Mice were detected in upper limits of forests in subalpine zones, but they have been caught in a variety of habitats, such as edges of spruce forests, pastures, tall herb meadows, high mountain meadows, steppe-covered southern slopes, forest clearings, and subalpine meadows with junipers.",
+        "Activity patterns": "Tian Shan Birch Mice are mainly crepuscular and nocturnal, although they are sometimes active during the day, particularly young individuals. Pitfall traps after a cold night, normal in the high mountains, regularly contained individuals lying curled on their side with closed eyes, seemingly in a state of torpor. They usually quickly became active when warmed in the hand. Adults probably enter hibernation in August because only juveniles have been captured in September.",
+        "Food and Feeding": "Tian Shan Birch Mice mostly eat insects and other animals such as snails, followed by seeds; fewer berries and herbs were found in stomachs. Proportion of insects and other animal food decreased from June to September, and quantities of seeds and berries increased."
+      },
+      "ocr_check": [
+        "WELFARE: an animal found torpid after a cold night looks dead but revives when warmed in the hand. Do not record a torpid birch mouse as a mortality.",
+        "Insect-leaning diet, so a purely seed-based bait is a poor match"
+      ]
+    },
+    {
+      "binomial": "Crocidura suaveolens",
+      "common": "Lesser white-toothed shrew",
+      "group": "Soricidae - shrews",
+      "merke_status": "recorded within 100 km",
+      "zenodo": "https://zenodo.org/records/6870217",
+      "doi": "10.5281/zenodo.6870217",
+      "citation": "HMW Vol. 8 (Soricidae, pp. 332-551), pp. 496-497",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "47-80",
+        "tail_mm": "25-40",
+        "ear_mm": "not given",
+        "hindfoot_mm": "not given",
+        "weight_g": "6.5-9.4"
+      },
+      "activity_class": "Mostly nocturnal",
+      "emerges": "10-14 activity periods through the dark hours",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Desert, steppe, and forest zones, preferring habitats with bushes or high grass stands near watersides and ruderal vegetation at sites of abandoned human houses and tilled fields. The Lesser White-toothed Shrew is found in various human dwellings such as nomadic tents in the Gobi Desert and apartments in Moscow high-rise apartment buildings, including rural houses from European Russia to Tian Shan.",
+        "Activity patterns": "The Lesser White-toothed Shrew is active mostly at night. In Turkmenistan, 10-14 activity periods were observed during dark hours and averaged 24 minutes each; maximal duration of an activity period was 155 minutes.",
+        "Food and Feeding": "In Trans-Ili Alatau, small beetles are most common in diets of Lesser White-toothed Shrews. Lesser White-toothed Shrews can dig insects out of the soil to up to 2 cm and hunt small geometrid moths by jumping and collecting them from grass blades. Daily food intake of Lesser White-toothed Shrews reaches 133% of body weight, but daily food intake of three times body weight was observed in Turkmenistan."
+      },
+      "ocr_check": [
+        "WELFARE AND BAIT: an insectivore eating over 100% of its body weight daily starves fast in a trap, and seed bait does not feed it. This is the species that most needs an animal-protein bait component and a short check interval."
+      ]
+    },
+    {
+      "binomial": "Sorex tundrensis",
+      "common": "Tundra shrew",
+      "group": "Soricidae - shrews",
+      "merke_status": "regional, range-plausible",
+      "zenodo": "https://zenodo.org/records/6869623",
+      "doi": "10.5281/zenodo.6869623",
+      "citation": "HMW Vol. 8 (Soricidae, pp. 332-551), pp. 402-403",
+      "licence": "CC0",
+      "measurements": {
+        "head_body_mm": "61-86",
+        "tail_mm": "20-38",
+        "ear_mm": "7-8",
+        "hindfoot_mm": "13-15",
+        "weight_g": "8-11.5"
+      },
+      "activity_class": "Active day and night",
+      "emerges": "Throughout the 24 hours",
+      "september": "Active.",
+      "quotes": {
+        "Habitat": "Large variety of alpine, subalpine, and arctic habitats, shrublands, and meadows, often dominated by small trees and shrubs such as willow and birch, generally preferring open bush habitats. It prefers to live in floodplain regions throughout taiga, avoiding forests, and in open areas between forests.",
+        "Activity patterns": "Tundra Shrews are active day and night and are primarily terrestrial.",
+        "Food and Feeding": "Because Tundra Shrews live in various habitats, food items differ greatly among different geographical regions. For example, earthworms account for substantial proportions of diets in tundra, spiders and insects (commonly beetles) in taiga, and grasshoppers in steppe regions. Plant items are often included in diets, especially in winter; berries are eaten in southern regions of the distribution in Kazakhstan."
+      },
+      "ocr_check": [
+        "Active day and night, so a line closed by day misses part of this species' activity",
+        "Insectivore - see the bait note on Crocidura suaveolens"
+      ]
+    }
+  ]
+}

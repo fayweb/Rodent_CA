@@ -1,0 +1,1292 @@
+<title>Merke Small Mammal Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* PT Serif and PT Sans were designed by ParaType for the languages of the Russian
+   Federation. The manual is translated into Russian, so the type carries over
+   instead of falling back to a substitute face. */
+:root{
+  --paper:#FBFAF8; --card:#FFFFFF; --ink:#16211D; --mut:#5C6763; --faint:#8A938F;
+  --line:#DDE3E0; --rule:#EEF1EF;
+  --zsl:#00694E; --zsl-tint:#E9F1EE; --zsl-deep:#004F3A;
+  --alert:#9A3B12; --alert-tint:#FBEDE5;
+  --calm:#3A3F6B; --calm-tint:#ECEDF5;
+  --serif:"PT Serif",Georgia,"Times New Roman",serif;
+  --sans:"PT Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1512; --card:#18201D; --ink:#E7ECE9; --mut:#A3AEA9; --faint:#7C8783;
+  --line:#2C3733; --rule:#232D29;
+  --zsl:#5FBFA1; --zsl-tint:#0E2C23; --zsl-deep:#8FD6BE;
+  --alert:#E08A5A; --alert-tint:#2E1B10;
+  --calm:#A2A7DA; --calm-tint:#1A1D33;
+}}
+:root[data-theme="dark"]{
+  --paper:#0F1512; --card:#18201D; --ink:#E7ECE9; --mut:#A3AEA9; --faint:#7C8783;
+  --line:#2C3733; --rule:#232D29;
+  --zsl:#5FBFA1; --zsl-tint:#0E2C23; --zsl-deep:#8FD6BE;
+  --alert:#E08A5A; --alert-tint:#2E1B10;
+  --calm:#A2A7DA; --calm-tint:#1A1D33;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:840px;margin:0 auto;padding:32px 20px 72px;
+  display:flex;flex-direction:column;gap:28px}
+
+.masthead{border-bottom:3px solid var(--zsl);padding-bottom:14px}
+.masthead h1{font-family:var(--serif);font-size:30px;line-height:1.15;margin:0 0 6px;
+  text-wrap:balance;color:var(--zsl-deep)}
+.masthead p{margin:0;color:var(--mut);font-size:14px;max-width:62ch}
+
+.banner{background:var(--alert-tint);border-left:4px solid var(--alert);
+  border-radius:0 4px 4px 0;padding:14px 18px;font-size:14.5px;line-height:1.5}
+.banner b{color:var(--alert)}
+.banner:last-child{margin-bottom:0}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:5px;
+  padding:26px 28px;page-break-after:always;
+  display:flex;flex-direction:column;gap:0}
+.card:last-child{page-break-after:auto}
+
+h2{font-family:var(--serif);font-size:25px;line-height:1.2;margin:0;
+  text-wrap:balance;color:var(--ink)}
+.sci{font-family:var(--serif);font-style:italic;color:var(--mut);font-size:16px;margin:3px 0 0}
+.aka{color:var(--faint);font-size:13px;margin:3px 0 0}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:3px;
+  letter-spacing:.02em;border:1px solid}
+.t-grp{background:var(--zsl-tint);border-color:transparent;color:var(--zsl-deep)}
+.t-here{background:transparent;border-color:var(--line);color:var(--mut)}
+.t-day,.t-both{background:var(--alert-tint);border-color:var(--alert);color:var(--alert)}
+.t-night{background:var(--calm-tint);border-color:var(--calm);color:var(--calm)}
+
+.scroll{overflow-x:auto;margin:0 0 2px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--sans);background:var(--zsl-tint);color:var(--zsl-deep);
+  font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  border-bottom:1px solid var(--zsl)}
+tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+
+.sec{font-size:11.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
+  font-weight:700;margin:24px 0 8px}
+.verdict{font-weight:700}
+.v-small{color:var(--zsl)} .v-medium{color:var(--ink)}
+.v-large{color:var(--alert)} .v-too_large,.v-unknown{color:var(--faint)}
+.note{font-size:12.5px;color:var(--faint);margin:6px 0 0;max-width:62ch}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.fig{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  background:var(--paper);display:flex;flex-direction:column}
+.fig img{display:block;width:100%;height:auto;object-fit:cover}
+.fig figcaption{padding:8px 10px;font-size:12.5px;line-height:1.4;color:var(--mut);
+  display:flex;flex-direction:column;gap:3px}
+.fig .credit{font-size:11.5px;color:var(--faint)}
+.fig .credit a{color:var(--faint)}
+.fig.empty{border-style:dashed;background:transparent}
+.ph{padding:16px 12px;min-height:104px;display:flex;flex-direction:column;
+  justify-content:center;gap:6px;text-align:center}
+.phlab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--zsl)}
+.phbrief{font-size:12.5px;line-height:1.4;color:var(--faint)}
+
+.quoted{border:1px solid var(--line);border-left:3px solid var(--faint);
+  background:var(--paper);border-radius:0 4px 4px 0;padding:16px 18px;margin-top:4px}
+.qhead{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);
+  font-weight:700;margin-bottom:12px}
+.qh{font-weight:700;font-size:13px;margin:14px 0 3px;color:var(--zsl-deep)}
+.qh:first-of-type{margin-top:0}
+.qt{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--mut);
+  margin:0;max-width:68ch}
+.cite{font-size:12.5px;color:var(--faint);margin-top:14px;padding-top:11px;
+  border-top:1px solid var(--rule)}
+.cite a{color:var(--zsl);text-decoration:none;border-bottom:1px solid var(--line)}
+.cite a:hover,.cite a:focus{border-bottom-color:var(--zsl)}
+
+.check{background:var(--alert-tint);border-left:3px solid var(--alert);
+  border-radius:0 4px 4px 0;padding:12px 16px;margin-top:18px;font-size:13.5px}
+.check b{color:var(--alert)}
+.check ul{margin:7px 0 0 18px;padding:0}
+.check li+li{margin-top:5px}
+
+a:focus-visible,.cite a:focus-visible{outline:2px solid var(--zsl);outline-offset:2px}
+
+@media print{
+  body{background:#fff}
+  .wrap{max-width:none;padding:0;gap:0}
+  .card{border:none;border-radius:0;padding:0 0 12px;margin:0}
+  .masthead{page-break-after:avoid}
+  .quoted,.check,.banner,.fig{break-inside:avoid}
+}
+</style>
+<div class="wrap">
+<header class="masthead"><h1>Merke small mammal cards</h1><p>Merke State Regional Nature Park, Zhambyl Region, Kazakhstan. September 2026 trapping season. 31 species covering everything in the region that could enter a Sherman trap, plus the larger animals whose sign is easily confused with theirs.</p></header>
+<div class="banner"><b>Trip draft.</b> Boxed source text is quoted verbatim from Plazi treatments on Zenodo (CC0), extracted from the Handbook of the Mammals of the World. It is cited but not yet rewritten into protocol voice; before publication each boxed block is replaced. Plazi OCR loses decimal points, so any figure flagged for checking must be verified against the printed page before it is relied on in the field.</div>
+<div class="card">
+<h2>September at Merke — what is catchable, and when</h2>
+<div class="banner"><b>Traps run through the day, checked twice: dawn and midday.</b> Much of this community is active while an overnight-only line is shut. The species below marked Day or Day and night are the reason for the second check. Shade every trap that stays set through the day.</div>
+<div class="sec">Active while the traps are closed</div><div class="scroll"><table>
+<tr><th>Species</th><th>Group</th><th>Active</th><th>Emerges</th><th>Trap</th></tr>
+<tr><td><b>Great gerbil</b><br><i style="color:var(--mut)">Rhombomys opimus</i></td><td>Gerbillinae</td><td class="verdict t-day">Day</td><td>Dawn</td><td>Medium</td></tr>
+<tr><td><b>Silver mountain vole</b><br><i style="color:var(--mut)">Alticola argentatus</i></td><td>Cricetidae</td><td class="verdict t-day">Day</td><td>Peaks 05:00-07:00 and 18:00-20:00</td><td>Medium</td></tr>
+<tr><td><b>Turkestan red pika</b><br><i style="color:var(--mut)">Ochotona rutila</i></td><td>Ochotonidae</td><td class="verdict t-day">Day</td><td>Sunrise to evening dusk</td><td>Large</td></tr>
+<tr><td><b>Yellow ground squirrel</b><br><i style="color:var(--mut)">Spermophilus fulvus</i></td><td>Sciuridae</td><td class="verdict t-day">Day</td><td>Aboveground March-April</td><td>Large</td></tr>
+<tr><td><b>Common vole</b><br><i style="color:var(--mut)">Microtus arvalis</i></td><td>Cricetidae</td><td class="verdict t-both">Day and night</td><td>Varies with season and density</td><td>Medium</td></tr>
+<tr><td><b>Eastern mole vole</b><br><i style="color:var(--mut)">Ellobius tancrei</i></td><td>Cricetidae</td><td class="verdict t-both">Day and night</td><td>Digging peaks 06:00-10:00 and 14:00-17:00</td><td>Medium</td></tr>
+<tr><td><b>Grey dwarf hamster</b><br><i style="color:var(--mut)">Cricetulus migratorius</i></td><td>Cricetidae</td><td class="verdict t-both">Day and night</td><td>Not stated</td><td>Medium</td></tr>
+<tr><td><b>Libyan jird</b><br><i style="color:var(--mut)">Meriones libycus</i></td><td>Gerbillinae</td><td class="verdict t-both">Day and night</td><td>After dark; feeds by day in Pakistan</td><td>Medium</td></tr>
+<tr><td><b>Midday jird</b><br><i style="color:var(--mut)">Meriones meridianus</i></td><td>Gerbillinae</td><td class="verdict t-both">Day and night</td><td>After dark</td><td>Medium</td></tr>
+<tr><td><b>Narrow-headed vole</b><br><i style="color:var(--mut)">Lasiopodomys gregalis</i></td><td>Cricetidae</td><td class="verdict t-both">Day and night</td><td>Short bouts through the day</td><td>Medium</td></tr>
+<tr><td><b>Striped field mouse</b><br><i style="color:var(--mut)">Apodemus agrarius</i></td><td>Muridae</td><td class="verdict t-both">Day and night</td><td>Daytime and twilight</td><td>Medium</td></tr>
+<tr><td><b>Tian Shan birch mouse</b><br><i style="color:var(--mut)">Sicista tianshanica</i></td><td>Sminthidae</td><td class="verdict t-both">Day and night</td><td>Twilight and night</td><td>Small</td></tr>
+<tr><td><b>Tundra shrew</b><br><i style="color:var(--mut)">Sorex tundrensis</i></td><td>Soricidae</td><td class="verdict t-both">Day and night</td><td>Throughout the 24 hours</td><td>Small</td></tr>
+</table></div>
+<div class="sec">Reduced or gone by September</div><div class="scroll"><table>
+<tr><th>Species</th><th>Status in September</th></tr>
+<tr><td><b>Dwarf fat-tailed jerboa</b><br><i style="color:var(--mut)">Pygeretmus pumilio</i></td><td>Marginal. Hibernation can begin at the end of September.</td></tr>
+<tr><td><b>Great jerboa</b><br><i style="color:var(--mut)">Allactaga major</i></td><td>Marginal. Hibernation can begin as early as the end of September.</td></tr>
+<tr><td><b>Grey marmot</b><br><i style="color:var(--mut)">Marmota baibacina</i></td><td>Going underground. Hibernates for 7-8 months of the year.</td></tr>
+<tr><td><b>Long-tailed marmot</b><br><i style="color:var(--mut)">Marmota caudata</i></td><td>Going underground. Aboveground only 4-5 months.</td></tr>
+<tr><td><b>Tian Shan birch mouse</b><br><i style="color:var(--mut)">Sicista tianshanica</i></td><td>Juveniles only. Adults probably enter hibernation in August.</td></tr>
+<tr><td><b>Yellow ground squirrel</b><br><i style="color:var(--mut)">Spermophilus fulvus</i></td><td>Largely unavailable. Adults begin hibernating late July to September; juveniles September or October.</td></tr>
+</table></div>
+<div class="check"><b>Bait: one size does not fit this community</b><ul><li>Shrews are insectivores. The lesser white-toothed shrew eats over 100% of its body weight daily, so a seed bait does not feed it and it starves quickly in a trap. An animal-protein component and a short check interval both matter.</li><li>Voles and the dwarf fat-tailed jerboa are folivores, eating green material rather than seed.</li><li>The eastern mole vole eats underground tubers and rarely comes to the surface at all.</li><li>Brown rats are neophobic and may avoid a new trap for a night or two, which argues for pre-baiting.</li></ul></div>
+</div>
+<div class="card">
+<h2>Grey dwarf hamster</h2>
+<p class="sci">Cricetulus migratorius</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - hamsters</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-both">Nocturnal and crepuscular, sometimes diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">85-150 mm</td><td class="n">19-39 mm</td><td class="n">15-21 mm</td><td class="n">14-18 mm</td><td class="n">20-58 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal and crepuscular, sometimes diurnal</td><td>Not stated</td><td>Active. Does not usually hibernate.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 150 mm, to 58 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Arid habitats such as dry grassland, steppe, desert, semi-desert, and alpine meadows at elevations up to 3600 m. In Mongolia, Gray Dwarf Hamsters occupy hills and mountains, oases, and valleys with shrubs and herbaceous plants in deserts and semi-deserts. They also occur in agricultural land and gardens.</p>
+<div class="qh">Activity patterns</div><p class="qt">Gray Dwarf Hamsters are nocturnal and crepuscular and sometimes active during the day even when temperatures are low. They usually do not hibernate.</p>
+<div class="qh">Burrow</div><p class="qt">It digs burrow systems with nesting chambers, food storage areas, and 2-5 entrances. Burrows can be 1-5 m deep and 2 m long. It also uses natural holes and fissures in soil.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Gray Dwarf Hamster eats roots, shoots, seeds, small fruits, green vegetation, snails, insects, and rarely small reptiles, amphibians, and other rodents. The Gray Dwarf Hamster stores up to 400-500 g of food in storage chambers and gathers plants to store in &quot;hay piles&quot; for winter use.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 283-284. Plazi treatment, <a href="https://zenodo.org/records/6706471">10.5281/zenodo.6706471</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>&#x27;2-5 entrances&#x27; probably a true range 2-5</li>
+<li>&#x27;Burrows can be 1-5 m deep&#x27; - 1.5 m or 1-5 m? verify p. 283</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Long-tailed dwarf hamster</h2>
+<p class="sci">Cricetulus longicaudatus</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - hamsters</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">80-135 mm</td><td class="n">35-48 mm</td><td class="n">15-20 mm</td><td class="n">15-21 mm</td><td class="n">15-50 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark</td><td>Active. Does not hibernate.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 135 mm, to 50 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Arid areas with shrubby slopes, dry forests, mountain steppes, and foothills and southern slopes of mountains to elevations of c.1900 m. The Long-tailed Dwarf Hamster is particularly abundant in piedmont semi-desert, a type of desert grassland with mixed shrubs and succulent plants.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Long-tailed Dwarf Hamster is nocturnal and does not hibernate.</p>
+<div class="qh">Burrow</div><p class="qt">The Long-tailed Dwarf Hamster occupies shallow, simple burrows that extend horizontally beneath the ground&#x27;s surface, often constructed under rocks. Abandoned burrows of other small mammals are sometimes used, and side passages are created leading to grass-lined nest chambers.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Long-tailed Dwarf Hamster eats plant material, mainly seeds, and insects. In late summer, it gathers and stores plants in hay piles for winter use.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 284. Plazi treatment, <a href="https://zenodo.org/records/6706477">10.5281/zenodo.6706477</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Separating this from Cricetulus migratorius in the hand needs the tail: 35-48 mm here against 19-39 mm. Photograph the tail against a scale.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Common vole</h2>
+<p class="sci">Microtus arvalis</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - voles</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-both">Crepuscular and diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">93-120 mm</td><td class="n">24-38 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">18-40 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and diurnal</td><td>Varies with season and density</td><td>Active. Does not hibernate.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 120 mm, to 40 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Well-drained open landscapes, typically grasslands and pastures within forest zone and alpine meadows above tree line up to elevations of c.3000 m. This Common Vole can be abundant in grain and alfalfa fields and is regarded as an agricultural pest. In short-grass habitat, it is exposed to avian predation, and therefore it seeks protection by digging underground galleries.</p>
+<div class="qh">Activity patterns</div><p class="qt">Common Voles are active year-round and do not hibernate. Surface activity is crepuscular and diurnal, depending on season and density. In winter, they are more active during day.</p>
+<div class="qh">Burrow</div><p class="qt">Burrows are usually short (100-150 cm long and 35 cm deep) and terminate in nest chamber and caches. Nests (8-15 cm in diameter) are woven of dry grass and are 5-15 cm below the ground&#x27;s surface; they usually have 2-3 exits.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet consists of leaves, stems, and roots of various herbs and grasses. More than 80 plants have been identified in its diet. Depending on season, they also eat fungi, lichens, berries, nuts, seeds, bulbs, tubers, and bark. Daily consumption is c.3-6 g of dry matter.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 351-352. Plazi treatment, <a href="https://zenodo.org/records/6725325">10.5281/zenodo.6725325</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Folivore rather than granivore - a seed-and-oil bait ball is a poor match for this species</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Eastern mole vole</h2>
+<p class="sci">Ellobius tancrei</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - voles</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-both">Active day and night, year-round</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">96-125 mm</td><td class="n">10-15 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">38-60 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Active day and night, year-round</td><td>Digging peaks 06:00-10:00 and 14:00-17:00</td><td>Active. Annual digging peak is September-October, so fresh mounds are at their most visible.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 125 mm, to 60 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Semi-deserts and deserts on plains and in hilly regions, steppes, alpine pastures, and rocky slopes in mountains and on high plateaus. In the Tian Shan and on the Pamir Mountains, Eastern Mole Voles have been recorded up to elevations of c.4000 m. Humid places in valleys, along streams, and around lakes are preferred; moving sands are avoided.</p>
+<div class="qh">Activity patterns</div><p class="qt">Eastern Mole Voles are active day and night and year-round. Annual peaks of digging are in March-April and September-October, and daily peaks are at 06:00-10:00 h and 14:00-17:00 h. With increase in elevation, activity is progressively more diurnal, giving individuals advantage of higher soil temperatures. Eastern Mole Voles are fossorial and spend little time aboveground.</p>
+<div class="qh">Burrow</div><p class="qt">They live in complex burrow systems, with one or several main tunnels and numerous short side branches. Tunnels are 5-6 cm in diameter and usually at depths of 5-40 cm. About 30-40% of tunnels are plugged with soil. Mounds contain 310-4750 g (mean 1698 g) of excavated soil. Although entrances to tunnels are sealed by mounds of soil, individuals occasionally open them, presumably for ventilation.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Eastern Mole Voles feed on underground plant parts, especially starchy bulbs and tubers. Frequencies of various diet items in stomach samples were: underground plant parts 94-9%, green plant parts 39-2%, seeds 0-5%, bark 0-3%, and animals 0-5%.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 314. Plazi treatment, <a href="https://zenodo.org/records/6706812">10.5281/zenodo.6706812</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Diet percentages &#x27;94-9%&#x27;, &#x27;39-2%&#x27;, &#x27;0-5%&#x27; are decimals: 94.9%, 39.2%, 0.5%</li>
+<li>Fossorial and rarely aboveground - a surface Sherman line may not catch this species at all</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Narrow-headed vole</h2>
+<p class="sci">Lasiopodomys gregalis</p>
+<p class="aka">Also listed as <i>Microtus gregalis</i></p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - voles</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-both">Seasonal; autumn activity shifts toward daytime</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">81-148 mm</td><td class="n">17-46 mm</td><td class="n">8-16 mm</td><td class="n">12-21 mm</td><td class="n">18-68 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Seasonal; autumn activity shifts toward daytime</td><td>Short bouts through the day</td><td>Active. In autumn night activity falls and daytime bouts lengthen to 15 minutes.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 148 mm, to 68 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Tundra, forest-tundra, coniferous forest, forest steppe, steppe, semi-desert and desert zones, and mountain meadows up to elevations of 4200 m. In tundra, semidesert, and desert, Narrow-headed Voles prefer river valleys and lake depressions. In forests, they occur in open dry meadows.</p>
+<div class="qh">Activity patterns</div><p class="qt">Activity patterns of Narrow-headed Voles vary seasonally. In spring, they are active round-the-clock, appearing aboveground in short bouts 100-200 times/day. In summer, they are more active at twilight, with four-minute activity bouts, and diurnal bouts of aboveground activity last 2-4 minutes every two hours. With decreasing temperatures in autumn, night activity decreases and daily activity increases to 15 minutes/bout.</p>
+<div class="qh">Burrow</div><p class="qt">Family burrows have several large nest chambers, 12-16 cm in diameter and c.12 cm deep in summer and 21 cm deep in winter. A burrow also contains several storage chambers and system of tunnels at depths of 7-9 cm. Burrow systems of average family groups have an average of 17 entrances. Larger burrows with 100-120 entrances were also recorded.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet varies seasonally, but in every season, green parts of grasses, onions, and forbs are eaten. In early autumn, seeds, berries, fungi, and roots make up 7-10% of diet.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 322. Plazi treatment, <a href="https://zenodo.org/records/6711500">10.5281/zenodo.6711500</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>The autumn shift toward daytime activity bears directly on the September trapping schedule</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Silver mountain vole</h2>
+<p class="sci">Alticola argentatus</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - voles</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-day">Diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">87-119 mm</td><td class="n">36-64 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">20.8-54.6 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Diurnal</td><td>Peaks 05:00-07:00 and 18:00-20:00</td><td>Active. Active throughout the year.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 119 mm, to ? g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Rocky areas, talus slopes, and accumulations of boulders at elevations of 500-4300 m. Silver Mountain Voles avoid dense vegetation, and southern exposures are preferred.</p>
+<div class="qh">Activity patterns</div><p class="qt">Silver Mountain Voles are diurnal, with peaks in activity at 05:00-07:00 h and 18:00-20:00 h. They are active throughout the year. They do not dig burrows but seek shelter in fissures and cracks. Rocky shelters can be protected against adverse environmental conditions by walls constructed of stones, excrement, and urine. A shelter found in Kazakhstan was 1 m long and 10-18 cm high.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Silver Mountain Voles eat primarily roots and seeds in winter and green plants for the rest of the year. When vegetation starts growing, plants are collected, dried, and cached for winter. Seeds are transported in cheek pouches.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 304-305. Plazi treatment, <a href="https://zenodo.org/records/6706688">10.5281/zenodo.6706688</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Does not dig burrows - set at rock fissures and talus, not at burrow entrances</li>
+<li>Its two diurnal peaks bracket the standard evening set and dawn check, so a daytime set would add exposure to this species</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Dwarf fat-tailed jerboa</h2>
+<p class="sci">Pygeretmus pumilio</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - jerboas</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Crepuscular and nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">95-135 mm</td><td class="n">125-175 mm</td><td class="n">23-31 mm</td><td class="n">40-56 mm</td><td class="n">30-78 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and nocturnal</td><td>40-60 min after sunset in autumn</td><td>Marginal. Hibernation can begin at the end of September.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on bipedal hopper; manufacturer places kangaroo rats, the closest body type it names, in this tier. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Semi-desert and desert habitat in patches of sparse saltwort vegetation; in western part of the distribution, only on clay soils; in northern and eastern parts of the distribution, on clay and gravel soils.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Dwarf Fat-tailed Jerboa is crepuscular and nocturnal. Aboveground activity usually starts 40-60 minutes after sunset in spring and autumn and 20-30 minutes after sunset in summer. Activity ends immediately before sunrise. Activity has 2-3 peaks, in the first one-half, middle, and end of the night.</p>
+<div class="qh">Burrow</div><p class="qt">Summer burrows usually consist of the initial tunnel filled with soil; nest chambers are 6-7 cm in diameter for males and non-breeding females, 10-12 cm for breeding females, and 37-51 cm deep. Night shelter burrows are simple, with one tunnel 25-90 cm long.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Dwarf Fat-tailed Jerboa is mainly folivorous. Green plant parts dominate its diet in all parts of its distribution and in almost all seasons, comprising 60-90% by volume. Seeds can be 8-25% of diets. Insects are always minor parts of the diet.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 94-95. Plazi treatment, <a href="https://zenodo.org/records/6591642">10.5281/zenodo.6591642</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Mainly folivorous - a seed bait ball is a poor match for this species</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Great jerboa</h2>
+<p class="sci">Allactaga major</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - jerboas</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">187-230 mm</td><td class="n">250-305 mm</td><td class="n">48-62 mm</td><td class="n">85-101 mm</td><td class="n">260-415 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>40-45 min after sunset</td><td>Marginal. Hibernation can begin as early as the end of September.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on bipedal hopper; manufacturer places kangaroo rats, the closest body type it names, in this tier. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Forest steppe, steppe, semi-desert, and desert. In forest steppe and steppe, the Great Jerboa selects open areas with sparse grass cover such as pastures, along sides of dirt roads, crop fields, shores of salt lakes, and high terraces of river valleys.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Great Jerboa is nocturnal. Aboveground activity usually starts 40-45 minutes after sunset and ends 0-5-1-5 hours before sunrise, with peak activity near end of the first one-half of night. Hibernation lasts from as early as the end of September to April.</p>
+<div class="qh">Burrow</div><p class="qt">Summer burrows usually have two main tunnels branching off the initial tunnel; nest chambers are 9-13 cm in diameter and 40-100 cm deep (usually 50-70 cm). Night shelter burrows are simple, with one tunnel 80-200 cm long.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Great Jerboa is omnivorous. It eats seeds, insects, and green and underground parts of plants in equal amounts.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100). Plazi treatment, <a href="https://zenodo.org/records/6591608">10.5281/zenodo.6591608</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>&#x27;0-5-1-5 hours before sunrise&#x27; is 0.5-1.5 hours</li>
+<li>At 260-415 g with a 85-101 mm hind foot this is a large animal needing the longest Sherman</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Northern three-toed jerboa</h2>
+<p class="sci">Dipus sagitta</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - jerboas</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Crepuscular and nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">115-145 mm</td><td class="n">140-180 mm</td><td class="n">16-23 mm</td><td class="n">57-67 mm</td><td class="n">46-128 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and nocturnal</td><td>20-90 min after sunset in autumn</td><td>Active. Hibernation runs end of October to mid-March in Kazakhstan.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on bipedal hopper; manufacturer places kangaroo rats, the closest body type it names, in this tier. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Sand massifs at different stages of sand stabilization in desert, semi-desert, and steppe zones but always with patches of pure sand without grass or forb vegetation; in the south-eastern distribution, sands, sandy-gravel, and gravel plains in desert zones.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Northern Three-toed Jerboa is crepuscular and nocturnal. Aboveground activity starts at sunset in summer and 20-90 minutes after sunset in spring and autumn. In autumn, individuals are active only during the first one-half of the night, and length of activity can decrease to one hour. Hibernation in Russian Dagestan and Kazakhstan lasts 4-5 months from end of October to mid-March.</p>
+<div class="qh">Burrow</div><p class="qt">Burrows are simple and have one main entrance, one emergency entrance (dug up from the inside to 5-7 cm below the ground&#x27;s surface), and one nest chamber 5-7 cm in diameter at depths of 35-110 cm; total lengths of tunnels are 50-400 cm. Main entrance in spring and summer usually is closed with sand plug.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diets contain seeds and flowers (36-73%, average 51%), green plant material (16-54%, average 35%), roots and bulbs (0-40%, average 10%), and insects (1-11%, average 4%).</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), p. 96. Plazi treatment, <a href="https://zenodo.org/records/6591646">10.5281/zenodo.6591646</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>In autumn activity may last only one hour after emergence, sharply narrowing the September window</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Small five-toed jerboa</h2>
+<p class="sci">Scarturus elater</p>
+<p class="aka">Also listed as <i>Allactaga elater</i></p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - jerboas</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Crepuscular and nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">90-120 mm</td><td class="n">140-190 mm</td><td class="n">28-41 mm</td><td class="n">43-58 mm</td><td class="n">32-77 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and nocturnal</td><td>15-25 min after sunset</td><td>Active. Hibernation begins mid-October at the earliest.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on bipedal hopper; manufacturer places kangaroo rats, the closest body type it names, in this tier. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Desert and semi-desert zones, avoiding only large open spaces completely lacking shrubs and areas with very dense vegetation. The Small Five-toed Jerboa does not live in sand but is able to cross sandy areas and occupy small patches of hard soil in large sand massifs.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Small Five-toed Jerboa is crepuscular and nocturnal. Most individuals become active at dusk, 15-25 minutes after sunset. In spring and summer, individuals are active all night, but in autumn, their activity is usually limited to the first one-half of the night. Hibernation in Kazakhstan and Central Asia lasts 2-5—4-5 months from mid-October to early December to mid-February/March, with interruptions during thaws.</p>
+<div class="qh">Burrow</div><p class="qt">Summer burrows are simple and usually have one main tunnel starting at the ground&#x27;s surface, typically with a plugged entrance and ending in a nest chamber 10-13 cm in diameter and 10-115 cm deep (usually 40-70 cm); lengths of tunnels are 45-300 cm. In most cases, burrows have 1-2 additional tunnels ending with emergency exits and several (up to seven) additional chambers. Small Five-toed Jerboas usually do not build special night shelter burrows but use burrows of other rodents as night shelters.</p>
+<div class="qh">Food and Feeding</div><p class="qt">In northern parts of the distribution, they feed mainly (c.80% by volume) on seeds, but in southern parts, seeds and green plant parts are eaten in equal proportions. Insects and underground plant parts are consistent but minor parts of the diet.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 92-93. Plazi treatment, <a href="https://zenodo.org/records/6591634">10.5281/zenodo.6591634</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>&#x27;2-5—4-5 months&#x27; is almost certainly 2.5-4.5 months</li>
+<li>&#x27;10-115 cm deep&#x27; - verify range against p. 92</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Thick-tailed three-toed jerboa</h2>
+<p class="sci">Stylodipus telum</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - jerboas</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Crepuscular and nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">110-130 mm</td><td class="n">130-170 mm</td><td class="n">15-20 mm</td><td class="n">46-55 mm</td><td class="n">45-73 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and nocturnal</td><td>30-60 min after sunset in autumn</td><td>Active. Hibernation runs end of October to March/April.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on bipedal hopper; manufacturer places kangaroo rats, the closest body type it names, in this tier. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">In western and northern peripheries of the distribution, stabilized sands in steppe zone; in central part of distribution, sandy-loam soils in semi-desert and desert zones; in southern part of distribution, clay soils in desert zone; and in eastern part of distribution, coarse-gravel hill slopes in semi-desert zone.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Thick-tailed Three-toed Jerboa is crepuscular and nocturnal. Aboveground activity starts 60-90 minutes before sunset in spring and 30-60 minutes after sunset in summer and autumn. Autumn activity ends after midnight.</p>
+<div class="qh">Burrow</div><p class="qt">Burrows have one main entrance, 1-3 emergency entrances, one nest chamber 12-15 cm in diameter at depths of 80-130 cm, and 1-3 additional chambers 9-10 cm in diameter; total lengths of tunnels are 130-530 cm, usually 150-200 cm. Main entrance usually is closed with soil plug. Night shelter burrows are simple, with one tunnel 30-300 cm long. One individual has 3-12 shelter burrows in its home range.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet contains about equal amounts of seeds and green plant material; insects are rarely eaten. Seeds dominated diets in autumn and green plant parts in spring.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), p. 97. Plazi treatment, <a href="https://zenodo.org/records/6591651">10.5281/zenodo.6591651</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Long-eared hedgehog</h2>
+<p class="sci">Hemiechinus auritus</p>
+<div class="tags">
+<span class="tag t-grp">Erinaceidae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">160-278 mm</td><td class="n">10-55 mm</td><td class="n">24-60 mm</td><td class="n">30-55 mm</td><td class="n">230-400 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>Early evening</td><td>Active. Torpor is facultative and mostly later in the year.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 278 mm, to 400 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Dry riverbeds, dunes, oases, valleys with shrubs, semiarid country, and steppes over most of its distribution. It favors mesic sites such as suburban parks and gardens, olive groves, and agricultural lands and is commonly associated with humans. It selects soft ground such as sandy dunes where it can dig relatively deep burrows that slope at a slight angle.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Common Long-eared Hedgehog is nocturnal and begins foraging early in the evening. Day-resting sites usually are in burrows that are under small shrubs or bushes. Burrows are 20-150 cm long and have a single opening. It can enter torpor in any season during droughts, shortages of food, and cold or hot weather.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Common Long-eared Hedgehog is omnivorous, it is a voracious feeder, and it can survive for up to ten weeks without eating or drinking. Diet primarily is insects (bugs, beetles, grasshoppers, termites, lepidopterans, ants), but it also eats other invertebrates (worms, millipedes, and snails), small vertebrates, eggs, carrion, fruits, and seeds.</p>
+<div class="cite">HMW Vol. 8 (Erinaceidae, pp. 288-330), pp. 325-326. Plazi treatment, <a href="https://zenodo.org/records/6632542">10.5281/zenodo.6632542</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>At 230-400 g this is at or beyond the top of the largest Sherman tier. Recorded here so a team meeting one is not left guessing.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Great gerbil</h2>
+<p class="sci">Rhombomys opimus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">regional, not recorded near Merke</span>
+<span class="tag t-day">Diurnal, most active at dawn</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">150-185 mm</td><td class="n">130-160 mm</td><td class="n">12-19 mm</td><td class="n">36-47 mm</td><td class="n">169-275 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Diurnal, most active at dawn</td><td>Dawn</td><td>Active. No hibernation stated.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 185 mm, to 275 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Sandy or clay deserts, with a local preference for dry riverbeds and shrubby vegetation.</p>
+<div class="qh">Activity patterns</div><p class="qt">Diurnal, and most active at dawn. Great Gerbils are terrestrial, digging very elaborate burrow systems with long, deep tunnels, nest chambers, and foraging chambers. In winter the nest may be situated 2-5 m below the surface.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet is based on high plant diversity. It includes stems, leaves, and branches of small bushes, especially Haloxylon ammodendron, or succulent bushes such as Salsola. Diet varies seasonally, depending on plant availability.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 649-650. Plazi treatment, <a href="https://zenodo.org/records/6788117">10.5281/zenodo.6788117</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>&#x27;2-5 m below the surface&#x27; is either 2-5 m or 2.5 m - verify p. 650</li>
+<li>Diurnal and dawn-active. An overnight line that is closed by day misses this species almost entirely.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Libyan jird</h2>
+<p class="sci">Meriones libycus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-both">Generally nocturnal, sometimes diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">123-170 mm</td><td class="n">115-190 mm</td><td class="n">15-22 mm</td><td class="n">32-41 mm</td><td class="n">60-140 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Generally nocturnal, sometimes diurnal</td><td>After dark; feeds by day in Pakistan</td><td>Active. Torpor only in colder regions and later in the year.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 170 mm, to 140 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Libyan Jirds prefer low-lying areas in arid and semiarid areas (steppes, semideserts, deserts) with compact and hard soil. They avoid mountain slopes and rocky regions. They require sparse and bushy vegetation, such as tamarisk, palm, or acacia groves.</p>
+<div class="qh">Activity patterns</div><p class="qt">Although generally nocturnal, the Libyan Jird may be diurnal in north-western China. It is terrestrial, digging burrows in ephemeral riverbeds and in shallow depressions where small bushes are present. In Pakistan it feeds during day and signals danger with foot-drumming.</p>
+<div class="qh">Burrow</div><p class="qt">Burrows are established at base of small bushes and on small hills. Burrows have 2-8 entrances with tunnels leading to at least one food-storage room of c.30 cm diameter. There may be two systems of sinuous galleries connected by a single tunnel.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Libyan Jirds are granivorous and herbivorous. Seeds and grasses, cereals, fruit seeds, rhizomes, bulbs, and succulent plants are favored, and these are stored in burrows. Libyan Jirds require very limited amounts of water.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 643-644. Plazi treatment, <a href="https://zenodo.org/records/6827166">10.5281/zenodo.6827166</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>The source gives a burrow &#x27;large diameter of c.10 m&#x27; which is garbled; verify p. 643</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Midday jird</h2>
+<p class="sci">Meriones meridianus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-both">Primarily nocturnal, sometimes daytime in winter</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">90-144 mm</td><td class="n">85-135 mm</td><td class="n">10-19 mm</td><td class="n">25-34 mm</td><td class="n">24-60 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Primarily nocturnal, sometimes daytime in winter</td><td>After dark</td><td>Active. Does not hibernate.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 144 mm, to 60 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Found in all sandy deserts of Central Asia, but may occasionally live in steppic zones. The Midday Jird inhabits sand dunes, steppes, grasslands, cultivated fields, and fallow lands in arid zones.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Midday Jird is primarily nocturnal, but active also in morning or during day in winter. This terrestrial rodent digs deep burrows at base and under roots of thorn scrub.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Plants, seeds, and insects constitute the diet of Midday Jirds. They store food in their burrows and do not hibernate.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 647. Plazi treatment, <a href="https://zenodo.org/records/6788104">10.5281/zenodo.6788104</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Tamarisk jird</h2>
+<p class="sci">Meriones tamariscinus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">135-190 mm</td><td class="n">115-150 mm</td><td class="n">15-21 mm</td><td class="n">32-39 mm</td><td class="n">60-180 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark</td><td>Active. No hibernation stated.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 190 mm, to 180 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Deserts and semi-deserts with small bushes and grasslands, wadis, and saline marshes.</p>
+<div class="qh">Activity patterns</div><p class="qt">Nocturnal and terrestrial, the Tamarisk Jird digs burrows beneath tree roots and bushes. Burrows have several openings and can reach 6 m in length and 2:5 m in depth.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Tamarisk Jirds are omnivorous, consuming vegetable matter, fruits, seeds, and insects. They will store food in burrows, and up to 4-5 kg of dry plants and seeds have been reported in some cases.</p>
+<div class="qh">Identification note</div><p class="qt">A large jird. The Tamarisk Jird has rusty-brown dorsal pelage and pure white venter. Soles of hindfeet are hairy. Tail is bicolored, smaller than body length, and has no pencil at end.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 647-648. Plazi treatment, <a href="https://zenodo.org/records/6788106">10.5281/zenodo.6788106</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>&#x27;2:5 m in depth&#x27; is 2.5 m</li>
+<li>&#x27;4-5 kg&#x27; of cached material is probably 4.5 kg</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Indian crested porcupine</h2>
+<p class="sci">Hystrix indica</p>
+<div class="tags">
+<span class="tag t-grp">Hystricidae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Strictly nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">455-930 mm</td><td class="n">60-170 mm</td><td class="n">40-47 mm</td><td class="n">95-104 mm</td><td class="n">8000-27000 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Strictly nocturnal</td><td>Varies with season; avoids bright moonlight in winter</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-too_large">Too large</td><td>no Sherman model fits</td><td>record the sighting or sign; do not expect a capture</td></tr></table></div>
+<p class="note">Assigned on reaches 27000 g, well above the largest model&#x27;s intended animals. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Wide variety of natural, agricultural, and urbanized habitats. Distribution of the Indian Crested Porcupine is centered in steppe biomes and also includes desert margins and relatively mesic zones.</p>
+<div class="qh">Activity patterns</div><p class="qt">Indian Crested Porcupines are strictly nocturnal. They spend daytime hours in dens (natural caves or excavated burrows). In winter, they largely confine their behavior to darker nights or darker periods of the night and strongly avoid bright moonlight.</p>
+<div class="qh">Burrow</div><p class="qt">In deserts east of the Caspian Sea, Indian Crested Porcupines dig complicated burrow systems in compacted dunes and clay embankments. Main tunnels are more than 10-16 m long, ending in a deep living chamber. Chambers may be used by clans for decades.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Indian Crested Porcupine is generalist herbivore. It eats at least 18 species of geophytes (tubers, bulbs, corms, rhizomes and other subterranean structures) and hemicryptophytes. It also eats grains and fruits.</p>
+<div class="cite">HMW Vol. 6 (Hystricidae, pp. 304-312), pp. 311-312. Plazi treatment, <a href="https://zenodo.org/records/6612309">10.5281/zenodo.6612309</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Will not enter any Sherman. Its large burrow systems can be mistaken for those of a target species.</li>
+<li>SAFETY: quills. Included so teams recognise the burrow and keep clear.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Tolai hare</h2>
+<p class="sci">Lepus tolai</p>
+<div class="tags">
+<span class="tag t-grp">Leporidae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">400-590 mm</td><td class="n">72-110 mm</td><td class="n">80-120 mm</td><td class="n">110-127 mm</td><td class="n">1700-2700 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark; rests in forms by day</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-too_large">Too large</td><td>no Sherman model fits</td><td>record the sighting or sign; do not expect a capture</td></tr></table></div>
+<p class="note">Assigned on reaches 2700 g, well above the largest model&#x27;s intended animals. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Grassland and forest meadows (never true forests), with tall grasses or shrubby areas for cover in China and semi-desert, mountain-steppe, forest steppe, and rocky habitat in Mongolia. Forms are created using the front paws. Depths of forms are less during hot weather than when it is cold and windy.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Tolai Hare is nocturnal. Forms are used for resting during daytime.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet of the Tolai Hare consists of grass, roots, and herbaceous vegetation. Individuals use fixed and restricted routes while foraging.</p>
+<div class="cite">HMW Vol. 6 (Leporidae, pp. 107-148), p. 133. Plazi treatment, <a href="https://zenodo.org/records/6632784">10.5281/zenodo.6632784</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Will not enter any Sherman. Its surface forms and fixed foraging routes are easily mistaken for rodent runways.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Brown rat</h2>
+<p class="sci">Rattus norvegicus</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Primarily nocturnal, most activity before midnight</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">160-290 mm</td><td class="n">122-250 mm</td><td class="n">15-26 mm</td><td class="n">30-50 mm</td><td class="n">195-540 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Primarily nocturnal, most activity before midnight</td><td>Shortly before or after sunset</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 290 mm, to 540 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Historically, moist primary forests and fields and now typically disturbed habitats of all kinds, including almost every major city and agricultural and arable land. In cities, it generally stays in moist, wet areas that are dark and provide secluded nesting areas.</p>
+<div class="qh">Activity patterns</div><p class="qt">Brown Rats are primarily nocturnal, and most activity tends to occur before midnight, after which very few rats are seen. For the most part, foraging occurs shortly before or after sunset. Bad weather will generally discourage rats from doing anything outside their nests/shelters.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Brown Rats are very opportunistic omnivores and eat a wide variety of fruits, seeds, vegetation, carrion, birds, small mammals, invertebrates, and human trash.</p>
+<div class="qh">Trapping note</div><p class="qt">Exploration is common, but they can be neophobic toward food and other objects; individuals will cautiously approach and smell or touch an unfamiliar object and then dart away quickly.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 829. Plazi treatment, <a href="https://zenodo.org/records/6827852">10.5281/zenodo.6827852</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Neophobia is directly trap-relevant: a new trap may be avoided for the first night or two, which argues for pre-baiting</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Herb field mouse</h2>
+<p class="sci">Apodemus uralensis</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">70-105 mm</td><td class="n">65-110 mm</td><td class="n">12-16 mm</td><td class="n">17-22 mm</td><td class="n">13-28 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark</td><td>Active. No hibernation stated.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 105 mm, to 28 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Prefers forest edge and open habitats adjacent to woodland. In Europe, the Herb Field Mouse is found in a variety of habitats, including arable fields, dry grassland, and humid woodland. It is an ecotonic species, occurring where forests adjoin open habitat, and rarely found inside forests. Found from sea level to at least 1400 m.</p>
+<div class="qh">Activity patterns</div><p class="qt">Herb Field Mice are nocturnal, arboreal, and subterranean. Nests are either in trees or in burrows or natural subterranean shelters.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The dominant food of this species is seeds of plants and grasses, followed by fruits and a low proportion of insects. The Herb Field Mouse is a good climber and jumper. It forages in trees or in/on the ground.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 782. Plazi treatment, <a href="https://zenodo.org/records/6868753">10.5281/zenodo.6868753</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Confusable with Apodemus agrarius in the hand. Photograph the dorsal stripe, ear and hind foot against a scale.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>House mouse</h2>
+<p class="sci">Mus musculus</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Crepuscular and nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">70-103 mm</td><td class="n">67-104 mm</td><td class="n">12-17 mm</td><td class="n">14-20 mm</td><td class="n">12-39 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Crepuscular and nocturnal</td><td>After dark</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 103 mm, to 39 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Mostly commensal and found in a very wide range of man-made habitats. It does not make sophisticated burrows and can nest in a wide variety of environments.</p>
+<div class="qh">Activity patterns</div><p class="qt">House Mice are terrestrial, and crepuscular and nocturnal.</p>
+<div class="qh">Food and Feeding</div><p class="qt">House Mice are omnivorous, with invertebrates forming the greater part of the diet, followed by seeds and other plant material.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 789. Plazi treatment, <a href="https://zenodo.org/records/6827279">10.5281/zenodo.6827279</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Short-tailed bandicoot rat</h2>
+<p class="sci">Nesokia indica</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">150-205 mm</td><td class="n">91-150 mm</td><td class="n">16-23 mm</td><td class="n">29-39 mm</td><td class="n">96-320 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 205 mm, to 320 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Tropical and subtropical dry deciduous forests, scrublands, grasslands, arable land, pastures, and plantations from sea level to elevations of c.1600 m. Short-tailed Bandicoot Rats prefer areas with moist soil near permanent water sources.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Short-tailed Bandicoot Rat is nocturnal; foraging, general movements on the ground&#x27;s surface, and probably breeding occur at night. It is terrestrial but primarily fossorial, creating burrow systems in moist soils, consisting of a few to many tunnels, storage chambers, and nesting chamber.</p>
+<div class="qh">Burrow</div><p class="qt">Storage chambers are not lined with vegetation and are expansive; nesting chambers are lined with finely chewed vegetation and are smaller (c.30 cm wide). Burrows are usually 15-60 cm underground and have been found in canals. Burrows can be as long as 23 m.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Short-tailed Bandicoot Rat is herbivorous, subsisting on foods found while digging burrows and plants around their burrow. Diets contain roots, grasses, grains, vegetables, and fruits from cultivated fields.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 817. Plazi treatment, <a href="https://zenodo.org/records/6788461">10.5281/zenodo.6788461</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Steppe field mouse</h2>
+<p class="sci">Sylvaemus witherbyi</p>
+<p class="aka">Also listed as <i>Apodemus witherbyi</i></p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-night">Nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">77-110 mm</td><td class="n">75-118 mm</td><td class="n">14-18 mm</td><td class="n">19-24 mm</td><td class="n">16-34 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Nocturnal</td><td>After dark</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 110 mm, to 34 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">The Steppe Field Mouse can live in wide variety of environments. In Turkey it has been found both in open habitats and in cedar forests, as well as in shrublands and degraded forest. It needs shrub cover as well as some rocky areas in open grasslands and is found at up to 2800 m.</p>
+<div class="qh">Activity patterns</div><p class="qt">Steppe Field Mice are nocturnal and terrestrial.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Steppe Field Mouse is an omnivorous species, but food consists predominantly of seeds and acorns, followed by fruits, flowers, stems, mushrooms, insects, snails, and earthworms.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 783. Plazi treatment, <a href="https://zenodo.org/records/6827273">10.5281/zenodo.6827273</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Confusable with Apodemus uralensis and A. agrarius - photograph dorsal stripe, ear and hind foot against a scale</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Striped field mouse</h2>
+<p class="sci">Apodemus agrarius</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - mice and rats</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-both">DIURNAL or crepuscular</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">75-120 mm</td><td class="n">65-115 mm</td><td class="n">12-15 mm</td><td class="n">17-22 mm</td><td class="n">16-38 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>DIURNAL or crepuscular</td><td>Daytime and twilight</td><td>Active. No hibernation stated.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-medium">Medium</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 cm)</td><td>chipmunks, rats, flying squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 120 mm, to 38 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Striped Field Mice prefer edges of forest or woodland. They are found also in cultivated fields, gardens, reedbeds, and marshes, and sometimes enter barns and buildings in autumn. A microhabitat study showed that this species non-randomly selects habitats with dense shrub layer and very dense Rubus hirtus (Rosaceae) undergrowth with little or no tree-canopy cover.</p>
+<div class="qh">Activity patterns</div><p class="qt">Striped Field Mice are terrestrial, and diurnal or crepuscular. Climbing activity is moderate compared with that of congeners. They dig simple underground burrows of 30-40 cm depth, with nest chamber lined with dry plants, and with three or four entrances.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Diet consists of seeds, buds, fruits, and berries in variable proportions, supplemented by insects, worms, and mollusks.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884). Plazi treatment, <a href="https://zenodo.org/records/6816070">10.5281/zenodo.6816070</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Turkestan red pika</h2>
+<p class="sci">Ochotona rutila</p>
+<div class="tags">
+<span class="tag t-grp">Ochotonidae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-day">Mainly diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">190-260 mm</td><td class="n">none mm</td><td class="n">26-30 mm</td><td class="n">33-39 mm</td><td class="n">220-320 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Mainly diurnal</td><td>Sunrise to evening dusk</td><td>Active. Hay-hoarding lasts until September, so hay piles are a reliable sign.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 260 mm, to 320 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Talus composed of large stones in mountain gorges and valleys of forest and subalpine areas at elevations of 1800-3700 m. The Turkestan Red Pika is a typical rock dweller, using crevices among stones as shelters and pathways.</p>
+<div class="qh">Activity patterns</div><p class="qt">Turkestan Red Pikas are mainly diurnal. As in all rock-dwelling pikas, activity depends on insolation and weather. During high heat in Central Asia, Turkestan Red Pikas avoid emerging on talus surfaces. In other seasons, they are active throughout the day. Activity starts at sunrise and stops with evening dusk.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Turkestan Red Pika eats a very wide variety of plants such as herbs, some trees and bushes, green mosses, and lichens. Turkestan Red Pikas hoard hay in hay piles. Hoarding starts in the first part of summer and lasts until September. Hay piles are 0.3-2 kg, but very large piles of 3-8 kg are also common. Hay piles are situated in rock crevices or under cover of large stones.</p>
+<div class="cite">HMW Vol. 6 (Ochotonidae, pp. 28-43), p. 42. Plazi treatment, <a href="https://zenodo.org/records/6620036">10.5281/zenodo.6620036</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>No burrow section - a rock-crevice dweller. Set at crevices and talus, not at burrow entrances.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Grey marmot</h2>
+<p class="sci">Marmota baibacina</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-day">Diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">460-650 mm</td><td class="n">130-154 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">4200-6500 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Diurnal</td><td>Active 4-5 months each summer</td><td>Going underground. Hibernates for 7-8 months of the year.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-too_large">Too large</td><td>no Sherman model fits</td><td>record the sighting or sign; do not expect a capture</td></tr></table></div>
+<p class="note">Assigned on reaches 6500 g, well above the largest model&#x27;s intended animals. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Gently sloping open or boulder strewn mountain steppes, meadows, and rocky outcroppings at elevations up to c.4000 m.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Gray Marmot is diurnal and only active for 4-5 months each summer; it hibernates in burrows for the remaining 7-8 months of the year.</p>
+<div class="qh">Burrow</div><p class="qt">The Gray Marmot is social and lives in multiburrow colonies usually in groups of up to ten individuals that may communally hibernate. They frequently sit on burrow mounds and remain vigilant; alarm calls are short high-pitched whistles.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Gray Marmot is herbivorous and feeds primarily on young grasses, shoots of forbs, and herbaceous material growing in open grasslands.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818. Plazi treatment, <a href="https://zenodo.org/records/6840688">10.5281/zenodo.6840688</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Will not enter any Sherman. Included so its burrow systems and alarm calls are recognised and not mistaken for a target species&#x27; sign.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Long-tailed marmot</h2>
+<p class="sci">Marmota caudata</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-day">Diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">500 mm</td><td class="n">182 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">3000-5000 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Diurnal</td><td>Late spring or early summer</td><td>Going underground. Aboveground only 4-5 months.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-too_large">Too large</td><td>no Sherman model fits</td><td>record the sighting or sign; do not expect a capture</td></tr></table></div>
+<p class="note">Assigned on reaches 5000 g, well above the largest model&#x27;s intended animals. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">High elevation, low productivity alpine flats and meadows, often associated with glacial and terminal moraines. Alpine scrub with some dwarf juniper is also selected.</p>
+<div class="qh">Activity patterns</div><p class="qt">Long-tailed Marmots are diurnal. They are only aboveground for 4-5 months, emerging from burrows in late spring or early summer. Individuals often bask on rocks or at burrow entrances.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Long-tailed Marmot is an herbivore that feeds primarily on young grasses, shoots of forbs, legumes, and small shrubs in open grasslands.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818. Plazi treatment, <a href="https://zenodo.org/records/6840690">10.5281/zenodo.6840690</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Source gives &#x27;weight 3-5 kg&#x27; which may be 3-5 kg or 3.5 kg. Verify p. 818.</li>
+<li>Will not enter any Sherman.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Yellow ground squirrel</h2>
+<p class="sci">Spermophilus fulvus</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-day">Diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">224-284 mm</td><td class="n">71-85 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">273-1100 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Diurnal</td><td>Aboveground March-April</td><td>Largely unavailable. Adults begin hibernating late July to September; juveniles September or October.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-large">Large</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 cm)</td><td>kangaroo rats, ground squirrels, squirrels</td></tr></table></div>
+<p class="note">Assigned on head-body to 284 mm, to 1100 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Semi-desert and desert arid grasslands, sometimes extending into open arid forests.</p>
+<div class="qh">Activity patterns</div><p class="qt">Yellow Ground Squirrels are diurnal and active aboveground in late spring, usually March-April. They are obligate hibernators in burrows, beginning in late July to September for adults and September or October for juveniles.</p>
+<div class="qh">Burrow</div><p class="qt">It is territorial and defends a large area around a single burrow; adult male home ranges are c.3 ha.</p>
+<div class="qh">Food and Feeding</div><p class="qt">The Yellow Ground Squirrel is an herbivore, feeding mostly on bulbs, tubers, leaves, and shoots of desert grasses and forbs. It occasionally eats insects or scavenges animal matter.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 812. Plazi treatment, <a href="https://zenodo.org/records/6819002">10.5281/zenodo.6819002</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Source reads &#x27;Head-body mean 284-3 mm (males) and 224 mm (females)&#x27; - 284.3 mm</li>
+<li>Weight &#x27;0-29-11 kg (males)&#x27; is garbled; likely 0.29-1.1 kg. Verify p. 812</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Tian Shan birch mouse</h2>
+<p class="sci">Sicista tianshanica</p>
+<div class="tags">
+<span class="tag t-grp">Sminthidae - birch mice</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-both">Mainly crepuscular and nocturnal, sometimes diurnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">57-73 mm</td><td class="n">102-113 mm</td><td class="n">12.5-15 mm</td><td class="n">17-19 mm</td><td class="n">7.2-13 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Mainly crepuscular and nocturnal, sometimes diurnal</td><td>Twilight and night</td><td>Juveniles only. Adults probably enter hibernation in August.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 73 mm, to 13 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Foothills to subalpine zone at elevations of 400-3500 m. Highest densities of Tian Shan Birch Mice were detected in upper limits of forests in subalpine zones, but they have been caught in a variety of habitats, such as edges of spruce forests, pastures, tall herb meadows, high mountain meadows, steppe-covered southern slopes, forest clearings, and subalpine meadows with junipers.</p>
+<div class="qh">Activity patterns</div><p class="qt">Tian Shan Birch Mice are mainly crepuscular and nocturnal, although they are sometimes active during the day, particularly young individuals. Pitfall traps after a cold night, normal in the high mountains, regularly contained individuals lying curled on their side with closed eyes, seemingly in a state of torpor. They usually quickly became active when warmed in the hand. Adults probably enter hibernation in August because only juveniles have been captured in September.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Tian Shan Birch Mice mostly eat insects and other animals such as snails, followed by seeds; fewer berries and herbs were found in stomachs. Proportion of insects and other animal food decreased from June to September, and quantities of seeds and berries increased.</p>
+<div class="cite">HMW Vol. 7 (Sminthidae, pp. 9-48), p. 40. Plazi treatment, <a href="https://zenodo.org/records/6603420">10.5281/zenodo.6603420</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>WELFARE: an animal found torpid after a cold night looks dead but revives when warmed in the hand. Do not record a torpid birch mouse as a mortality.</li>
+<li>Insect-leaning diet, so a purely seed-based bait is a poor match</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Lesser white-toothed shrew</h2>
+<p class="sci">Crocidura suaveolens</p>
+<div class="tags">
+<span class="tag t-grp">Soricidae - shrews</span>
+<span class="tag t-here">recorded within 100 km</span>
+<span class="tag t-night">Mostly nocturnal</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">47-80 mm</td><td class="n">25-40 mm</td><td class="n">not given mm</td><td class="n">not given mm</td><td class="n">6.5-9.4 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Mostly nocturnal</td><td>10-14 activity periods through the dark hours</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 80 mm, to ? g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Desert, steppe, and forest zones, preferring habitats with bushes or high grass stands near watersides and ruderal vegetation at sites of abandoned human houses and tilled fields. The Lesser White-toothed Shrew is found in various human dwellings such as nomadic tents in the Gobi Desert and apartments in Moscow high-rise apartment buildings, including rural houses from European Russia to Tian Shan.</p>
+<div class="qh">Activity patterns</div><p class="qt">The Lesser White-toothed Shrew is active mostly at night. In Turkmenistan, 10-14 activity periods were observed during dark hours and averaged 24 minutes each; maximal duration of an activity period was 155 minutes.</p>
+<div class="qh">Food and Feeding</div><p class="qt">In Trans-Ili Alatau, small beetles are most common in diets of Lesser White-toothed Shrews. Lesser White-toothed Shrews can dig insects out of the soil to up to 2 cm and hunt small geometrid moths by jumping and collecting them from grass blades. Daily food intake of Lesser White-toothed Shrews reaches 133% of body weight, but daily food intake of three times body weight was observed in Turkmenistan.</p>
+<div class="cite">HMW Vol. 8 (Soricidae, pp. 332-551), pp. 496-497. Plazi treatment, <a href="https://zenodo.org/records/6870217">10.5281/zenodo.6870217</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>WELFARE AND BAIT: an insectivore eating over 100% of its body weight daily starves fast in a trap, and seed bait does not feed it. This is the species that most needs an animal-protein bait component and a short check interval.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Tundra shrew</h2>
+<p class="sci">Sorex tundrensis</p>
+<div class="tags">
+<span class="tag t-grp">Soricidae - shrews</span>
+<span class="tag t-here">regional, range-plausible</span>
+<span class="tag t-both">Active day and night</span>
+</div>
+<div class="sec">Measurements</div><div class="scroll"><table><tr>
+<th>Head-body</th><th>Tail</th><th>Ear</th><th>Hind foot</th><th>Weight</th>
+</tr><tr>
+<td class="n">61-86 mm</td><td class="n">20-38 mm</td><td class="n">7-8 mm</td><td class="n">13-15 mm</td><td class="n">8-11.5 g</td>
+</tr></table></div>
+<div class="sec">When to trap</div><div class="scroll"><table>
+<tr><th>Activity</th><th>Emerges</th><th>September at Merke</th></tr>
+<tr><td>Active day and night</td><td>Throughout the 24 hours</td><td>Active.</td></tr></table></div>
+<div class="sec">Which Sherman</div><div class="scroll"><table>
+<tr><th>Tier</th><th>Model and size</th><th>Manufacturer lists</th></tr>
+<tr><td class="verdict v-small">Small</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 cm)</td><td>mice, shrews, voles</td></tr></table></div>
+<p class="note">Assigned on head-body to 86 mm, to 8 g. Tiers and dimensions are the manufacturer's; placing this species in one is our judgement.</p>
+<div class="sec">Pictures</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Whole animal</span><span class="phbrief">In the hand, dorsal view, whole animal in frame with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Diagnostic detail</span><span class="phbrief">The feature that separates this species from its confusion pair, with a scale bar.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Burrow or field sign</span><span class="phbrief">Burrow entrance, runway, mound or hay pile, with a scale object for size.</span></div></figure>
+</div>
+<div class="sec">Source text</div><div class="quoted">
+<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>
+<div class="qh">Habitat</div><p class="qt">Large variety of alpine, subalpine, and arctic habitats, shrublands, and meadows, often dominated by small trees and shrubs such as willow and birch, generally preferring open bush habitats. It prefers to live in floodplain regions throughout taiga, avoiding forests, and in open areas between forests.</p>
+<div class="qh">Activity patterns</div><p class="qt">Tundra Shrews are active day and night and are primarily terrestrial.</p>
+<div class="qh">Food and Feeding</div><p class="qt">Because Tundra Shrews live in various habitats, food items differ greatly among different geographical regions. For example, earthworms account for substantial proportions of diets in tundra, spiders and insects (commonly beetles) in taiga, and grasshoppers in steppe regions. Plant items are often included in diets, especially in winter; berries are eaten in southern regions of the distribution in Kazakhstan.</p>
+<div class="cite">HMW Vol. 8 (Soricidae, pp. 332-551), pp. 402-403. Plazi treatment, <a href="https://zenodo.org/records/6869623">10.5281/zenodo.6869623</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Check against the printed page before field use</b><ul>
+<li>Active day and night, so a line closed by day misses part of this species&#x27; activity</li>
+<li>Insectivore - see the bait note on Crocidura suaveolens</li>
+</ul></div>
+</div>
+</div>
