@@ -34,7 +34,16 @@
       "ocr_check": [
         "'2-5 entrances' probably a true range 2-5",
         "'Burrows can be 1-5 m deep' - 1.5 m or 1-5 m? verify p. 283"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/cricetulus_migratorius_animal.jpg",
+          "caption": "Grey dwarf hamster, Николаевская область, Украина",
+          "credit": "Roman",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/20078277"
+        }
+      }
     },
     {
       "binomial": "Cricetulus longicaudatus",
@@ -63,7 +72,16 @@
       },
       "ocr_check": [
         "Separating this from Cricetulus migratorius in the hand needs the tail: 35-48 mm here against 19-39 mm. Photograph the tail against a scale."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/cricetulus_longicaudatus_animal.jpg",
+          "caption": "Long-tailed dwarf hamster, Baacagaan, Bayankhongor, Mongolia",
+          "credit": "Tom Field",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/385851730"
+        }
+      }
     },
     {
       "binomial": "Microtus arvalis",
@@ -92,7 +110,16 @@
       },
       "ocr_check": [
         "Folivore rather than granivore - a seed-and-oil bait ball is a poor match for this species"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/microtus_arvalis_animal.jpg",
+          "caption": "Common vole, Kwidzyn, Polska",
+          "credit": "Adam Juźwiak",
+          "licence": "CC0 1.0",
+          "source_url": "https://www.inaturalist.org/observations/129422513"
+        }
+      }
     },
     {
       "binomial": "Ellobius tancrei",
@@ -122,7 +149,16 @@
       "ocr_check": [
         "Diet percentages '94-9%', '39-2%', '0-5%' are decimals: 94.9%, 39.2%, 0.5%",
         "Fossorial and rarely aboveground - a surface Sherman line may not catch this species at all"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/ellobius_tancrei_animal.jpg",
+          "caption": "Eastern mole vole, Bishkek, KG",
+          "credit": "James Hardcastle",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/168924578"
+        }
+      }
     },
     {
       "binomial": "Lasiopodomys gregalis",
@@ -242,7 +278,16 @@
       "ocr_check": [
         "'0-5-1-5 hours before sunrise' is 0.5-1.5 hours",
         "At 260-415 g with a 85-101 mm hind foot this is a large animal needing the longest Sherman"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/allactaga_major_animal.jpg",
+          "caption": "Great jerboa, Russia, Republic of Dagestan, Magaramkent District, the Caspian coast at the Samurskiy Zakaznik stationary 3 km NW of Primorskiy village ",
+          "credit": "Oleg Kosterin",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/187521320"
+        }
+      }
     },
     {
       "binomial": "Dipus sagitta",
@@ -272,7 +317,16 @@
       },
       "ocr_check": [
         "In autumn activity may last only one hour after emergence, sharply narrowing the September window"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/dipus_sagitta_animal.jpg",
+          "caption": "Northern three-toed jerboa, 6CRQ+R76 Great Gobi A, Govi-Altai, Mongolia",
+          "credit": "James Eaton",
+          "licence": "CC0 1.0",
+          "source_url": "https://www.inaturalist.org/observations/198783748"
+        }
+      }
     },
     {
       "binomial": "Scarturus elater",
@@ -304,7 +358,16 @@
         "'2-5—4-5 months' is almost certainly 2.5-4.5 months",
         "'10-115 cm deep' - verify range against p. 92"
       ],
-      "body_type": "saltatorial"
+      "body_type": "saltatorial",
+      "images": {
+        "animal": {
+          "file": "images/scarturus_elater_animal.jpg",
+          "caption": "Small five-toed jerboa, Балхашский район, Казахстан",
+          "credit": "Лариса Артемьева",
+          "licence": "CC0 1.0",
+          "source_url": "https://www.inaturalist.org/observations/284746962"
+        }
+      }
     },
     {
       "binomial": "Stylodipus telum",
@@ -332,7 +395,16 @@
         "Burrow": "Burrows have one main entrance, 1-3 emergency entrances, one nest chamber 12-15 cm in diameter at depths of 80-130 cm, and 1-3 additional chambers 9-10 cm in diameter; total lengths of tunnels are 130-530 cm, usually 150-200 cm. Main entrance usually is closed with soil plug. Night shelter burrows are simple, with one tunnel 30-300 cm long. One individual has 3-12 shelter burrows in its home range.",
         "Food and Feeding": "Diet contains about equal amounts of seeds and green plant material; insects are rarely eaten. Seeds dominated diets in autumn and green plant parts in spring."
       },
-      "ocr_check": []
+      "ocr_check": [],
+      "images": {
+        "animal": {
+          "file": "images/stylodipus_telum_animal.jpg",
+          "caption": "Thick-tailed three-toed jerboa, Ukraine, Kherson Region, Oleshkovskie Peski Desert",
+          "credit": "Alexander A. Fomichev",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/431448"
+        }
+      }
     },
     {
       "binomial": "Hemiechinus auritus",
@@ -360,7 +432,16 @@
       },
       "ocr_check": [
         "At 230-400 g this is at or beyond the top of the largest Sherman tier. Recorded here so a team meeting one is not left guessing."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/hemiechinus_auritus_animal.jpg",
+          "caption": "Long-eared hedgehog, Shinejinst, Bayankhongor, Mongolia",
+          "credit": "Tom Field",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/386136024"
+        }
+      }
     },
     {
       "binomial": "Rhombomys opimus",
@@ -389,7 +470,16 @@
       "ocr_check": [
         "'2-5 m below the surface' is either 2-5 m or 2.5 m - verify p. 650",
         "Diurnal and dawn-active. An overnight line that is closed by day misses this species almost entirely."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/rhombomys_opimus_animal.jpg",
+          "caption": "Great gerbil, Кармакшинский район, Казахстан",
+          "credit": "Юрий Данилевский (Yuriy Danilevsky)",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/18634626"
+        }
+      }
     },
     {
       "binomial": "Meriones libycus",
@@ -418,7 +508,16 @@
       },
       "ocr_check": [
         "The source gives a burrow 'large diameter of c.10 m' which is garbled; verify p. 643"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/meriones_libycus_animal.jpg",
+          "caption": "Libyan jird, Horimlaa Saudi Arabia",
+          "credit": "Jan Ebr &amp; Ivana Ebrová",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/150909786"
+        }
+      }
     },
     {
       "binomial": "Meriones meridianus",
@@ -444,7 +543,16 @@
         "Activity patterns": "The Midday Jird is primarily nocturnal, but active also in morning or during day in winter. This terrestrial rodent digs deep burrows at base and under roots of thorn scrub.",
         "Food and Feeding": "Plants, seeds, and insects constitute the diet of Midday Jirds. They store food in their burrows and do not hibernate."
       },
-      "ocr_check": []
+      "ocr_check": [],
+      "images": {
+        "animal": {
+          "file": "images/meriones_meridianus_animal.jpg",
+          "caption": "Midday jird, آران و بیدگل، استان اصفهان، ایران",
+          "credit": "Mohammad Amin Ghaffari",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/105679339"
+        }
+      }
     },
     {
       "binomial": "Meriones tamariscinus",
@@ -474,7 +582,16 @@
       "ocr_check": [
         "'2:5 m in depth' is 2.5 m",
         "'4-5 kg' of cached material is probably 4.5 kg"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/meriones_tamariscinus_animal.jpg",
+          "caption": "Tamarisk jird, Kyrgyzstan, Jalal-Abad Region, Sary-Bel' River valley",
+          "credit": "Alexander A. Fomichev",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/238182231"
+        }
+      }
     },
     {
       "binomial": "Hystrix indica",
@@ -504,7 +621,16 @@
       "ocr_check": [
         "Will not enter any Sherman. Its large burrow systems can be mistaken for those of a target species.",
         "SAFETY: quills. Included so teams recognise the burrow and keep clear."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/hystrix_indica_animal.jpg",
+          "caption": "Indian crested porcupine, Büyükkale, Tire/İzmir, Türkiye",
+          "credit": "Tandoğan ORUZ",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/326778759"
+        }
+      }
     },
     {
       "binomial": "Lepus tolai",
@@ -532,7 +658,16 @@
       },
       "ocr_check": [
         "Will not enter any Sherman. Its surface forms and fixed foraging routes are easily mistaken for rodent runways."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/lepus_tolai_animal.jpg",
+          "caption": "Tolai hare, Кош-Агачский р-н, Респ. Алтай, Россия",
+          "credit": "Andrew Bazdyrev",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/67907760"
+        }
+      }
     },
     {
       "binomial": "Rattus norvegicus",
@@ -561,7 +696,16 @@
       },
       "ocr_check": [
         "Neophobia is directly trap-relevant: a new trap may be avoided for the first night or two, which argues for pre-baiting"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/rattus_norvegicus_animal.jpg",
+          "caption": "Brown rat, Port Hadlock-Irondale, WA, USA",
+          "credit": "Mara Christensen",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/69139935"
+        }
+      }
     },
     {
       "binomial": "Apodemus uralensis",
@@ -589,7 +733,16 @@
       },
       "ocr_check": [
         "Confusable with Apodemus agrarius in the hand. Photograph the dorsal stripe, ear and hind foot against a scale."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/apodemus_uralensis_animal.jpg",
+          "caption": "Herb field mouse, посёлок Чернореченский, Московская Область, RU",
+          "credit": "Vsevolod Rudyi",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/130906371"
+        }
+      }
     },
     {
       "binomial": "Mus musculus",
@@ -615,7 +768,16 @@
         "Activity patterns": "House Mice are terrestrial, and crepuscular and nocturnal.",
         "Food and Feeding": "House Mice are omnivorous, with invertebrates forming the greater part of the diet, followed by seeds and other plant material."
       },
-      "ocr_check": []
+      "ocr_check": [],
+      "images": {
+        "animal": {
+          "file": "images/mus_musculus_animal.jpg",
+          "caption": "House mouse, United States",
+          "credit": "Carrie Seltzer",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/37128761"
+        }
+      }
     },
     {
       "binomial": "Nesokia indica",
@@ -697,7 +859,16 @@
         "Activity patterns": "Striped Field Mice are terrestrial, and diurnal or crepuscular. Climbing activity is moderate compared with that of congeners. They dig simple underground burrows of 30-40 cm depth, with nest chamber lined with dry plants, and with three or four entrances.",
         "Food and Feeding": "Diet consists of seeds, buds, fruits, and berries in variable proportions, supplemented by insects, worms, and mollusks."
       },
-      "ocr_check": []
+      "ocr_check": [],
+      "images": {
+        "animal": {
+          "file": "images/apodemus_agrarius_animal.jpg",
+          "caption": "Striped field mouse, Botevgrad Municipality, Bulgaria",
+          "credit": "Dimitǎr Boevski",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/148314257"
+        }
+      }
     },
     {
       "binomial": "Ochotona rutila",
@@ -725,7 +896,16 @@
       },
       "ocr_check": [
         "No burrow section - a rock-crevice dweller. Set at crevices and talus, not at burrow entrances."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/ochotona_rutila_animal.jpg",
+          "caption": "Turkestan red pika, Karasay District, Kazakhstan",
+          "credit": "Dmitry Boldyrev",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/129833677"
+        }
+      }
     },
     {
       "binomial": "Marmota baibacina",
@@ -754,7 +934,16 @@
       },
       "ocr_check": [
         "Will not enter any Sherman. Included so its burrow systems and alarm calls are recognised and not mistaken for a target species' sign."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/marmota_baibacina_animal.jpg",
+          "caption": "Grey marmot, Russia, Novosibirsk Region, vicinities of Otgonka Train Station",
+          "credit": "Alexander A. Fomichev",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/10095173"
+        }
+      }
     },
     {
       "binomial": "Marmota caudata",
@@ -783,7 +972,16 @@
       "ocr_check": [
         "Source gives 'weight 3-5 kg' which may be 3-5 kg or 3.5 kg. Verify p. 818.",
         "Will not enter any Sherman."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/marmota_caudata_animal.jpg",
+          "caption": "Long-tailed marmot, Shiva plateau, Badakshan Province",
+          "credit": "Glynn Morris",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/455904"
+        }
+      }
     },
     {
       "binomial": "Spermophilus fulvus",
@@ -813,7 +1011,16 @@
       "ocr_check": [
         "Source reads 'Head-body mean 284-3 mm (males) and 224 mm (females)' - 284.3 mm",
         "Weight '0-29-11 kg (males)' is garbled; likely 0.29-1.1 kg. Verify p. 812"
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/spermophilus_fulvus_animal.jpg",
+          "caption": "Yellow ground squirrel, Джизакский район, Узбекистан",
+          "credit": "Вячеслав Юсупов",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/31249025"
+        }
+      }
     },
     {
       "binomial": "Sicista tianshanica",
@@ -870,7 +1077,16 @@
       },
       "ocr_check": [
         "WELFARE AND BAIT: an insectivore eating over 100% of its body weight daily starves fast in a trap, and seed bait does not feed it. This is the species that most needs an animal-protein bait component and a short check interval."
-      ]
+      ],
+      "images": {
+        "animal": {
+          "file": "images/crocidura_suaveolens_animal.jpg",
+          "caption": "Lesser white-toothed shrew, Кашкарово, Респ. Башкортостан, Россия, 452209",
+          "credit": "Марат Адиев",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/66330644"
+        }
+      }
     },
     {
       "binomial": "Sorex tundrensis",
