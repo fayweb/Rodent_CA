@@ -216,58 +216,123 @@ def stats(sp_list):
 
 
 CSS = """
-:root{--paper:#FBFAF8;--card:#fff;--ink:#16211D;--mut:#5C6763;--faint:#8A938F;
---line:#DDE3E0;--rule:#EEF1EF;--zsl:#00694E;--zsl-tint:#E9F1EE;--zsl-deep:#004F3A;
---alert:#9A3B12;--alert-tint:#FBEDE5;--calm:#3A3F6B;--calm-tint:#ECEDF5;
---serif:"PT Serif",Georgia,serif;--sans:"PT Sans","Segoe UI",system-ui,sans-serif}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F1512;
---card:#18201D;--ink:#E7ECE9;--mut:#A3AEA9;--faint:#7C8783;--line:#2C3733;--rule:#232D29;
---zsl:#5FBFA1;--zsl-tint:#0E2C23;--zsl-deep:#8FD6BE;--alert:#E08A5A;--alert-tint:#2E1B10;
---calm:#A2A7DA;--calm-tint:#1A1D33}}
-:root[data-theme="dark"]{--paper:#0F1512;--card:#18201D;--ink:#E7ECE9;--mut:#A3AEA9;
---faint:#7C8783;--line:#2C3733;--rule:#232D29;--zsl:#5FBFA1;--zsl-tint:#0E2C23;
---zsl-deep:#8FD6BE;--alert:#E08A5A;--alert-tint:#2E1B10;--calm:#A2A7DA;--calm-tint:#1A1D33}
+/* Arial throughout, black and white, so it prints anywhere. Photographs are the
+   only colour on the page. Where colour previously carried meaning it is now
+   carried by fill density: solid black is the strongest signal, mid grey next,
+   outline weakest. */
+:root{
+  --paper:#fff; --card:#fff; --ink:#000; --mut:#3d3d3d; --faint:#6b6b6b;
+  --line:#000; --rule:#c9c9c9; --wash:#f2f2f2; --mid:#d8d8d8;
+  --sans:Arial,Helvetica,"Liberation Sans",sans-serif;
+  --serif:Arial,Helvetica,"Liberation Sans",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0d0d0d; --card:#141414; --ink:#f2f2f2; --mut:#c2c2c2; --faint:#8f8f8f;
+  --line:#f2f2f2; --rule:#3a3a3a; --wash:#1c1c1c; --mid:#2e2e2e;
+}}
+:root[data-theme="dark"]{
+  --paper:#0d0d0d; --card:#141414; --ink:#f2f2f2; --mut:#c2c2c2; --faint:#8f8f8f;
+  --line:#f2f2f2; --rule:#3a3a3a; --wash:#1c1c1c; --mid:#2e2e2e;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16.5px/1.6 var(--sans)}
-.wrap{max-width:860px;margin:0 auto;padding:36px 20px 90px;display:flex;
-flex-direction:column;gap:34px}
-.masthead{border-bottom:3px solid var(--zsl);padding-bottom:16px}
-h1{font-family:var(--serif);font-size:33px;line-height:1.12;margin:0 0 8px;
-color:var(--zsl-deep);text-wrap:balance}
-.lede{margin:0;color:var(--mut);max-width:64ch}
-h2{font-family:var(--serif);font-size:24px;margin:0 0 4px;text-wrap:balance}
-h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
-font-weight:700;margin:22px 0 7px}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:26px 18px 60px;
+  display:flex;flex-direction:column;gap:22px}
+
+.masthead{border-bottom:3px solid var(--ink);padding-bottom:12px}
+.masthead h1,h1{font-size:26px;line-height:1.15;margin:0 0 6px;font-weight:700;
+  text-wrap:balance;letter-spacing:-.01em}
+.masthead p,.lede{margin:0;color:var(--mut);font-size:13.5px;max-width:64ch}
+
+.banner{background:var(--wash);border:1px solid var(--line);border-left:6px solid var(--ink);
+  padding:12px 16px;font-size:13.5px;line-height:1.45}
+.banner b{font-weight:700}
+
+.card,.sec{background:var(--card);border:1px solid var(--line);
+  padding:20px 22px;page-break-after:always;display:flex;flex-direction:column}
+.sec{page-break-after:auto}
+.card:last-child{page-break-after:auto}
+
+h2{font-size:20px;line-height:1.2;margin:0;font-weight:700;text-wrap:balance}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);
+  font-weight:700;margin:20px 0 6px}
+.sci{font-style:italic;color:var(--mut);font-size:14.5px;margin:2px 0 0}
+.aka{color:var(--faint);font-size:12.5px;margin:2px 0 0}
 p{max-width:66ch}
-.sec{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px 28px}
-.order{margin-bottom:26px}
-.order:last-child{margin-bottom:0}
-.order-h{font-family:var(--serif);font-size:20px;color:var(--zsl-deep);margin:0 0 3px}
-.order-n{margin:0 0 12px;color:var(--mut);font-size:14.5px;max-width:64ch}
-.fams{display:flex;flex-wrap:wrap;gap:8px}
-.fam{font-size:13px;padding:5px 11px;border-radius:3px;background:var(--zsl-tint);
-color:var(--zsl-deep);border:1px solid transparent}
-.fam b{font-weight:700}
-.fam span{color:var(--mut);font-weight:400}
-.scroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:14.5px}
-th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
-th{background:var(--zsl-tint);color:var(--zsl-deep);font-size:11.5px;font-weight:700;
-text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--zsl)}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.tag{font-size:11.5px;font-weight:700;padding:3px 9px;border:1px solid var(--ink);
+  letter-spacing:.02em;text-transform:uppercase}
+.t-grp{background:transparent;color:var(--ink)}
+.t-here{background:transparent;color:var(--mut);border-color:var(--rule)}
+.t-day{background:var(--ink);color:var(--paper)}
+.t-both{background:var(--mid);color:var(--ink)}
+.t-night{background:transparent;color:var(--ink)}
+
+.scroll{overflow-x:auto;margin:0 0 2px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{background:var(--wash);color:var(--ink);font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;border-bottom:2px solid var(--ink)}
 tr:last-child td{border-bottom:none}
 td.n{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
-.bar{display:inline-block;height:9px;border-radius:2px;background:var(--zsl);
-vertical-align:middle;margin-right:7px;min-width:2px}
-.prof{border-top:2px solid var(--zsl);padding-top:18px;margin-top:26px}
-.prof:first-of-type{margin-top:0}
-.prof h2{color:var(--ink)}
-.prof .gen{color:var(--mut);font-size:14px;font-style:italic;margin:0 0 14px}
-.k{font-weight:700;color:var(--zsl-deep)}
-.trap{background:var(--alert-tint);border-left:3px solid var(--alert);
-border-radius:0 4px 4px 0;padding:12px 16px;margin-top:12px;font-size:15px}
+
+.sec-label,.sec>div.sec,.card .sec{}
+div.sec{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);
+  font-weight:700;margin:18px 0 6px;border:none;padding:0;background:none;display:block}
+.verdict{font-weight:700}
+.v-small,.v-medium,.v-large{color:var(--ink)}
+.v-too_large,.v-unknown{color:var(--faint)}
+.note{font-size:11.5px;color:var(--faint);margin:5px 0 0;max-width:64ch}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fig{margin:0;border:1px solid var(--rule);overflow:hidden;background:var(--paper);
+  display:flex;flex-direction:column}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption{padding:6px 8px;font-size:11.5px;line-height:1.35;color:var(--mut);
+  display:flex;flex-direction:column;gap:2px}
+.fig .credit{font-size:10.5px;color:var(--faint)}
+.fig .credit a{color:var(--faint)}
+.fig.empty{border-style:dashed}
+.ph{padding:14px 10px;min-height:92px;display:flex;flex-direction:column;
+  justify-content:center;gap:5px;text-align:center}
+.phlab{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.phbrief{font-size:11.5px;line-height:1.35;color:var(--faint)}
+
+.quoted{border:1px solid var(--rule);border-left:4px solid var(--mut);
+  background:var(--wash);padding:12px 15px;margin-top:4px}
+.qhead{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
+  font-weight:700;margin-bottom:9px}
+.qh{font-weight:700;font-size:12.5px;margin:12px 0 2px}
+.qh:first-of-type{margin-top:0}
+.qt{font-size:13.5px;line-height:1.45;color:var(--mut);margin:0;max-width:68ch}
+.cite{font-size:11.5px;color:var(--faint);margin-top:11px;padding-top:8px;
+  border-top:1px solid var(--rule)}
+.cite a{color:var(--mut)}
+
+.check,.trap{background:transparent;border:1px solid var(--ink);border-left:6px solid var(--ink);
+  padding:10px 14px;margin-top:14px;font-size:12.5px}
+.check b,.trap .k{font-weight:700}
+.check ul{margin:5px 0 0 17px;padding:0}
+.check li+li{margin-top:4px}
 .trap p{margin:0;max-width:64ch}
-.trap .k{color:var(--alert)}
-.foot{color:var(--faint);font-size:13.5px;max-width:66ch}
+.k{font-weight:700}
+
+a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+@media print{
+  :root{--paper:#fff;--card:#fff;--ink:#000;--mut:#2b2b2b;--faint:#5a5a5a;
+        --line:#000;--rule:#bbb;--wash:#f4f4f4;--mid:#dcdcdc}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .wrap{max-width:none;padding:0;gap:0}
+  .card,.sec{border:none;padding:0 0 8px;margin:0}
+  .masthead{page-break-after:avoid}
+  .quoted,.check,.trap,.banner,.fig,table{break-inside:avoid}
+  .fig.empty{display:none}          /* blank photo slots waste paper */
+  .figs{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  a{text-decoration:none;color:#000}
+}
 """
 
 
@@ -278,7 +343,6 @@ def main():
         fam[s["group"]].append(s)
 
     o = ['<title>Small Mammals of Central Asia</title>',
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2'
          '?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400'
          '&display=swap">',
          '<style>%s</style>' % CSS, '<div class="wrap">']
@@ -356,6 +420,55 @@ def main():
                  % p["trap"])
         o.append('</div>')
     o.append('</section>')
+
+
+    # --- home range against the grid ------------------------------------
+    GRID = 90 * 90  # a 10 x 10 grid at 10 m spacing spans 90 m
+    o.append('<section class="sec"><h2>Home range against your grid</h2>'
+             '<p>A 10 by 10 grid at 10 m spacing spans 90 m, so it covers '
+             '<b>8,100 m&sup2;, about 0.81 ha</b>. Whether that is a large sample or a '
+             'pinprick depends entirely on how far the animal moves, and the range across '
+             'these species is enormous. The figures are quoted on each card; the '
+             'comparison below is arithmetic done here.</p><div class="scroll"><table>'
+             '<tr><th>Species</th><th>Home range</th><th>Against the grid</th>'
+             '<th>Traps inside one range</th></tr>')
+    hr_rows = []
+    for s in d["species"]:
+        hr = s.get("home_range_m2")
+        if hr:
+            hr_rows.append(((hr[0] + hr[1]) / 2.0, s, hr))
+    for midv, s, hr in sorted(hr_rows, key=lambda r: r[0]):
+        ratio = GRID / midv
+        rel = ("grid is %.0f&times; the range" % ratio) if ratio >= 1               else ("range is %.0f&times; the grid" % (1 / ratio))
+        traps = midv / 100.0
+        o.append('<tr><td><b>%s</b></td><td class="n">%s&ndash;%s m&sup2;</td>'
+                 '<td>%s</td><td class="n">%s</td></tr>'
+                 % (s["common"], format(hr[0], ","), format(hr[1], ","), rel,
+                    ("%.0f" % traps) if traps >= 1 else "fewer than 1"))
+    o.append('</table></div>'
+             '<div class="trap"><p><span class="k">What this means.</span> For a vole, a '
+             'pika or a striped field mouse the grid spans six to fifteen home ranges, so '
+             'it samples a population and every animal has several traps available. For a '
+             "great jerboa the whole grid sits inside a single animal&rsquo;s range, a hundred "
+             "times over — you are not sampling a population, you are sampling one or two "
+             "individuals&rsquo; living space. The same grid is a different instrument depending "
+             'on which animal walks into it, which is worth holding onto when the grid and '
+             'transect results are compared.</p></div></section>')
+
+    # --- social organisation --------------------------------------------
+    o.append('<section class="sec"><h2>Solitary, family or colonial</h2>'
+             '<p>This is the biology underneath the difference between working a burrow '
+             'colony and running a grid. A grid laid over a colonial species samples the '
+             'colony rather than the population; a grid over a solitary species with a '
+             'large range may sample almost nobody.</p><div class="scroll"><table>'
+             '<tr><th>Species</th><th>Group</th><th>Social organisation</th></tr>')
+    for s in sorted(d["species"], key=lambda x: (x.get("social") or "zz", x["common"])):
+        soc = s.get("social")
+        if not soc or soc == "Not stated":
+            continue
+        o.append('<tr><td><b>%s</b></td><td>%s</td><td>%s</td></tr>'
+                 % (s["common"], s["group"].split(" - ")[0], soc))
+    o.append('</table></div></section>')
 
     # --- activity comparison --------------------------------------------
     o.append('<section class="sec"><h2>When each group is awake</h2>'

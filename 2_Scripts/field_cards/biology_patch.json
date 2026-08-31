@@ -1,0 +1,174 @@
+{
+  "_meta": {
+    "note": "Breeding and Movements/Home range/Social organization sections, quoted verbatim from the same Plazi CC0 treatments already cited per species. home_range_m2 is DERIVED by reading the quoted figures into square metres for comparison against trap spacing; it is our arithmetic, not source text, and the quote is always shown beside it.",
+    "ocr": "Plazi OCR turns decimal points into hyphens and loses superscript two, so 'm?' and 'm*' are m². Figures below are as printed; derived values interpret them and are flagged."
+  },
+  "species": {
+    "Cricetulus migratorius": {
+      "Breeding": "A female Gray Dwarf Hamster has up to three litters in a year. Litters have 1-13 young (usually 6-7); gestation lasts 16-21 days; and birth weights are 1-7-2-1 g. Adult colour is attained at 4-5 months old. Lifespan is up to two years.",
+      "Social organisation": "The Gray Dwarf Hamster is solitary. Important predators are owls, foxes, and jackals.",
+      "social": "Solitary"
+    },
+    "Cricetulus longicaudatus": {
+      "Breeding": "Reproduction occurs in March—September, and a female produces at least two litters in a year. Litters have 4-9 young. Life span is up to two years.",
+      "social": "Not stated"
+    },
+    "Microtus arvalis": {
+      "Breeding": "Breeding season of the Common Vole is in March-November. In the wild, females usually have 2-3 litters/year. Numbers of embryos are 1-13/female (3-8 in 93% of females). Young are weaned at 12-21 days old. Females reach sexual maturity at a mean age of 27-4 days, although precocious breeding can occur at 13-14 days of age. Common Voles usually reproduce in their second year and then die. Autumn population mainly consists of individuals born in the same year. Survival is low, and life expectancy is 2-4 months for those born in spring compared to 7-9 months for those from autumn litters.",
+      "Home range and social organisation": "Common Voles are sedentary; they rarely move more than 10-20 m. Home ranges are usually 200-400 m2 for females and 1200-1500 m2 for males, although much lower median values have been reported (e.g. 125 m2 for males and 30 m2 for females). Home ranges are larger at low densities than high densities. Breeding females defend home ranges around their burrows but tolerate strange males when they are in estrus. Males are solitary and wander across their larger home ranges from one female to another to mate. Females with juveniles live in groups in large burrows. A female territorial system changes to group home ranges in winter, and the last 2-3 litters of the season overwinter in mothers' home ranges.",
+      "social": "Males solitary; females in groups with juveniles",
+      "home_range_m2": [200, 1500]
+    },
+    "Ellobius tancrei": {
+      "Breeding": "Reproduction occurs in April-October, but there are regional differences. In south-eastern Kazakhstan, breeding season lasts only c.3 months. Birth rate is low and unpredictable, with intervals between litters from 32 days to c.6 months. Gestation is 26 days, and litters have 1-7 young. Females have 2-3 litters/season. Females are not sexually mature until the death of their mother.",
+      "Social organisation": "Eastern Mole Voles live in family groups of up to ten individuals.",
+      "social": "Family groups up to 10"
+    },
+    "Lasiopodomys gregalis": {
+      "Breeding": "Reproduction occurs in May-July in northern parts of its distribution and April-October in southern parts, where it can even extend into winter. Litters have 2-15 young. Adult females can produce 3-4 litters/year in the north and 4-5 litters in the south. Females become sexually mature at weights of 14-16 g and can have 1-2 litters during the first year of their life.",
+      "Home range and social organisation": "Narrow-headed Voles live in large family groups that occupy complex burrow systems; groups consist of 10-13 residents of different sex, age, and reproductive status. All individuals in a group are amicable, share a common nest, and help to rear offspring. Mean home ranges of males are 790 m2 in spring, 1675 m2 in summer, 625 m2 in autumn, and 425 m2 in winter; those of females are 380 m2, 1150 m2, 360 m2, and 400 m2, respectively. Home ranges partially overlap, and c.22% of the area is used commonly with other individuals. Under emergency situations, Narrow-headed Voles produce alarm calls sitting at burrow entrances.",
+      "social": "Family groups of 10-13",
+      "home_range_m2": [360, 1675]
+    },
+    "Alticola argentatus": {
+      "Breeding": "Pregnant Silver Mountain Voles have been recorded in February-December, but main breeding season is in March—October and May-September at high elevations. Females have 2-3 litters/year, and numbers of embryos per female is 2-9. At high elevations of Kazakhstan where breeding season is curtailed to 2-5-3 months, females have an average of 6 embryos. Young females become sexually mature and have 1-2 litters during their first year of life.",
+      "Home range and social organisation": "Silver Mountain Voles can move up to 500 m away from their nests. They live in kin groups of 7-9 individuals. Feces are deposited in certain places.",
+      "social": "Kin groups of 7-9"
+    },
+    "Pygeretmus pumilio": {
+      "Breeding": "Breeding of the Dwarf Fat-tailed Jerboa has two clear peaks: the first in spring and early summer (March—June) and the second in late summer—autumn (August—October). Litters have 1-8 young; mean litter sizes increase with age of females. One-year-old females have one litter per year, and two-year-old females usually have two litters. Overwintering females can produce up to three litters per year but yearlings only one. Gestation was estimated at 20 days. Young nurse for 35-40 days.",
+      "Home range and social organisation": "Home range sizes vary depending on age, season, and density; mean sizes are 1-1-2 ha for males and 0-4-0-8 ha for females. Breeding home ranges of males are twice as large as non-breeding home ranges. At low densities, home ranges of females are isolated, and those of males overlap marginally; home range of one adult male usually widely overlaps home ranges of 2-3 females. At high densities, home ranges of all individuals widely overlap, regardless of sex; each individual actively defends its own living and shelter burrows. One individual in its home range has 2-3 shelter burrows at high density and 5-12 at low density. In the wild, contact between individuals are relatively rare, even in dense populations; frequency of interactions is only 1-2/hour.",
+      "social": "Largely solitary, ranges overlap at high density",
+      "home_range_m2": [4000, 20000]
+    },
+    "Allactaga major": {
+      "Breeding": "Breeding of the Great Jerboa occurs in March—August. Litters have 1-8 young. Overwintering females can produce two litters per year. Sexual maturity occurs at 9-11 months of age, after overwintering. Gestation was estimated at 25 days.",
+      "Home range and social organisation": "When running fast, they use asynchronous ricochet jumps. Lengths of jumps are 80-125 cm, and maximum speeds are 40-50 km/h. Escaping behavior is characterized by running fast for 60-100 m and then hiding in dense vegetation or a shelter burrow. Home ranges are 13-150 ha. One individual can have 2-6 shelter burrows in its home range. In the wild, Great Jerboas are solitary, and interactions are rare.",
+      "social": "Solitary",
+      "home_range_m2": [130000, 1500000]
+    },
+    "Dipus sagitta": {
+      "Breeding": "Breeding patterns of Northern Three-toed Jerboas vary geographically. In western part of the distribution, breeding usually has two peaks, in spring/early summer and late summer/early autumn, with a mid-summer interruption. Litters have 1-8 young. Overwintering females have 2-3 litters/year. Yearlings born in spring are sexually mature by the next autumn. Gestation has been estimated at 25-30 or 35 days. Young nurse for c.40 days.",
+      "Home range and social organisation": "Average movements of Northern Three-toed Jerboas are 450-600 m/h in the first one-half of the night and up to 1300 m/h in the second. Total lengths of one-night movements are 1-2 km for females and 4-8 km (but up to 11 km) for males and subadults. Home range size varies geographically and with habitat productivity from 4 ha to 19-22 ha in males and from 2-9 ha to 12-15 ha in females. At low and moderate densities, home ranges of females are isolated, but home ranges of males overlap those of other males and females. When young individuals first exit their mother's burrow and for some days after, they move together connected like a \"train\": the first young holds its mother's tail at the base, the second young holds the tail of the first, and so on.",
+      "social": "Female ranges isolated, male ranges overlap",
+      "home_range_m2": [29000, 220000]
+    },
+    "Scarturus elater": {
+      "Breeding": "Breeding patterns of Small Five-toed Jerboas vary geographically. In western and northern parts of the distribution, breeding usually peaks in spring and late summer/early autumn, with a mid-summer interruption. Litters have 1-9 young. Overwintering females produce 2-3 litters/year. Yearlings born in spring become sexually matured in the next autumn at 2-5-3-5 months old. Gestation was estimated by different authors at 20-21 days. Young nurse for 35-40 days.",
+      "Home range and social organisation": "Maximum hop is 202 cm, and maximum speed is 8:3 m/s. Escape behavior is characterized by running fast, with frequent changes in direction, vertical jumps, jumps into shrub canopy, and finally hiding under a shrub. At high density, mean home range is 1-1 ha for males and 0-81 ha for females, and home ranges widely overlap regardless of sex. At low density, home ranges can be 4-6-40 ha. In the wild, they are mainly solitary but relatively frequently can be seen in groups of 2-3 individuals.",
+      "social": "Mainly solitary, sometimes groups of 2-3",
+      "home_range_m2": [8100, 400000]
+    },
+    "Stylodipus telum": {
+      "Breeding": "Breeding of the Thick-tailed Three-toed Jerboa occurs in April-June, with one peak in April-May. Litters have 2-8 young. Overwintering females produce one litter per year. Individuals are sexually mature at 10-11 months of age, after overwintering. Gestation has been estimated at 19-20 or 35 days. Young nurse for c.45 days.",
+      "Home range and social organisation": "Average home ranges of Thick-tailed Three-toed Jerboas are 0-27-0-28 ha for males and 0-23 ha for females. Home ranges of females are isolated; home ranges of males widely overlap home ranges of females but only marginally with other males. Interactions of individuals in the wild are mainly amicable or neutral, and two individuals can forage side by side.",
+      "social": "Female ranges isolated, male ranges overlap",
+      "home_range_m2": [2300, 2800]
+    },
+    "Hemiechinus auritus": {
+      "Breeding": "The Common Long-eared Hedgehog is polygynous. Breeding probably occurs immediately after emerging from hibernation in early spring (mid-April) and continues into late summer (September). Gestation lasts 28-42 days. Births peak in July-September. Litters vary geographically but usually have 3-5 young (range 1-7). There is no evidence that more than one litter is produced each year. Longevity is 6-7 years.",
+      "Home range and social organisation": "Estimates indicate that the Common Long-eared Hedgehog can travel 7-9 km in a 7-9 hour activity period. Average home ranges are 4-9-5 ha (range 1-6-10 ha) for adult males, 2-9 ha (range 0-9-4-2 ha) for non-lactating females. The Common Long-eared Hedgehog is solitary. Adults only nest singly, but they use burrows of other hedgehogs in their absence.",
+      "social": "Solitary",
+      "home_range_m2": [16000, 100000]
+    },
+    "Rhombomys opimus": {
+      "Breeding": "Reproduction occurs throughout year, with a reduction in summer. Litter size is 1-14.",
+      "Home range and social organisation": "In Uzbekistan, Great Gerbils are not very social and form small family groups consisting of one male and six females. The groups are flexible and are able to adjust their territories to unpredictable climatic and environmental conditions. When food is limited females are generally solitary, and when conditions are better they share their territory with other females of the same family group. Males mark their burrows with urine, feces and ventral-gland secretions, and chase other males. When a predator appears, three different alarm vocalizations have been described and these seem to act as alert signals: first is a rhythmic repetition of a single note, then a faster and more intense call, and then a single whistle. Hindfoot drumming in reaction to alarm vocalizations has been reported.",
+      "social": "Small family groups, one male with about six females"
+    },
+    "Meriones libycus": {
+      "Breeding": "Libyan Jirds breed throughout year. Females may bear 3-13 embryos, gestation period is 24 days, and each litter contains 2-7 offspring. Young are born naked and blind, hairs appear after four days, eyes open between day 12 and day 17. Sexual maturity is reached at three months.",
+      "Home range and social organisation": "Libyan Jirds live in small groups but not sharing same burrows. In China, they may occupy same habitat and burrows as Great Gerbil and may live in large groups of 25-30 individuals during winter. The species is mobile and changes burrow frequently or migrates when environmental conditions deteriorate. In Pakistan, males shown to have larger home range diameters than females (44-9 m vs. 39-9 m). In Turkmenistan these ranges may be larger, up to 120 m.",
+      "social": "Small groups, not sharing burrows"
+    },
+    "Meriones meridianus": {
+      "Breeding": "Reproduction can occur throughout year, but is mostly in April-September in northern parts and February/March—October in southern parts, with a reduction in breeding activity during winter months. Litter size is 1-12, with average of six.",
+      "Social organisation": "Information suggests that Midday Jirds congregate in large colonies, with clear social structure.",
+      "social": "Large colonies"
+    },
+    "Meriones tamariscinus": {
+      "Breeding": "Reproduction can take place during entire year, but is reduced during winter. Litter size is 1-8 offspring.",
+      "Home range and social organisation": "Tamarisk Jirds have a home range of around 1-2 km, and they are generally found in small family or colony groups with low population densities (20-30 ind/ha). They are not considered social rodents.",
+      "social": "Small family or colony groups"
+    },
+    "Hystrix indica": {
+      "Breeding": "The Indian Crested Porcupine is monogamous. In Pakistan, breeding has been recorded in March-April. Females give birth to litters of 1-4 young in \"maternity chambers,\" cushioned with grass or leaves. Eyes open at or within a few hours of birth. From birth to about three months of age, young are cared for by their fathers that perform all of the same parental care behaviors as their mothers, except nursing.",
+      "Home range and social organisation": "Indian Crested Porcupines live alone or in family groups. They spend daylight hours in communal dens in family units or clans. Chambers may be used by clans for decades. Home ranges averaged 1-5 km2, and individuals typically moved 2-8 km/night. Densities in different habitats in Israel are: 4 ind/km2 on coastal plains, 2-1 ind/km2 in semiarid natural areas, and 7-5 ind/km2 in agricultural areas.",
+      "social": "Alone or in family clans"
+    },
+    "Lepus tolai": {
+      "Breeding": "The Tolai Hare has 2-3 litters/year, with 2-6 young/litter. Females give birth in burrows.",
+      "Home range and social organisation": "There is no information available for this species.",
+      "social": "Not stated"
+    },
+    "Rattus norvegicus": {
+      "Breeding": "Reproduction occurs year-round in all regions and is constant in good conditions. They can have up to 5 litters/year, although there are peaks in summer and autumn. Gestation is c.3 weeks, and litters usually have 3-7 young. Brown Rats generally only live c.1 year in the wild, with 90-95% mortality yearly.",
+      "Home range and social organisation": "Brown Rats nest communally with many individuals in a single large nest or with one individual in a small nest. Cooperative behavior is a result of their hierarchal social structure in large nests with more dominant individuals. Dominance plays an important role in population regulation because relative dominance in a group hierarchy determines access to resources and mates. Density is highest during late summer and early autumn. Brown Rats are cautious yet inquisitive. Dispersal from nests is generally very short, with individuals usually staying close to their natal nests.",
+      "social": "Communal, dominance hierarchy"
+    },
+    "Apodemus uralensis": {
+      "Breeding": "Litter size is 3-7.",
+      "Home range and social organisation": "No information.",
+      "social": "Not stated"
+    },
+    "Mus musculus": {
+      "Breeding": "Reproduction in commensal populations tends to reflect food availability; litter size and frequency seem to be lower in winter. Gestation period is 20-25 days, and a female may bear 1-11 embryos. In the wild, reproduction reaches a peak in spring and autumn.",
+      "Home range and social organisation": "The House Mouse is flexible in its social life. In commensal populations, females are not aggressive toward each other, while in non-commensal situations there is a high degree of intolerance. House Mice live in colonies or extended family clans. In wild mice, each colony is dominated by a single male, which is able to mate more often than the others. Subgroups are composed of a dominant male, 2-5 females and up to three subordinate males and juveniles. House Mice have strong female groups, with close kin associated in a territory.",
+      "social": "Colonies or family clans, dominant male"
+    },
+    "Nesokia indica": {
+      "Breeding": "Short-tailed Bandicoot Rats seem to reproduce year-round, although activity peaks in monsoon season. Litters have 1-10 young; gestations last c.17 days. Females can breed multiple times a year, usually c.3 times.",
+      "Home range and social organisation": "Runways over the surface connect burrows. Usually, only a single individual or a female with young/juveniles occupies a burrow.",
+      "social": "One individual or female with young per burrow"
+    },
+    "Sylvaemus witherbyi": {
+      "Breeding": "Reproduction may be more common in spring and summer. Litter size, estimated from numbers of embryos and placental scars, is 1-7.",
+      "Home range and social organisation": "No information.",
+      "social": "Not stated"
+    },
+    "Apodemus agrarius": {
+      "Breeding": "Reproduction occurs in spring and summer. Litter size is 1-10.",
+      "Home range and social organisation": "The Striped Field Mouse is an active, non-aggressive rodent. A study in Serbia from 1997 to 2000 showed that populations fluctuate, with peak numbers recorded in April (21 ind/ha) and September (32 ind/ha). Recaptures gave mean observed travel distances of 40-6 m for males and 30 m for females. Home ranges varied from 100 m2 to 2400 m2 (average for males 716 m2, for females 585 m2), with no significant difference between sexes.",
+      "social": "Non-aggressive, system not stated",
+      "home_range_m2": [100, 2400]
+    },
+    "Ochotona rutila": {
+      "Breeding": "Breeding of Turkestan Red Pikas starts in March and lasts c.4 months. Young females become fertile at 3-3-5 months old. Adult female can breed two or maybe three times per season. Each female has 2-6 embryos. Gestation is c.30 days. Eyes open after 11-12 days. At 20 days of age, young start independent life.",
+      "Home range and social organisation": "The Turkestan Red Pika moves with short leaps. It usually moves along constant trails, emerging on surface only for a few meters; it probably uses pathways below talus surfaces. Two known home ranges were 350 m2 and 750 m2. Home ranges of males and females overlap. Turkestan Red Pikas are not aggressive. Densities are 800-1340 ind/km2. Old hay piles and large latrines under large flat stones identify occupied areas, but they are not easy to discover.",
+      "social": "Overlapping ranges, not aggressive",
+      "home_range_m2": [350, 750]
+    },
+    "Marmota baibacina": {
+      "Breeding": "The Gray Marmot lives in multiburrow colonies. After emerging in May, mating occurs later in May and early June. Single litters of 2-6 young are born after gestation of 40 days. Young do not mature until three years old.",
+      "Home range and social organisation": "The Gray Marmot is social and lives in multiburrow colonies usually in groups of up to ten individuals that may communally hibernate. Dispersal occurs as three-year-olds begin to explore and move away from natal areas.",
+      "social": "Colonial, groups up to 10"
+    },
+    "Marmota caudata": {
+      "Breeding": "The Long-tailed Marmot lives in complex burrows where young are born. Mating occurs about the time of spring emergence, and c.17% of females breed. Litters of 2-6 young are born after gestation of 30-33 days. c.60% of juveniles die during the first year. Juveniles delay dispersal and remain in their natal group for at least three years.",
+      "Home range and social organisation": "The Long-tailed Marmot is social and lives in large colonies often consisting of many monogamous pairs, but groups of seven adults plus their young and yearlings are also reported. Densities are typically less than 0-5 ind/ha. Home ranges are large and average 3 ha. Group members nest communally and most often are amicable. Both sexes scent-mark near their burrows using orbital glands.",
+      "social": "Colonial, monogamous pairs",
+      "home_range_m2": [30000, 30000]
+    },
+    "Spermophilus fulvus": {
+      "Breeding": "The Yellow Ground Squirrel inhabits burrows with a vegetation-lined nest chamber in which young are born. Males appear to emerge slightly before females in spring. Individuals mate soon after emergence when male-female pairs enter burrows to copulate. Litters of 1-10 young are produced and emerge after c.50 days, weighing just under 200 g. Young grow quickly and disperse at c.500 g and can reproduce as yearlings.",
+      "Home range and social organisation": "The Yellow Ground Squirrel lives in loose low-density colonies (3-10 ind/ha). It is territorial and defends a large area around a single burrow; adult male home ranges are c.3 ha. Females are philopatric and form kin clusters and matrilines that share space. High-pitched vocalizations are commonly produced from colonies.",
+      "social": "Loose colonies, 3-10 per hectare",
+      "home_range_m2": [30000, 30000]
+    },
+    "Sicista tianshanica": {
+      "Breeding": "Tian Shan Birch Mice breed once a year, producing litters of 3-7 young. Juveniles are sexually mature after their first winter. Reproduction begins in the first half of July, but elevation influences starting date and length of breeding seasons, being much shorter at higher elevations. In midlands of Trans-Ili Alatau, pregnant females were found in mid-June and late July. Young were first caught on 4 August. The oldest known Tian Shan Birch Mouse survived three winters.",
+      "Home range and social organisation": "Shelters and nests are in old decaying stumps and very rarely trunks of trees. In montane forest belt, Tian Shan Birch Mice were found to occupy a cluster of stumps rather than isolated stumps, suggesting that they may form colonies under certain conditions. In alpine meadows or steppes of foothills that lack mature trees and decaying stumps, they nest in grass nests or underground burrows. Densities of S. tianshanica sensu stricto captured in 2016 were 17-3 ind/100 trap-nights in the Trans-Ili Alatau.",
+      "social": "May form colonies in stump clusters"
+    },
+    "Crocidura suaveolens": {
+      "Breeding": "Nests of Lesser White-toothed Shrews are often built under driftwood or plant litter at watersides, in haystacks, and in other similar places. Lesser White-toothed Shrews most likely dig burrows themselves in semi-deserts of Central Asia. Reproduction can last 7-8 months, starting in early February in riparian woodlands of southern Tajikistan and from mid-March to late September in North Caucasus. Gestation lasts 24-32 days; numbers of embryos average 4-2-5-5/female (range 1-10).",
+      "Home range and social organisation": "Seasonal migrations have not been studied comprehensively but are quite distinct because abundance in dwellings, household buildings, haystacks, etc. always increases in autumn. Life span is no longer than 1-5 years, and a population is completely renewed during this time.",
+      "social": "Not stated"
+    },
+    "Sorex tundrensis": {
+      "Breeding": "Breeding of the Tundra Shrew generally occurs from late winter until early summer. Breeding season usually starts in May, and first juveniles appear by mid-June. Reproduction lasts until late August, and lactating females can be captured in early September. Up to 100% of female young-of-the-year reproduce in northern populations in some years, and this distinguishes Tundra Shrew from other species of Sorex. A female has up to three litters in a breeding season.",
+      "Home range and social organisation": "The Tundra Shrew is probably most similar to the Common Shrew in its general ecology. It is solitary except when breeding and rearing young.",
+      "social": "Solitary except when breeding"
+    }
+  }
+}
