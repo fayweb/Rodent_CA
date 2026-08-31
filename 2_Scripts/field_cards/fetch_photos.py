@@ -11,8 +11,9 @@ record's licence, not the photo's, and returns all-rights-reserved images.
 Writes files into images/ and records file, credit, licence and source URL back
 into species_data.json. Re-run render_cards.py afterwards.
 
-Usage:  python fetch_photos.py [--force] [--per-species N]
+Usage:  python fetch_photos.py [--force] [--pin "Binomial=obs_id"]
 """
+import html
 import io, json, os, sys, time, urllib.parse, urllib.request
 
 # Photographer names carry diacritics the Windows console codepage cannot encode.
@@ -32,6 +33,27 @@ LICENCE_LABEL = {"cc0": "CC0 1.0", "cc-by": "CC BY 4.0"}
 
 # Preferred provenance order: the project countries first, then anywhere.
 PLACE_PREF = ["KZ", "KG", "TJ", "TM", "UZ"]
+
+# iNaturalist controlled term 22, "Evidence of Presence". Research grade means the
+# community agrees on the identification, NOT that the photo shows an animal - a
+# clear photo of footprints is research grade. Without this filter the picker will
+# happily ship tracks, scat or bones.
+EVIDENCE_TERM = 22
+EV_ORGANISM = 24
+EV_REJECT = {25: "scat", 26: "track", 27: "bone", 28: "molt", 31: "hair",
+             23: "feather", 32: "leafmine", 29: "gall", 30: "egg", 35: "construction"}
+
+
+def evidence(obs):
+    """Return 'organism', a rejection reason, or None when unannotated."""
+    for a in obs.get("annotations", []):
+        if a.get("controlled_attribute_id") == EVIDENCE_TERM:
+            v = a.get("controlled_value_id")
+            if v == EV_ORGANISM:
+                return "organism"
+            if v in EV_REJECT:
+                return EV_REJECT[v]
+    return None
 
 
 def get_json(url):
@@ -54,13 +76,27 @@ def search(name, country=None):
 
 
 def pick(obs_list):
-    """First observation carrying a genuinely CC0/CC-BY photo."""
+    """Best observation carrying a genuinely CC0/CC-BY photo.
+
+    Annotated as a whole organism wins. Unannotated is a fallback. Anything
+    annotated as track, scat, bone, molt or hair is rejected outright - those
+    are perfectly good records and useless as identification photographs.
+    """
+    best = (None, None, None)
     for obs in obs_list:
+        ev = evidence(obs)
+        if ev and ev != "organism":
+            continue
         for photo in obs.get("photos", []):
             code = (photo.get("license_code") or "").lower()
-            if code in ("cc0", "cc-by"):
+            if code not in ("cc0", "cc-by"):
+                continue
+            if ev == "organism":
                 return obs, photo, code
-    return None, None, None
+            if best[0] is None:
+                best = (obs, photo, code)
+            break
+    return best
 
 
 def download(photo, dest):
@@ -80,8 +116,34 @@ def download(photo, dest):
     return 0
 
 
+def parse_pins(argv):
+    """--pin "Binomial=obs_id" (repeatable). Forces a specific observation."""
+    pins = {}
+    for i, a in enumerate(argv):
+        if a == "--pin" and i + 1 < len(argv) and "=" in argv[i + 1]:
+            k, v = argv[i + 1].split("=", 1)
+            pins[k.strip()] = v.strip()
+    return pins
+
+
+def fetch_one(obs_id):
+    """Look up a single observation and return its first open-licensed photo."""
+    try:
+        obs = get_json("https://api.inaturalist.org/v1/observations/%s" % obs_id)["results"][0]
+    except Exception as exc:
+        print("    could not load observation %s: %s" % (obs_id, exc))
+        return None, None, None
+    for photo in obs.get("photos", []):
+        code = (photo.get("license_code") or "").lower()
+        if code in ("cc0", "cc-by"):
+            return obs, photo, code
+    print("    observation %s has no CC0/CC-BY photo" % obs_id)
+    return None, None, None
+
+
 def main():
     force = "--force" in sys.argv
+    pins = parse_pins(sys.argv)
     d = json.load(io.open(DATA, encoding="utf-8"))
     if not os.path.isdir(IMG_DIR):
         os.makedirs(IMG_DIR)
@@ -93,14 +155,20 @@ def main():
         dest = os.path.join(IMG_DIR, "%s_animal.jpg" % slug)
         have = sp.get("images", {}).get("animal", {}).get("file")
 
-        if have and os.path.exists(dest) and not force:
+        pinned = pins.get(name) or pins.get(sp["common"])
+        if have and os.path.exists(dest) and not force and not pinned:
             skipped += 1
             continue
 
         print("%-28s" % name, end=" ")
         obs = photo = code = None
+
+        if pinned:
+            obs, photo, code = fetch_one(pinned)
+            if photo:
+                print("[pinned %s]" % pinned, end=" ")
         # try the project countries first so pictures match what teams will see
-        for cc in PLACE_PREF:
+        for cc in ([] if photo else PLACE_PREF):
             obs, photo, code = pick(search(name, cc))
             if photo:
                 print("[%s]" % cc, end=" ")
@@ -133,7 +201,9 @@ def main():
             continue
 
         user = obs.get("user") or {}
-        credit = user.get("name") or user.get("login") or "unknown"
+        # iNat returns display names HTML-escaped; unescape once here so the
+        # renderer can escape exactly once.
+        credit = html.unescape(user.get("name") or user.get("login") or "unknown")
         sp.setdefault("images", {})["animal"] = {
             "file": "%s/%s_animal.jpg" % (IMG_DIR, slug),
             "caption": "%s, %s" % (sp["common"], obs.get("place_guess") or "location not stated"),

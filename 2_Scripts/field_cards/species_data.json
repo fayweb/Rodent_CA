@@ -114,10 +114,10 @@
       "images": {
         "animal": {
           "file": "images/microtus_arvalis_animal.jpg",
-          "caption": "Common vole, Kwidzyn, Polska",
-          "credit": "Adam Juźwiak",
+          "caption": "Common vole, Dąbrowa, Gdynia, Polska",
+          "credit": "Bartosz Czołczyński",
           "licence": "CC0 1.0",
-          "source_url": "https://www.inaturalist.org/observations/129422513"
+          "source_url": "https://www.inaturalist.org/observations/303764117"
         }
       }
     },
@@ -153,10 +153,10 @@
       "images": {
         "animal": {
           "file": "images/ellobius_tancrei_animal.jpg",
-          "caption": "Eastern mole vole, Bishkek, KG",
-          "credit": "James Hardcastle",
+          "caption": "Eastern mole vole, Sarysuskiy, KZ-ZM, KZ",
+          "credit": "Igor Karyakin",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/168924578"
+          "source_url": "https://www.inaturalist.org/observations/305491907"
         }
       }
     },
@@ -282,10 +282,10 @@
       "images": {
         "animal": {
           "file": "images/allactaga_major_animal.jpg",
-          "caption": "Great jerboa, Russia, Republic of Dagestan, Magaramkent District, the Caspian coast at the Samurskiy Zakaznik stationary 3 km NW of Primorskiy village ",
-          "credit": "Oleg Kosterin",
+          "caption": "Great jerboa, Shetskiy, KZ-QG, KZ",
+          "credit": "Maxim Shashkov",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/187521320"
+          "source_url": "https://www.inaturalist.org/observations/232452773"
         }
       }
     },
@@ -362,10 +362,10 @@
       "images": {
         "animal": {
           "file": "images/scarturus_elater_animal.jpg",
-          "caption": "Small five-toed jerboa, Балхашский район, Казахстан",
-          "credit": "Лариса Артемьева",
-          "licence": "CC0 1.0",
-          "source_url": "https://www.inaturalist.org/observations/284746962"
+          "caption": "Small five-toed jerboa, Iran",
+          "credit": "Kian",
+          "licence": "CC BY 4.0",
+          "source_url": "https://www.inaturalist.org/observations/225582669"
         }
       }
     },
@@ -436,10 +436,10 @@
       "images": {
         "animal": {
           "file": "images/hemiechinus_auritus_animal.jpg",
-          "caption": "Long-eared hedgehog, Shinejinst, Bayankhongor, Mongolia",
-          "credit": "Tom Field",
+          "caption": "Long-eared hedgehog, Волгоградская обл., Россия, 403873",
+          "credit": "Maksim Panish",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/386136024"
+          "source_url": "https://www.inaturalist.org/observations/238086289"
         }
       }
     },
@@ -474,10 +474,10 @@
       "images": {
         "animal": {
           "file": "images/rhombomys_opimus_animal.jpg",
-          "caption": "Great gerbil, Кармакшинский район, Казахстан",
-          "credit": "Юрий Данилевский (Yuriy Danilevsky)",
-          "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/18634626"
+          "caption": "Great gerbil, Karakiya District, Kazakhstan",
+          "credit": "Felix Puff",
+          "licence": "CC0 1.0",
+          "source_url": "https://www.inaturalist.org/observations/302584196"
         }
       }
     },
@@ -513,7 +513,7 @@
         "animal": {
           "file": "images/meriones_libycus_animal.jpg",
           "caption": "Libyan jird, Horimlaa Saudi Arabia",
-          "credit": "Jan Ebr &amp; Ivana Ebrová",
+          "credit": "Jan Ebr & Ivana Ebrová",
           "licence": "CC BY 4.0",
           "source_url": "https://www.inaturalist.org/observations/150909786"
         }
@@ -625,10 +625,10 @@
       "images": {
         "animal": {
           "file": "images/hystrix_indica_animal.jpg",
-          "caption": "Indian crested porcupine, Büyükkale, Tire/İzmir, Türkiye",
-          "credit": "Tandoğan ORUZ",
+          "caption": "Indian crested porcupine, Location: 13.565600, 74.680900",
+          "credit": "Chayant Gonsalves",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/326778759"
+          "source_url": "https://www.inaturalist.org/observations/145122559"
         }
       }
     },
@@ -662,10 +662,10 @@
       "images": {
         "animal": {
           "file": "images/lepus_tolai_animal.jpg",
-          "caption": "Tolai hare, Кош-Агачский р-н, Респ. Алтай, Россия",
-          "credit": "Andrew Bazdyrev",
+          "caption": "Tolai hare, Enbekshikazakh District, Kazakhstan",
+          "credit": "Suhas Saya",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/67907760"
+          "source_url": "https://www.inaturalist.org/observations/396011325"
         }
       }
     },
@@ -737,10 +737,10 @@
       "images": {
         "animal": {
           "file": "images/apodemus_uralensis_animal.jpg",
-          "caption": "Herb field mouse, посёлок Чернореченский, Московская Область, RU",
-          "credit": "Vsevolod Rudyi",
+          "caption": "Herb field mouse, Октябрьский р-н, Ижевск, республика Удмуртия, Россия",
+          "credit": "Борис Георги",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/130906371"
+          "source_url": "https://www.inaturalist.org/observations/134571337"
         }
       }
     },
@@ -772,10 +772,10 @@
       "images": {
         "animal": {
           "file": "images/mus_musculus_animal.jpg",
-          "caption": "House mouse, United States",
-          "credit": "Carrie Seltzer",
+          "caption": "House mouse, Shillong, Meghalaya",
+          "credit": "Devin",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/37128761"
+          "source_url": "https://www.inaturalist.org/observations/391400365"
         }
       }
     },
@@ -863,10 +863,10 @@
       "images": {
         "animal": {
           "file": "images/apodemus_agrarius_animal.jpg",
-          "caption": "Striped field mouse, Botevgrad Municipality, Bulgaria",
-          "credit": "Dimitǎr Boevski",
+          "caption": "Striped field mouse, Москва, Россия, 119334",
+          "credit": "Сергей Крыленко",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/148314257"
+          "source_url": "https://www.inaturalist.org/observations/393140726"
         }
       }
     },
@@ -938,10 +938,10 @@
       "images": {
         "animal": {
           "file": "images/marmota_baibacina_animal.jpg",
-          "caption": "Grey marmot, Russia, Novosibirsk Region, vicinities of Otgonka Train Station",
-          "credit": "Alexander A. Fomichev",
+          "caption": "Grey marmot, Tomskiy rayon, RU-TO, RU",
+          "credit": "Andrew Bazdyrev",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/10095173"
+          "source_url": "https://www.inaturalist.org/observations/369258980"
         }
       }
     },
@@ -976,10 +976,10 @@
       "images": {
         "animal": {
           "file": "images/marmota_caudata_animal.jpg",
-          "caption": "Long-tailed marmot, Shiva plateau, Badakshan Province",
-          "credit": "Glynn Morris",
+          "caption": "Long-tailed marmot, Kyrgyzstan, Osh Region, Bardobo Border Outpost",
+          "credit": "Alexander A. Fomichev",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/455904"
+          "source_url": "https://www.inaturalist.org/observations/238343631"
         }
       }
     },
@@ -1015,10 +1015,10 @@
       "images": {
         "animal": {
           "file": "images/spermophilus_fulvus_animal.jpg",
-          "caption": "Yellow ground squirrel, Джизакский район, Узбекистан",
-          "credit": "Вячеслав Юсупов",
+          "caption": "Yellow ground squirrel, Turkistan, Kazakhstan",
+          "credit": "Maxim Shashkov",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/31249025"
+          "source_url": "https://www.inaturalist.org/observations/266349349"
         }
       }
     },
@@ -1081,10 +1081,10 @@
       "images": {
         "animal": {
           "file": "images/crocidura_suaveolens_animal.jpg",
-          "caption": "Lesser white-toothed shrew, Кашкарово, Респ. Башкортостан, Россия, 452209",
-          "credit": "Марат Адиев",
+          "caption": "Lesser white-toothed shrew, Голосіївський район, Київ, Україна, 02000",
+          "credit": "olha_chusova",
           "licence": "CC BY 4.0",
-          "source_url": "https://www.inaturalist.org/observations/66330644"
+          "source_url": "https://www.inaturalist.org/observations/311671571"
         }
       }
     },
