@@ -116,6 +116,17 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   .quoted,.check,.trap,.banner,.fig,table{break-inside:avoid}
   .fig.empty{display:none}          /* blank photo slots waste paper */
   .figs{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+
+  /* Backgrounds are off by default when printing, so carry the activity
+     distinction in border weight, which always prints. */
+  .tag{background:transparent!important;color:#000!important}
+  .t-day{border:2.5px solid #000!important;font-weight:700}
+  .t-both{border:1.5px solid #000!important}
+  .t-night{border:1px solid #777!important;color:#333!important}
+  .t-grp,.t-here{border:1px solid #bbb!important;color:#333!important}
+  th{background:transparent!important;border-bottom:2px solid #000!important}
+  .quoted,.banner{background:transparent!important}
+  .banner{border:1.5px solid #000!important;border-left:6px solid #000!important}
   a{text-decoration:none;color:#000}
 }
 </style>
