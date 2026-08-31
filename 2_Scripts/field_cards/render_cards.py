@@ -6,10 +6,17 @@ Two-part card by design:
   2. Source block - Plazi/HMW text quoted verbatim, clearly delimited so it can be
                     deleted and replaced with protocol prose before publication.
 """
-import io, json, html
+import io, json, html, sys
 
 DATA = "species_data.json"
 OUT = "merke_cards.html"
+OUT_FIELD = "merke_cards_field.html"
+
+# Sections a field card keeps. Everything else - Food and Feeding, Breeding,
+# Home range and social organisation - is reference reading, not trap-line
+# reading, and lives in the full version only.
+FIELD_SECTIONS = ["Habitat", "Activity patterns", "Burrow"]
+FIELD = False
 
 # H. B. Sherman Traps model tiers, from the manufacturer's own compare-traps page
 # (shermantraps.com/compare-traps/). Dimensions and target animals are the
@@ -207,6 +214,10 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   .quoted,.banner{background:transparent!important}
   .banner{border:1.5px solid #000!important;border-left:6px solid #000!important}
   a{text-decoration:none;color:#000}
+  .field body{font-size:9.5pt}
+  .field .card{padding:0 0 4px}
+  .field div.sec{margin:12px 0 4px}
+  .field .quoted{padding:9px 12px}
 }
 """
 
@@ -294,7 +305,10 @@ def card(sp):
 
     o.append('<div class="sec">Source text</div><div class="quoted">')
     o.append('<div class="qhead">Quoted verbatim — replace with protocol prose before publication</div>')
-    for h, t in sp["quotes"].items():
+    items = sp["quotes"].items()
+    if FIELD:
+        items = [(k, sp["quotes"][k]) for k in FIELD_SECTIONS if k in sp["quotes"]]
+    for h, t in items:
         o.append('<div class="qh">%s</div><p class="qt">%s</p>' % (e(h), e(t)))
     o.append('<div class="cite">%s. Plazi treatment, <a href="%s">%s</a>, licence %s.</div>'
              % (e(sp["citation"]), e(sp["zenodo"]), e(sp["doi"]), e(sp["licence"])))
@@ -362,11 +376,13 @@ def summary(species):
 
 
 def main():
+    global FIELD
+    FIELD = "--field" in sys.argv
+    out = OUT_FIELD if FIELD else OUT
     d = json.load(io.open(DATA, encoding="utf-8"))
-    o = ['<title>Merke Small Mammal Cards</title>',
-         '?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400'
-         '&display=swap">',
-         '<style>%s</style>' % CSS, '<div class="wrap">']
+    o = ['<title>%s</title>' % ("Merke Field Cards" if FIELD else "Merke Small Mammal Cards"),
+         '<style>%s</style>' % CSS,
+         '<div class="wrap%s">' % (" field" if FIELD else "")]
     o.append('<header class="masthead"><h1>Merke small mammal cards</h1>'
              '<p>Merke State Regional Nature Park, Zhambyl Region, Kazakhstan. '
              'September 2026 trapping season. %d species covering everything in the region '
@@ -381,8 +397,12 @@ def main():
     o.append(summary(d["species"]))
     o.extend(card(sp) for sp in d["species"])
     o.append('</div>')
-    io.open(OUT, "w", encoding="utf-8").write("\n".join(o))
-    print("wrote %s (%d cards)" % (OUT, len(d["species"])))
+    io.open(out, "w", encoding="utf-8").write("\n".join(o))
+    keys = FIELD_SECTIONS if FIELD else None
+    words = sum(len(" ".join(
+        sp["quotes"][k] for k in (keys or list(sp["quotes"]))
+        if k in sp["quotes"]).split()) for sp in d["species"]) / float(len(d["species"]))
+    print("wrote %s (%d cards, mean %d quoted words each)" % (out, len(d["species"]), words))
 
 
 if __name__ == "__main__":
