@@ -1,0 +1,1269 @@
+<title>Полевые карточки Мерке</title>
+<style>
+/* Arial throughout, black and white, so it prints anywhere. Photographs are the
+   only colour on the page. Where colour previously carried meaning it is now
+   carried by fill density: solid black is the strongest signal, mid grey next,
+   outline weakest. */
+:root{
+  --paper:#fff; --card:#fff; --ink:#000; --mut:#3d3d3d; --faint:#6b6b6b;
+  --line:#000; --rule:#c9c9c9; --wash:#f2f2f2; --mid:#d8d8d8;
+  --sans:Arial,Helvetica,"Liberation Sans",sans-serif;
+  --serif:Arial,Helvetica,"Liberation Sans",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0d0d0d; --card:#141414; --ink:#f2f2f2; --mut:#c2c2c2; --faint:#8f8f8f;
+  --line:#f2f2f2; --rule:#3a3a3a; --wash:#1c1c1c; --mid:#2e2e2e;
+}}
+:root[data-theme="dark"]{
+  --paper:#0d0d0d; --card:#141414; --ink:#f2f2f2; --mut:#c2c2c2; --faint:#8f8f8f;
+  --line:#f2f2f2; --rule:#3a3a3a; --wash:#1c1c1c; --mid:#2e2e2e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:26px 18px 60px;
+  display:flex;flex-direction:column;gap:22px}
+
+.masthead{border-bottom:3px solid var(--ink);padding-bottom:12px}
+.masthead h1,h1{font-size:26px;line-height:1.15;margin:0 0 6px;font-weight:700;
+  text-wrap:balance;letter-spacing:-.01em}
+.masthead p,.lede{margin:0;color:var(--mut);font-size:13.5px;max-width:64ch}
+
+.banner{background:var(--wash);border:1px solid var(--line);border-left:6px solid var(--ink);
+  padding:12px 16px;font-size:13.5px;line-height:1.45}
+.banner b{font-weight:700}
+
+.card,.sec{background:var(--card);border:1px solid var(--line);
+  padding:20px 22px;page-break-after:always;display:flex;flex-direction:column}
+.sec{page-break-after:auto}
+.card:last-child{page-break-after:auto}
+
+h2{font-size:20px;line-height:1.2;margin:0;font-weight:700;text-wrap:balance}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);
+  font-weight:700;margin:20px 0 6px}
+.sci{font-style:italic;color:var(--mut);font-size:14.5px;margin:2px 0 0}
+.aka{color:var(--faint);font-size:12.5px;margin:2px 0 0}
+p{max-width:66ch}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.tag{font-size:11.5px;font-weight:700;padding:3px 9px;border:1px solid var(--ink);
+  letter-spacing:.02em;text-transform:uppercase}
+.t-grp{background:transparent;color:var(--ink)}
+.t-here{background:transparent;color:var(--mut);border-color:var(--rule)}
+.t-day{background:var(--ink);color:var(--paper)}
+.t-both{background:var(--mid);color:var(--ink)}
+.t-night{background:transparent;color:var(--ink)}
+
+.scroll{overflow-x:auto;margin:0 0 2px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{background:var(--wash);color:var(--ink);font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;border-bottom:2px solid var(--ink)}
+tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+
+.sec-label,.sec>div.sec,.card .sec{}
+div.sec{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);
+  font-weight:700;margin:18px 0 6px;border:none;padding:0;background:none;display:block}
+.verdict{font-weight:700}
+.v-small,.v-medium,.v-large{color:var(--ink)}
+.v-too_large,.v-unknown{color:var(--faint)}
+.note{font-size:11.5px;color:var(--faint);margin:5px 0 0;max-width:64ch}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fig{margin:0;border:1px solid var(--rule);overflow:hidden;background:var(--paper);
+  display:flex;flex-direction:column}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption{padding:6px 8px;font-size:11.5px;line-height:1.35;color:var(--mut);
+  display:flex;flex-direction:column;gap:2px}
+.fig .credit{font-size:10.5px;color:var(--faint)}
+.fig .credit a{color:var(--faint)}
+.fig.empty{border-style:dashed}
+.ph{padding:14px 10px;min-height:92px;display:flex;flex-direction:column;
+  justify-content:center;gap:5px;text-align:center}
+.phlab{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.phbrief{font-size:11.5px;line-height:1.35;color:var(--faint)}
+
+.quoted{border:1px solid var(--rule);border-left:4px solid var(--mut);
+  background:var(--wash);padding:12px 15px;margin-top:4px}
+.qhead{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);
+  font-weight:700;margin-bottom:9px}
+.qh{font-weight:700;font-size:12.5px;margin:12px 0 2px}
+.qh:first-of-type{margin-top:0}
+.qt{font-size:13.5px;line-height:1.45;color:var(--mut);margin:0;max-width:68ch}
+.cite{font-size:11.5px;color:var(--faint);margin-top:11px;padding-top:8px;
+  border-top:1px solid var(--rule)}
+.cite a{color:var(--mut)}
+
+.check,.trap{background:transparent;border:1px solid var(--ink);border-left:6px solid var(--ink);
+  padding:10px 14px;margin-top:14px;font-size:12.5px}
+.check b,.trap .k{font-weight:700}
+.check ul{margin:5px 0 0 17px;padding:0}
+.check li+li{margin-top:4px}
+.trap p{margin:0;max-width:64ch}
+.k{font-weight:700}
+
+a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+@media print{
+  :root{--paper:#fff;--card:#fff;--ink:#000;--mut:#2b2b2b;--faint:#5a5a5a;
+        --line:#000;--rule:#bbb;--wash:#f4f4f4;--mid:#dcdcdc}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .wrap{max-width:none;padding:0;gap:0}
+  .card,.sec{border:none;padding:0 0 8px;margin:0}
+  .masthead{page-break-after:avoid}
+  .quoted,.check,.trap,.banner,.fig,table{break-inside:avoid}
+  .fig.empty{display:none}          /* blank photo slots waste paper */
+  .figs{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+
+  /* Backgrounds are off by default when printing, so carry the activity
+     distinction in border weight, which always prints. */
+  .tag{background:transparent!important;color:#000!important}
+  .t-day{border:2.5px solid #000!important;font-weight:700}
+  .t-both{border:1.5px solid #000!important}
+  .t-night{border:1px solid #777!important;color:#333!important}
+  .t-grp,.t-here{border:1px solid #bbb!important;color:#333!important}
+  th{background:transparent!important;border-bottom:2px solid #000!important}
+  .quoted,.banner{background:transparent!important}
+  .banner{border:1.5px solid #000!important;border-left:6px solid #000!important}
+  a{text-decoration:none;color:#000}
+  .field body{font-size:9.5pt}
+  .field .card{padding:0 0 4px}
+  .field div.sec{margin:12px 0 4px}
+  .field .quoted{padding:9px 12px}
+}
+</style>
+<div class="wrap field" lang="ru">
+<header class="masthead"><h1>Карточки мелких млекопитающих Мерке</h1><p>Мерке, государственный региональный природный парк, Жамбылская область, Казахстан. Сезон отлова: сентябрь 2026 г. 31 вид: всё, что в этом регионе может войти в ловушку Шермана, плюс более крупные животные, чьи следы жизнедеятельности легко спутать со следами целевых видов.</p></header>
+<div class="banner"><b>Черновик для поездки.</b> Текст в рамках — перевод дословных цитат из обработок Plazi на Zenodo (CC0), извлечённых из Handbook of the Mammals of the World. Цитаты снабжены ссылками, но ещё не переписаны в протокольном стиле; перед публикацией каждый блок в рамке будет заменён. OCR Plazi теряет десятичные точки, поэтому каждую цифру, помеченную для проверки, необходимо сверить с печатной страницей, прежде чем полагаться на неё в поле.</div>
+<div class="card">
+<h2>Сентябрь в Мерке — кого можно поймать и когда</h2>
+<div class="banner"><b>Ловушки работают круглые сутки, проверка дважды: на рассвете и в полдень.</b> Значительная часть этого сообщества активна тогда, когда линия, работающая только ночью, закрыта. Виды с пометкой «День» или «День и ночь» — причина второй проверки. Затеняйте каждую ловушку, остающуюся открытой днём.</div>
+<div class="sec">Активны, пока ловушки закрыты</div><div class="scroll"><table>
+<tr><th>Вид</th><th>Группа</th><th>Активность</th><th>Выход</th><th>Ловушка</th></tr>
+<tr><td><b>Большая песчанка</b><br><i style="color:var(--mut)">Rhombomys opimus</i></td><td>Gerbillinae</td><td class="verdict t-day">День</td><td>Рассвет</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Серебристая полёвка</b><br><i style="color:var(--mut)">Alticola argentatus</i></td><td>Cricetidae</td><td class="verdict t-day">День</td><td>Пики 05:00-07:00 и 18:00-20:00</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Красная пищуха</b><br><i style="color:var(--mut)">Ochotona rutila</i></td><td>Ochotonidae</td><td class="verdict t-day">День</td><td>От восхода до вечерних сумерек</td><td>Large (большая)</td></tr>
+<tr><td><b>Жёлтый суслик</b><br><i style="color:var(--mut)">Spermophilus fulvus</i></td><td>Sciuridae</td><td class="verdict t-day">День</td><td>На поверхности с марта-апреля</td><td>Large (большая)</td></tr>
+<tr><td><b>Обыкновенная полёвка</b><br><i style="color:var(--mut)">Microtus arvalis</i></td><td>Cricetidae</td><td class="verdict t-both">День и ночь</td><td>Зависит от сезона и плотности</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Восточная слепушонка</b><br><i style="color:var(--mut)">Ellobius tancrei</i></td><td>Cricetidae</td><td class="verdict t-both">День и ночь</td><td>Пики рытья 06:00-10:00 и 14:00-17:00</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Серый хомячок</b><br><i style="color:var(--mut)">Cricetulus migratorius</i></td><td>Cricetidae</td><td class="verdict t-both">День и ночь</td><td>Не указано</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Краснохвостая песчанка</b><br><i style="color:var(--mut)">Meriones libycus</i></td><td>Gerbillinae</td><td class="verdict t-both">День и ночь</td><td>После наступления темноты; в Пакистане кормится днём</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Полуденная песчанка</b><br><i style="color:var(--mut)">Meriones meridianus</i></td><td>Gerbillinae</td><td class="verdict t-both">День и ночь</td><td>После наступления темноты</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Узкочерепная полёвка</b><br><i style="color:var(--mut)">Lasiopodomys gregalis</i></td><td>Cricetidae</td><td class="verdict t-both">День и ночь</td><td>Короткие выходы в течение дня</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Полевая мышь</b><br><i style="color:var(--mut)">Apodemus agrarius</i></td><td>Muridae</td><td class="verdict t-both">День и ночь</td><td>Днём и в сумерках</td><td>Medium (средняя)</td></tr>
+<tr><td><b>Тяньшанская мышовка</b><br><i style="color:var(--mut)">Sicista tianshanica</i></td><td>Sminthidae</td><td class="verdict t-both">День и ночь</td><td>Сумерки и ночь</td><td>Small (малая)</td></tr>
+<tr><td><b>Тундряная бурозубка</b><br><i style="color:var(--mut)">Sorex tundrensis</i></td><td>Soricidae</td><td class="verdict t-both">День и ночь</td><td>Круглые сутки</td><td>Small (малая)</td></tr>
+</table></div>
+<div class="sec">Малочисленны или отсутствуют к сентябрю</div><div class="scroll"><table>
+<tr><th>Вид</th><th>Статус в сентябре</th></tr>
+<tr><td><b>Тушканчик-прыгун</b><br><i style="color:var(--mut)">Pygeretmus pumilio</i></td><td>На пределе. Спячка может начаться в конце сентября.</td></tr>
+<tr><td><b>Большой тушканчик</b><br><i style="color:var(--mut)">Allactaga major</i></td><td>На пределе. Спячка может начаться уже в конце сентября.</td></tr>
+<tr><td><b>Серый сурок</b><br><i style="color:var(--mut)">Marmota baibacina</i></td><td>Уходит под землю. В спячке 7-8 месяцев в году.</td></tr>
+<tr><td><b>Длиннохвостый сурок</b><br><i style="color:var(--mut)">Marmota caudata</i></td><td>Уходит под землю. На поверхности только 4-5 месяцев.</td></tr>
+<tr><td><b>Тяньшанская мышовка</b><br><i style="color:var(--mut)">Sicista tianshanica</i></td><td>Только молодые. Взрослые, вероятно, уходят в спячку в августе.</td></tr>
+<tr><td><b>Жёлтый суслик</b><br><i style="color:var(--mut)">Spermophilus fulvus</i></td><td>Практически недоступен. Взрослые начинают спячку с конца июля по сентябрь; молодые — в сентябре или октябре.</td></tr>
+</table></div>
+<div class="check"><b>Приманка: один размер не подходит всему сообществу</b><ul><li>Землеройки — насекомоядные. Малая белозубка съедает более 100% массы своего тела в сутки, поэтому семенная приманка её не кормит, и в ловушке она быстро погибает от голода. Важны и компонент животного белка, и короткий интервал проверки.</li><li>Полёвки и тушканчик-прыгун — листоеды: едят зелёный корм, а не семена.</li><li>Восточная слепушонка питается подземными клубнями и почти не выходит на поверхность.</li><li>Серые крысы неофобны и могут избегать новую ловушку одну-две ночи, что говорит в пользу предварительной прикормки.</li></ul></div>
+</div>
+<div class="card">
+<h2>Серый хомячок</h2>
+<p class="sci">Cricetulus migratorius</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - хомяки</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-both">Ночной и сумеречный, иногда дневной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">85-150 мм</td><td class="n">19-39 мм</td><td class="n">15-21 мм</td><td class="n">14-18 мм</td><td class="n">20-58 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночной и сумеречный, иногда дневной</td><td>Не указано</td><td>Активен. Обычно не впадает в спячку.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 150 мм, до 58 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/cricetulus_migratorius_animal.jpg" alt="Grey dwarf hamster, Николаевская область, Украина"><figcaption>Серый хомячок, Николаевская область, Украина<span class="credit"><a href="https://www.inaturalist.org/observations/20078277">Roman · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Аридные местообитания: сухие злаковники, степь, пустыня, полупустыня и альпийские луга на высотах до 3600 м. В Монголии серые хомячки населяют холмы и горы, оазисы и долины с кустарниками и травянистой растительностью в пустынях и полупустынях. Встречаются также на сельскохозяйственных землях и в садах.</p>
+<div class="qh">Активность</div><p class="qt">Серые хомячки ночные и сумеречные, иногда активны днём даже при низких температурах. Обычно не впадают в спячку.</p>
+<div class="qh">Нора</div><p class="qt">Роет системы нор с гнездовыми камерами, кладовыми и 2-5 входами. Норы могут быть глубиной 1-5 м и длиной 2 м. Также использует естественные полости и трещины в почве.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 283-284. Plazi treatment, <a href="https://zenodo.org/records/6706471">10.5281/zenodo.6706471</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>«2-5 входов» — вероятно, действительно диапазон 2-5</li>
+<li>«Норы глубиной 1-5 м» — 1.5 м или 1-5 м? сверить со стр. 283</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Длиннохвостый хомячок</h2>
+<p class="sci">Cricetulus longicaudatus</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - хомяки</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">80-135 мм</td><td class="n">35-48 мм</td><td class="n">15-20 мм</td><td class="n">15-21 мм</td><td class="n">15-50 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночной</td><td>После наступления темноты</td><td>Активен. Не впадает в спячку.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 135 мм, до 50 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/cricetulus_longicaudatus_animal.jpg" alt="Long-tailed dwarf hamster, Baacagaan, Bayankhongor, Mongolia"><figcaption>Длиннохвостый хомячок, Baacagaan, Bayankhongor, Mongolia<span class="credit"><a href="https://www.inaturalist.org/observations/385851730">Tom Field · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Аридные районы с кустарниковыми склонами, сухими лесами, горными степями, предгорьями и южными склонами гор до высот около 1900 м. Длиннохвостый хомячок особенно многочислен в предгорной полупустыне — типе пустынного злаковника со смешанными кустарниками и суккулентами.</p>
+<div class="qh">Активность</div><p class="qt">Длиннохвостый хомячок ночной и не впадает в спячку.</p>
+<div class="qh">Нора</div><p class="qt">Длиннохвостый хомячок занимает мелкие простые норы, идущие горизонтально под поверхностью земли, часто устроенные под камнями. Иногда использует брошенные норы других мелких млекопитающих; боковые ходы ведут к гнездовым камерам, выстланным травой.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 284. Plazi treatment, <a href="https://zenodo.org/records/6706477">10.5281/zenodo.6706477</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Отличить его в руках от Cricetulus migratorius можно по хвосту: здесь 35-48 мм против 19-39 мм. Сфотографируйте хвост на фоне линейки.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Обыкновенная полёвка</h2>
+<p class="sci">Microtus arvalis</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - полёвки</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-both">Сумеречная и дневная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">93-120 мм</td><td class="n">24-38 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">18-40 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречная и дневная</td><td>Зависит от сезона и плотности</td><td>Активна. Не впадает в спячку.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 120 мм, до 40 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/microtus_arvalis_animal.jpg" alt="Common vole, Dąbrowa, Gdynia, Polska"><figcaption>Обыкновенная полёвка, Dąbrowa, Gdynia, Polska<span class="credit"><a href="https://www.inaturalist.org/observations/303764117">Bartosz Czołczyński · CC0 1.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Хорошо дренированные открытые ландшафты, обычно злаковники и пастбища в пределах лесной зоны и альпийские луга выше границы леса до высот около 3000 м. Обыкновенная полёвка может быть многочисленна на полях зерновых и люцерны и считается сельскохозяйственным вредителем. В низкотравье она открыта для хищных птиц и потому ищет защиту, роя подземные галереи.</p>
+<div class="qh">Активность</div><p class="qt">Обыкновенные полёвки активны круглый год и не впадают в спячку. Наземная активность сумеречная и дневная, в зависимости от сезона и плотности. Зимой они более активны днём.</p>
+<div class="qh">Нора</div><p class="qt">Норы обычно короткие (100-150 см длиной и 35 см глубиной) и заканчиваются гнездовой камерой и кладовыми. Гнёзда (8-15 см в диаметре) сплетены из сухой травы и находятся на 5-15 см ниже поверхности земли; обычно у них 2-3 выхода.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 351-352. Plazi treatment, <a href="https://zenodo.org/records/6725325">10.5281/zenodo.6725325</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Листоед, а не зерноядный вид — приманочный шарик из семян и масла плохо подходит этому виду</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Восточная слепушонка</h2>
+<p class="sci">Ellobius tancrei</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - полёвки</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-both">Активна днём и ночью, круглый год</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">96-125 мм</td><td class="n">10-15 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">38-60 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Активна днём и ночью, круглый год</td><td>Пики рытья 06:00-10:00 и 14:00-17:00</td><td>Активна. Годовой пик рытья — сентябрь-октябрь, поэтому свежие выбросы наиболее заметны.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 125 мм, до 60 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/ellobius_tancrei_animal.jpg" alt="Eastern mole vole, Sarysuskiy, KZ-ZM, KZ"><figcaption>Восточная слепушонка, Sarysuskiy, KZ-ZM, KZ<span class="credit"><a href="https://www.inaturalist.org/observations/305491907">Igor Karyakin · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Полупустыни и пустыни на равнинах и в холмистых районах, степи, альпийские пастбища, каменистые склоны в горах и на высоких плато. В Тянь-Шане и на Памире восточные слепушонки отмечены до высот около 4000 м. Предпочитают влажные места в долинах, вдоль ручьёв и вокруг озёр; избегают подвижных песков.</p>
+<div class="qh">Активность</div><p class="qt">Восточные слепушонки активны днём и ночью, круглый год. Годовые пики рытья — март-апрель и сентябрь-октябрь, суточные пики — 06:00-10:00 и 14:00-17:00. С увеличением высоты активность становится всё более дневной, что даёт зверькам преимущество более высоких температур почвы. Восточные слепушонки роющие и проводят на поверхности мало времени.</p>
+<div class="qh">Нора</div><p class="qt">Живут в сложных системах нор с одним или несколькими главными туннелями и многочисленными короткими боковыми ответвлениями. Туннели диаметром 5-6 см, обычно на глубине 5-40 см. Около 30-40% туннелей забиты землёй. Выбросы содержат 310-4750 г (в среднем 1698 г) вынутой почвы. Хотя входы в туннели закрыты кучками земли, зверьки иногда открывают их, предположительно для вентиляции.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 314. Plazi treatment, <a href="https://zenodo.org/records/6706812">10.5281/zenodo.6706812</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Проценты в питании «94-9%», «39-2%», «0-5%» — это десятичные: 94.9%, 39.2%, 0.5%</li>
+<li>Роющий вид, редко на поверхности — наземная линия Шерманов может вовсе не поймать этот вид</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Узкочерепная полёвка</h2>
+<p class="sci">Lasiopodomys gregalis</p>
+<p class="aka">Также известна как <i>Microtus gregalis</i></p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - полёвки</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-both">Сезонная; осенью активность смещается на день</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">81-148 мм</td><td class="n">17-46 мм</td><td class="n">8-16 мм</td><td class="n">12-21 мм</td><td class="n">18-68 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сезонная; осенью активность смещается на день</td><td>Короткие выходы в течение дня</td><td>Активна. Осенью ночная активность падает, а дневные выходы удлиняются до 15 минут.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 148 мм, до 68 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Тундра, лесотундра, хвойные леса, лесостепь, степь, полупустынная и пустынная зоны, горные луга до высот 4200 м. В тундре, полупустыне и пустыне узкочерепные полёвки предпочитают речные долины и озёрные котловины. В лесах встречаются на открытых сухих лугах.</p>
+<div class="qh">Активность</div><p class="qt">Ритмы активности узкочерепных полёвок меняются по сезонам. Весной они активны круглосуточно, появляясь на поверхности короткими выходами 100-200 раз в день. Летом более активны в сумерках, с четырёхминутными периодами активности; дневные выходы на поверхность длятся 2-4 минуты каждые два часа. С понижением температуры осенью ночная активность уменьшается, а дневная возрастает до 15 минут за выход.</p>
+<div class="qh">Нора</div><p class="qt">Семейные норы имеют несколько крупных гнездовых камер диаметром 12-16 см на глубине около 12 см летом и 21 см зимой. В норе также несколько кладовых и система туннелей на глубине 7-9 см. Системы нор средних семейных групп имеют в среднем 17 входов. Отмечены и более крупные норы со 100-120 входами.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), p. 322. Plazi treatment, <a href="https://zenodo.org/records/6711500">10.5281/zenodo.6711500</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Осеннее смещение активности на день напрямую касается сентябрьского графика отлова</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Серебристая полёвка</h2>
+<p class="sci">Alticola argentatus</p>
+<div class="tags">
+<span class="tag t-grp">Cricetidae - полёвки</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-day">Дневная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">87-119 мм</td><td class="n">36-64 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">20.8-54.6 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Дневная</td><td>Пики 05:00-07:00 и 18:00-20:00</td><td>Активна. Активна круглый год.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 119 мм, до ? г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Каменистые участки, осыпи и скопления валунов на высотах 500-4300 м. Серебристые полёвки избегают густой растительности; предпочитают южные экспозиции.</p>
+<div class="qh">Активность</div><p class="qt">Серебристые полёвки дневные, с пиками активности в 05:00-07:00 и 18:00-20:00. Активны круглый год. Нор не роют, а укрываются в щелях и трещинах. Скальные убежища могут быть защищены от неблагоприятных условий стенками из камней, экскрементов и мочи. Убежище, найденное в Казахстане, было длиной 1 м и высотой 10-18 см.</p>
+<div class="cite">HMW Vol. 7 (Cricetidae, pp. 204-535), pp. 304-305. Plazi treatment, <a href="https://zenodo.org/records/6706688">10.5281/zenodo.6706688</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Нор не роет — ставьте у скальных трещин и осыпей, а не у входов в норы</li>
+<li>Два её дневных пика приходятся на время стандартной вечерней установки и рассветной проверки, поэтому дневная установка добавила бы контакт с этим видом</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Тушканчик-прыгун</h2>
+<p class="sci">Pygeretmus pumilio</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - тушканчики</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Сумеречный и ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">95-135 мм</td><td class="n">125-175 мм</td><td class="n">23-31 мм</td><td class="n">40-56 мм</td><td class="n">30-78 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречный и ночной</td><td>Осенью через 40-60 мин после заката</td><td>На пределе. Спячка может начаться в конце сентября.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено как двуногий прыгун; производитель помещает в эту категорию кенгуровых крыс — ближайший названный им тип телосложения. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Полупустыни и пустыни с пятнами разреженной солянковой растительности; в западной части ареала — только на глинистых почвах; в северной и восточной частях ареала — на глинистых и щебнистых почвах.</p>
+<div class="qh">Активность</div><p class="qt">Тушканчик-прыгун сумеречный и ночной. Наземная активность обычно начинается через 40-60 минут после заката весной и осенью и через 20-30 минут после заката летом. Активность заканчивается непосредственно перед восходом. У активности 2-3 пика: в первой половине, середине и конце ночи.</p>
+<div class="qh">Нора</div><p class="qt">Летние норы обычно состоят из начального туннеля, забитого землёй; гнездовые камеры диаметром 6-7 см у самцов и неразмножающихся самок, 10-12 см у размножающихся самок, на глубине 37-51 см. Ночные защитные норы простые, с одним туннелем длиной 25-90 см.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 94-95. Plazi treatment, <a href="https://zenodo.org/records/6591642">10.5281/zenodo.6591642</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Преимущественно листоед — приманочный шарик из семян плохо подходит этому виду</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Большой тушканчик</h2>
+<p class="sci">Allactaga major</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - тушканчики</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">187-230 мм</td><td class="n">250-305 мм</td><td class="n">48-62 мм</td><td class="n">85-101 мм</td><td class="n">260-415 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночной</td><td>Через 40-45 мин после заката</td><td>На пределе. Спячка может начаться уже в конце сентября.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено как двуногий прыгун; производитель помещает в эту категорию кенгуровых крыс — ближайший названный им тип телосложения. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/allactaga_major_animal.jpg" alt="Great jerboa, Shetskiy, KZ-QG, KZ"><figcaption>Большой тушканчик, Shetskiy, KZ-QG, KZ<span class="credit"><a href="https://www.inaturalist.org/observations/232452773">Maxim Shashkov · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Лесостепь, степь, полупустыня и пустыня. В лесостепи и степи большой тушканчик выбирает открытые участки с разреженным травостоем: пастбища, обочины грунтовых дорог, поля, берега солёных озёр и высокие террасы речных долин.</p>
+<div class="qh">Активность</div><p class="qt">Большой тушканчик ночной. Наземная активность обычно начинается через 40-45 минут после заката и заканчивается за 0-5-1-5 часа до восхода, с пиком активности к концу первой половины ночи. Спячка длится с конца сентября (в самые ранние сроки) до апреля.</p>
+<div class="qh">Нора</div><p class="qt">Летние норы обычно имеют два главных туннеля, отходящих от начального; гнездовые камеры диаметром 9-13 см на глубине 40-100 см (обычно 50-70 см). Ночные защитные норы простые, с одним туннелем длиной 80-200 см.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100). Plazi treatment, <a href="https://zenodo.org/records/6591608">10.5281/zenodo.6591608</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>«0-5-1-5 часа до восхода» — это 0.5-1.5 часа</li>
+<li>При массе 260-415 г и ступне 85-101 мм это крупное животное, требующее самой длинной ловушки Шермана</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Мохноногий тушканчик</h2>
+<p class="sci">Dipus sagitta</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - тушканчики</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Сумеречный и ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">115-145 мм</td><td class="n">140-180 мм</td><td class="n">16-23 мм</td><td class="n">57-67 мм</td><td class="n">46-128 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречный и ночной</td><td>Осенью через 20-90 мин после заката</td><td>Активен. Спячка в Казахстане с конца октября до середины марта.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено как двуногий прыгун; производитель помещает в эту категорию кенгуровых крыс — ближайший названный им тип телосложения. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/dipus_sagitta_animal.jpg" alt="Northern three-toed jerboa, 6CRQ+R76 Great Gobi A, Govi-Altai, Mongolia"><figcaption>Мохноногий тушканчик, 6CRQ+R76 Great Gobi A, Govi-Altai, Mongolia<span class="credit"><a href="https://www.inaturalist.org/observations/198783748">James Eaton · CC0 1.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Песчаные массивы на разных стадиях закрепления песков в пустынной, полупустынной и степной зонах, но всегда с пятнами чистого песка без злаков и разнотравья; на юго-востоке ареала — пески, песчано-щебнистые и щебнистые равнины пустынной зоны.</p>
+<div class="qh">Активность</div><p class="qt">Мохноногий тушканчик сумеречный и ночной. Наземная активность начинается на закате летом и через 20-90 минут после заката весной и осенью. Осенью зверьки активны только в первую половину ночи, и длительность активности может сокращаться до одного часа. Спячка в российском Дагестане и Казахстане длится 4-5 месяцев с конца октября до середины марта.</p>
+<div class="qh">Нора</div><p class="qt">Норы простые, с одним главным входом, одним запасным (прокопанным изнутри до 5-7 см ниже поверхности) и одной гнездовой камерой диаметром 5-7 см на глубине 35-110 см; общая длина туннелей 50-400 см. Главный вход весной и летом обычно закрыт песчаной пробкой.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), p. 96. Plazi treatment, <a href="https://zenodo.org/records/6591646">10.5281/zenodo.6591646</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Осенью активность может длиться всего час после выхода, что резко сужает сентябрьское окно</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Малый тушканчик</h2>
+<p class="sci">Scarturus elater</p>
+<p class="aka">Также известен как <i>Allactaga elater</i></p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - тушканчики</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Сумеречный и ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">90-120 мм</td><td class="n">140-190 мм</td><td class="n">28-41 мм</td><td class="n">43-58 мм</td><td class="n">32-77 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречный и ночной</td><td>Через 15-25 мин после заката</td><td>Активен. Спячка начинается не раньше середины октября.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено как двуногий прыгун; производитель помещает в эту категорию кенгуровых крыс — ближайший названный им тип телосложения. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/scarturus_elater_animal.jpg" alt="Small five-toed jerboa, Iran"><figcaption>Малый тушканчик, Iran<span class="credit"><a href="https://www.inaturalist.org/observations/225582669">Kian · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Пустынная и полупустынная зоны; избегает лишь больших открытых пространств, полностью лишённых кустарников, и участков с очень густой растительностью. Малый тушканчик не живёт в песках, но способен пересекать песчаные участки и занимать небольшие пятна плотного грунта в крупных песчаных массивах.</p>
+<div class="qh">Активность</div><p class="qt">Малый тушканчик сумеречный и ночной. Большинство зверьков становятся активными в сумерках, через 15-25 минут после заката. Весной и летом они активны всю ночь, но осенью активность обычно ограничена первой половиной ночи. Спячка в Казахстане и Средней Азии длится 2-5—4-5 месяцев, с середины октября — начала декабря до середины февраля/марта, с перерывами в оттепели.</p>
+<div class="qh">Нора</div><p class="qt">Летние норы простые, обычно с одним главным туннелем, начинающимся у поверхности, как правило с закупоренным входом, и заканчивающимся гнездовой камерой диаметром 10-13 см на глубине 10-115 см (обычно 40-70 см); длина туннелей 45-300 см. В большинстве случаев в норах есть 1-2 дополнительных туннеля с запасными выходами и несколько (до семи) дополнительных камер. Специальных ночных защитных нор малые тушканчики обычно не строят, а используют как ночные убежища норы других грызунов.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), pp. 92-93. Plazi treatment, <a href="https://zenodo.org/records/6591634">10.5281/zenodo.6591634</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>«2-5—4-5 месяцев» — почти наверняка 2.5-4.5 месяца</li>
+<li>«глубина 10-115 см» — сверить диапазон со стр. 92</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Обыкновенный емуранчик</h2>
+<p class="sci">Stylodipus telum</p>
+<div class="tags">
+<span class="tag t-grp">Dipodidae - тушканчики</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Сумеречный и ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">110-130 мм</td><td class="n">130-170 мм</td><td class="n">15-20 мм</td><td class="n">46-55 мм</td><td class="n">45-73 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречный и ночной</td><td>Осенью через 30-60 мин после заката</td><td>Активен. Спячка с конца октября до марта/апреля.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено как двуногий прыгун; производитель помещает в эту категорию кенгуровых крыс — ближайший названный им тип телосложения. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/stylodipus_telum_animal.jpg" alt="Thick-tailed three-toed jerboa, Ukraine, Kherson Region, Oleshkovskie Peski Desert"><figcaption>Обыкновенный емуранчик, Ukraine, Kherson Region, Oleshkovskie Peski Desert<span class="credit"><a href="https://www.inaturalist.org/observations/431448">Alexander A. Fomichev · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">На западной и северной периферии ареала — закреплённые пески степной зоны; в центральной части ареала — супесчаные почвы полупустынной и пустынной зон; на юге ареала — глинистые почвы пустынной зоны; на востоке ареала — крупнощебнистые склоны холмов полупустынной зоны.</p>
+<div class="qh">Активность</div><p class="qt">Обыкновенный емуранчик сумеречный и ночной. Наземная активность начинается за 60-90 минут до заката весной и через 30-60 минут после заката летом и осенью. Осенью активность заканчивается после полуночи.</p>
+<div class="qh">Нора</div><p class="qt">Норы имеют один главный вход, 1-3 запасных входа, одну гнездовую камеру диаметром 12-15 см на глубине 80-130 см и 1-3 дополнительные камеры диаметром 9-10 см; общая длина туннелей 130-530 см, обычно 150-200 см. Главный вход обычно закрыт земляной пробкой. Ночные защитные норы простые, с одним туннелем длиной 30-300 см. Один зверёк имеет 3-12 защитных нор на своём участке.</p>
+<div class="cite">HMW Vol. 7 (Dipodidae, pp. 81-100), p. 97. Plazi treatment, <a href="https://zenodo.org/records/6591651">10.5281/zenodo.6591651</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Ушастый ёж</h2>
+<p class="sci">Hemiechinus auritus</p>
+<div class="tags">
+<span class="tag t-grp">Erinaceidae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">160-278 мм</td><td class="n">10-55 мм</td><td class="n">24-60 мм</td><td class="n">30-55 мм</td><td class="n">230-400 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночной</td><td>Ранним вечером</td><td>Активен. Оцепенение факультативно и чаще позже в году.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 278 мм, до 400 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/hemiechinus_auritus_animal.jpg" alt="Long-eared hedgehog, Волгоградская обл., Россия, 403873"><figcaption>Ушастый ёж, Волгоградская обл., Россия, 403873<span class="credit"><a href="https://www.inaturalist.org/observations/238086289">Maksim Panish · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Сухие русла, дюны, оазисы, долины с кустарниками, полуаридные местности и степи на большей части ареала. Предпочитает более влажные места: пригородные парки и сады, оливковые рощи, сельскохозяйственные земли; часто связан с человеком. Выбирает мягкий грунт, например песчаные дюны, где может рыть относительно глубокие норы с небольшим уклоном.</p>
+<div class="qh">Активность</div><p class="qt">Ушастый ёж ночной и начинает кормиться ранним вечером. Дневные убежища обычно в норах под небольшими кустами. Норы длиной 20-150 см с единственным входом. Может впадать в оцепенение в любой сезон при засухе, нехватке корма, холодной или жаркой погоде.</p>
+<div class="cite">HMW Vol. 8 (Erinaceidae, pp. 288-330), pp. 325-326. Plazi treatment, <a href="https://zenodo.org/records/6632542">10.5281/zenodo.6632542</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>При 230-400 г это на пределе или выше самой крупной категории ловушек Шермана. Включён, чтобы команда, встретив его, не гадала.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Большая песчанка</h2>
+<p class="sci">Rhombomys opimus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">региональный, у Мерке не отмечен</span>
+<span class="tag t-day">Дневная, наиболее активна на рассвете</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">150-185 мм</td><td class="n">130-160 мм</td><td class="n">12-19 мм</td><td class="n">36-47 мм</td><td class="n">169-275 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Дневная, наиболее активна на рассвете</td><td>Рассвет</td><td>Активна. Спячка не указана.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 185 мм, до 275 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/rhombomys_opimus_animal.jpg" alt="Great gerbil, Karakiya District, Kazakhstan"><figcaption>Большая песчанка, Karakiya District, Kazakhstan<span class="credit"><a href="https://www.inaturalist.org/observations/302584196">Felix Puff · CC0 1.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Песчаные или глинистые пустыни, с локальным предпочтением сухих русел и кустарниковой растительности.</p>
+<div class="qh">Активность</div><p class="qt">Дневная, наиболее активна на рассвете. Большие песчанки наземные, роют очень сложные системы нор с длинными глубокими туннелями, гнездовыми и кормовыми камерами. Зимой гнездо может располагаться на 2-5 м ниже поверхности.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 649-650. Plazi treatment, <a href="https://zenodo.org/records/6788117">10.5281/zenodo.6788117</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>«2-5 м ниже поверхности» — либо 2-5 м, либо 2.5 м; сверить со стр. 650</li>
+<li>Дневная и активная на рассвете. Ночная линия, закрытая днём, почти полностью пропускает этот вид.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Краснохвостая песчанка</h2>
+<p class="sci">Meriones libycus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-both">В основном ночная, иногда дневная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">123-170 мм</td><td class="n">115-190 мм</td><td class="n">15-22 мм</td><td class="n">32-41 мм</td><td class="n">60-140 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>В основном ночная, иногда дневная</td><td>После наступления темноты; в Пакистане кормится днём</td><td>Активна. Оцепенение только в более холодных регионах и позже в году.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 170 мм, до 140 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/meriones_libycus_animal.jpg" alt="Libyan jird, Horimlaa Saudi Arabia"><figcaption>Краснохвостая песчанка, Horimlaa Saudi Arabia<span class="credit"><a href="https://www.inaturalist.org/observations/150909786">Jan Ebr &amp; Ivana Ebrová · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Краснохвостые песчанки предпочитают пониженные участки в аридных и полуаридных районах (степи, полупустыни, пустыни) с плотным твёрдым грунтом. Избегают горных склонов и каменистых мест. Им нужна разреженная кустарниковая растительность: заросли тамариска, пальмовые или акациевые рощи.</p>
+<div class="qh">Активность</div><p class="qt">Хотя краснохвостая песчанка в основном ночная, на северо-западе Китая она может быть дневной. Наземная; роет норы в эфемерных руслах и неглубоких понижениях с небольшими кустами. В Пакистане кормится днём и сигнализирует об опасности барабанной дробью лап.</p>
+<div class="qh">Нора</div><p class="qt">Норы устраиваются у основания небольших кустов и на пригорках. Норы имеют 2-8 входов с туннелями, ведущими как минимум к одной кладовой диаметром около 30 см. Могут существовать две системы извилистых галерей, соединённые единственным туннелем.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 643-644. Plazi treatment, <a href="https://zenodo.org/records/6827166">10.5281/zenodo.6827166</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Источник даёт «большой диаметр норы около 10 м» — текст искажён; сверить со стр. 643</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Полуденная песчанка</h2>
+<p class="sci">Meriones meridianus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-both">Преимущественно ночная, зимой иногда днём</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">90-144 мм</td><td class="n">85-135 мм</td><td class="n">10-19 мм</td><td class="n">25-34 мм</td><td class="n">24-60 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Преимущественно ночная, зимой иногда днём</td><td>После наступления темноты</td><td>Активна. Не впадает в спячку.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 144 мм, до 60 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/meriones_meridianus_animal.jpg" alt="Midday jird, آران و بیدگل، استان اصفهان، ایران"><figcaption>Полуденная песчанка, آران و بیدگل، استان اصفهان، ایران<span class="credit"><a href="https://www.inaturalist.org/observations/105679339">Mohammad Amin Ghaffari · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Встречается во всех песчаных пустынях Средней Азии, изредка может жить и в степной зоне. Полуденная песчанка населяет песчаные дюны, степи, злаковники, возделываемые поля и залежи в аридных зонах.</p>
+<div class="qh">Активность</div><p class="qt">Полуденная песчанка преимущественно ночная, но зимой активна также утром или днём. Этот наземный грызун роет глубокие норы у основания и под корнями колючих кустарников.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 647. Plazi treatment, <a href="https://zenodo.org/records/6788104">10.5281/zenodo.6788104</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Гребенщиковая песчанка</h2>
+<p class="sci">Meriones tamariscinus</p>
+<div class="tags">
+<span class="tag t-grp">Gerbillinae</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">135-190 мм</td><td class="n">115-150 мм</td><td class="n">15-21 мм</td><td class="n">32-39 мм</td><td class="n">60-180 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночная</td><td>После наступления темноты</td><td>Активна. Спячка не указана.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 190 мм, до 180 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/meriones_tamariscinus_animal.jpg" alt="Tamarisk jird, Kyrgyzstan, Jalal-Abad Region, Sary-Bel&#x27; River valley"><figcaption>Гребенщиковая песчанка, Kyrgyzstan, Jalal-Abad Region, Sary-Bel' River valley<span class="credit"><a href="https://www.inaturalist.org/observations/238182231">Alexander A. Fomichev · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Пустыни и полупустыни с небольшими кустарниками и злаковниками, вади и засолённые болота.</p>
+<div class="qh">Активность</div><p class="qt">Ночная и наземная, гребенщиковая песчанка роет норы под корнями деревьев и кустов. Норы имеют несколько входов и могут достигать 6 м в длину и 2:5 м в глубину.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), pp. 647-648. Plazi treatment, <a href="https://zenodo.org/records/6788106">10.5281/zenodo.6788106</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>«2:5 м в глубину» — это 2.5 м</li>
+<li>«4-5 кг» запасов — вероятно, 4.5 кг</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Индийский дикобраз</h2>
+<p class="sci">Hystrix indica</p>
+<div class="tags">
+<span class="tag t-grp">Hystricidae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Строго ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">455-930 мм</td><td class="n">60-170 мм</td><td class="n">40-47 мм</td><td class="n">95-104 мм</td><td class="n">8000-27000 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Строго ночной</td><td>Зависит от сезона; зимой избегает яркого лунного света</td><td>Активен.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-too_large">Слишком крупный</td><td>ни одна модель Шермана не подходит</td><td>фиксируйте встречу или следы; поимки не ожидайте</td></tr></table></div>
+<p class="note">Отнесено по массе до 27000 г — намного выше животных, на которых рассчитана самая крупная модель. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/hystrix_indica_animal.jpg" alt="Indian crested porcupine, Location: 13.565600, 74.680900"><figcaption>Индийский дикобраз, Location: 13.565600, 74.680900<span class="credit"><a href="https://www.inaturalist.org/observations/145122559">Chayant Gonsalves · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Широкий спектр природных, сельскохозяйственных и урбанизированных местообитаний. Ареал индийского дикобраза сосредоточен в степных биомах и включает также окраины пустынь и относительно влажные зоны.</p>
+<div class="qh">Активность</div><p class="qt">Индийские дикобразы строго ночные. Дневные часы проводят в убежищах (естественных пещерах или вырытых норах). Зимой ограничивают активность более тёмными ночами или более тёмными частями ночи и решительно избегают яркого лунного света.</p>
+<div class="qh">Нора</div><p class="qt">В пустынях к востоку от Каспийского моря индийские дикобразы роют сложные системы нор в уплотнённых дюнах и глинистых обрывах. Главные туннели длиной более 10-16 м, заканчиваются глубокой жилой камерой. Камеры могут использоваться кланами десятилетиями.</p>
+<div class="cite">HMW Vol. 6 (Hystricidae, pp. 304-312), pp. 311-312. Plazi treatment, <a href="https://zenodo.org/records/6612309">10.5281/zenodo.6612309</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Ни в какую ловушку Шермана не войдёт. Его крупные системы нор можно принять за норы целевого вида.</li>
+<li>БЕЗОПАСНОСТЬ: иглы. Включён, чтобы команда узнавала нору и держалась подальше.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Заяц-толай</h2>
+<p class="sci">Lepus tolai</p>
+<div class="tags">
+<span class="tag t-grp">Leporidae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Ночной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">400-590 мм</td><td class="n">72-110 мм</td><td class="n">80-120 мм</td><td class="n">110-127 мм</td><td class="n">1700-2700 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночной</td><td>После темноты; днём отдыхает в лёжках</td><td>Активен.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-too_large">Слишком крупный</td><td>ни одна модель Шермана не подходит</td><td>фиксируйте встречу или следы; поимки не ожидайте</td></tr></table></div>
+<p class="note">Отнесено по массе до 2700 г — намного выше животных, на которых рассчитана самая крупная модель. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/lepus_tolai_animal.jpg" alt="Tolai hare, Enbekshikazakh District, Kazakhstan"><figcaption>Заяц-толай, Enbekshikazakh District, Kazakhstan<span class="credit"><a href="https://www.inaturalist.org/observations/396011325">Suhas Saya · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Злаковники и лесные луга (никогда не настоящие леса) с высокотравьем или кустарниками для укрытия в Китае; полупустыни, горные степи, лесостепь и каменистые местообитания в Монголии. Лёжки выкапываются передними лапами. Глубина лёжек меньше в жаркую погоду, чем в холодную и ветреную.</p>
+<div class="qh">Активность</div><p class="qt">Заяц-толай ночной. Лёжки используются для дневного отдыха.</p>
+<div class="cite">HMW Vol. 6 (Leporidae, pp. 107-148), p. 133. Plazi treatment, <a href="https://zenodo.org/records/6632784">10.5281/zenodo.6632784</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Ни в какую ловушку Шермана не войдёт. Его наземные лёжки и постоянные кормовые маршруты легко принять за тропы грызунов.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Серая крыса</h2>
+<p class="sci">Rattus norvegicus</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Преимущественно ночная, большая часть активности до полуночи</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">160-290 мм</td><td class="n">122-250 мм</td><td class="n">15-26 мм</td><td class="n">30-50 мм</td><td class="n">195-540 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Преимущественно ночная, большая часть активности до полуночи</td><td>Незадолго до или после заката</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 290 мм, до 540 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/rattus_norvegicus_animal.jpg" alt="Brown rat, Port Hadlock-Irondale, WA, USA"><figcaption>Серая крыса, Port Hadlock-Irondale, WA, USA<span class="credit"><a href="https://www.inaturalist.org/observations/69139935">Mara Christensen · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Исторически — влажные первичные леса и поля, а теперь, как правило, нарушенные местообитания всех видов, включая почти каждый крупный город и сельскохозяйственные и пахотные земли. В городах обычно держится влажных тёмных мест с укромными участками для гнездования.</p>
+<div class="qh">Активность</div><p class="qt">Серые крысы преимущественно ночные, и большая часть активности приходится на время до полуночи, после которой крыс почти не видно. Кормёжка большей частью происходит незадолго до или после заката. Плохая погода обычно удерживает крыс в гнёздах и убежищах.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 829. Plazi treatment, <a href="https://zenodo.org/records/6827852">10.5281/zenodo.6827852</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Неофобия прямо касается отлова: новую ловушку крыса может избегать первую ночь-две, что говорит в пользу предварительной прикормки</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Малая лесная мышь</h2>
+<p class="sci">Apodemus uralensis</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">70-105 мм</td><td class="n">65-110 мм</td><td class="n">12-16 мм</td><td class="n">17-22 мм</td><td class="n">13-28 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночная</td><td>После наступления темноты</td><td>Активна. Спячка не указана.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 105 мм, до 28 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/apodemus_uralensis_animal.jpg" alt="Herb field mouse, Октябрьский р-н, Ижевск, республика Удмуртия, Россия"><figcaption>Малая лесная мышь, Октябрьский р-н, Ижевск, республика Удмуртия, Россия<span class="credit"><a href="https://www.inaturalist.org/observations/134571337">Борис Георги · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Предпочитает опушки и открытые местообитания, прилегающие к лесу. В Европе малая лесная мышь встречается в разнообразных местообитаниях, включая пашни, сухие злаковники и влажные леса. Это экотонный вид: живёт там, где лес граничит с открытыми участками, и редко встречается в глубине леса. От уровня моря до как минимум 1400 м.</p>
+<div class="qh">Активность</div><p class="qt">Малые лесные мыши ночные, древесно-наземные и подземные. Гнёзда либо на деревьях, либо в норах или естественных подземных убежищах.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 782. Plazi treatment, <a href="https://zenodo.org/records/6868753">10.5281/zenodo.6868753</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>В руках можно спутать с Apodemus agrarius. Сфотографируйте спинную полосу, ухо и ступню на фоне линейки.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Домовая мышь</h2>
+<p class="sci">Mus musculus</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Сумеречная и ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">70-103 мм</td><td class="n">67-104 мм</td><td class="n">12-17 мм</td><td class="n">14-20 мм</td><td class="n">12-39 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Сумеречная и ночная</td><td>После наступления темноты</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 103 мм, до 39 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/mus_musculus_animal.jpg" alt="House mouse, Shillong, Meghalaya"><figcaption>Домовая мышь, Shillong, Meghalaya<span class="credit"><a href="https://www.inaturalist.org/observations/391400365">Devin · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">В основном синантропна; встречается в очень широком спектре созданных человеком местообитаний. Сложных нор не строит и может гнездиться в самых разных условиях.</p>
+<div class="qh">Активность</div><p class="qt">Домовые мыши наземные, сумеречные и ночные.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 789. Plazi treatment, <a href="https://zenodo.org/records/6827279">10.5281/zenodo.6827279</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Пластинчатозубая крыса</h2>
+<p class="sci">Nesokia indica</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">150-205 мм</td><td class="n">91-150 мм</td><td class="n">16-23 мм</td><td class="n">29-39 мм</td><td class="n">96-320 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночная</td><td>После наступления темноты</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 205 мм, до 320 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Тропические и субтропические сухие листопадные леса, кустарники, злаковники, пашни, пастбища и плантации от уровня моря до высот около 1600 м. Пластинчатозубые крысы предпочитают участки с влажной почвой у постоянных источников воды.</p>
+<div class="qh">Активность</div><p class="qt">Пластинчатозубая крыса ночная; кормёжка, перемещения по поверхности и, вероятно, размножение происходят ночью. Наземная, но в основном роющая: создаёт во влажных почвах системы нор из нескольких или многих туннелей, кладовых и гнездовой камеры.</p>
+<div class="qh">Нора</div><p class="qt">Кладовые не выстланы растительностью и обширны; гнездовые камеры выстланы мелко изгрызенной растительностью и меньше (около 30 см шириной). Норы обычно на глубине 15-60 см; их находили и в каналах. Норы могут достигать 23 м в длину.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 817. Plazi treatment, <a href="https://zenodo.org/records/6788461">10.5281/zenodo.6788461</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Степная мышь</h2>
+<p class="sci">Sylvaemus witherbyi</p>
+<p class="aka">Также известна как <i>Apodemus witherbyi</i></p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-night">Ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">77-110 мм</td><td class="n">75-118 мм</td><td class="n">14-18 мм</td><td class="n">19-24 мм</td><td class="n">16-34 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Ночная</td><td>После наступления темноты</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 110 мм, до 34 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Степная мышь может жить в самых разных условиях. В Турции её находили и в открытых местообитаниях, и в кедровых лесах, а также в кустарниках и деградированном лесу. Ей нужны кустарниковый покров и каменистые участки в открытых злаковниках; встречается до 2800 м.</p>
+<div class="qh">Активность</div><p class="qt">Степные мыши ночные и наземные.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884), p. 783. Plazi treatment, <a href="https://zenodo.org/records/6827273">10.5281/zenodo.6827273</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Можно спутать с Apodemus uralensis и A. agrarius — сфотографируйте спинную полосу, ухо и ступню на фоне линейки</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Полевая мышь</h2>
+<p class="sci">Apodemus agrarius</p>
+<div class="tags">
+<span class="tag t-grp">Muridae - мыши и крысы</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-both">ДНЕВНАЯ или сумеречная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">75-120 мм</td><td class="n">65-115 мм</td><td class="n">12-15 мм</td><td class="n">17-22 мм</td><td class="n">16-38 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>ДНЕВНАЯ или сумеречная</td><td>Днём и в сумерках</td><td>Активна. Спячка не указана.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-medium">Medium (средняя)</td><td>LFAHD / LFATDG, 3 x 3.5 x 9 in (7.6 x 8.9 x 22.9 см)</td><td>бурундуки, крысы, летяги</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 120 мм, до 38 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/apodemus_agrarius_animal.jpg" alt="Striped field mouse, Москва, Россия, 119334"><figcaption>Полевая мышь, Москва, Россия, 119334<span class="credit"><a href="https://www.inaturalist.org/observations/393140726">Сергей Крыленко · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Полевые мыши предпочитают опушки леса. Встречаются также на возделываемых полях, в садах, тростниках и болотах, а осенью иногда заходят в амбары и постройки. Исследование микроместообитаний показало, что этот вид неслучайно выбирает места с густым кустарниковым ярусом и очень плотным подлеском из Rubus hirtus (Rosaceae) с малым древесным пологом или без него.</p>
+<div class="qh">Активность</div><p class="qt">Полевые мыши наземные, дневные или сумеречные. Лазают умеренно по сравнению с сородичами. Роют простые подземные норы глубиной 30-40 см с гнездовой камерой, выстланной сухими растениями, и тремя-четырьмя входами.</p>
+<div class="cite">HMW Vol. 7 (Muridae, pp. 536-884). Plazi treatment, <a href="https://zenodo.org/records/6816070">10.5281/zenodo.6816070</a>, licence CC0.</div>
+</div>
+</div>
+<div class="card">
+<h2>Красная пищуха</h2>
+<p class="sci">Ochotona rutila</p>
+<div class="tags">
+<span class="tag t-grp">Ochotonidae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-day">Преимущественно дневная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">190-260 мм</td><td class="n">нет</td><td class="n">26-30 мм</td><td class="n">33-39 мм</td><td class="n">220-320 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Преимущественно дневная</td><td>От восхода до вечерних сумерек</td><td>Активна. Заготовка сена длится до сентября, поэтому стожки — надёжный признак.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 260 мм, до 320 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/ochotona_rutila_animal.jpg" alt="Turkestan red pika, Karasay District, Kazakhstan"><figcaption>Красная пищуха, Karasay District, Kazakhstan<span class="credit"><a href="https://www.inaturalist.org/observations/129833677">Dmitry Boldyrev · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Осыпи из крупных камней в горных ущельях и долинах лесного и субальпийского поясов на высотах 1800-3700 м. Красная пищуха — типичный обитатель скал, использующий щели между камнями как убежища и ходы.</p>
+<div class="qh">Активность</div><p class="qt">Красные пищухи преимущественно дневные. Как у всех скальных пищух, активность зависит от инсоляции и погоды. В сильную жару в Средней Азии красные пищухи избегают выходить на поверхность осыпей. В другие сезоны активны весь день. Активность начинается с восходом и заканчивается с вечерними сумерками.</p>
+<div class="cite">HMW Vol. 6 (Ochotonidae, pp. 28-43), p. 42. Plazi treatment, <a href="https://zenodo.org/records/6620036">10.5281/zenodo.6620036</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Раздела «Нора» нет — обитатель скальных щелей. Ставьте у щелей и осыпей, а не у входов в норы.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Серый сурок</h2>
+<p class="sci">Marmota baibacina</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-day">Дневной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">460-650 мм</td><td class="n">130-154 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">4200-6500 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Дневной</td><td>Активен 4-5 месяцев каждое лето</td><td>Уходит под землю. В спячке 7-8 месяцев в году.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-too_large">Слишком крупный</td><td>ни одна модель Шермана не подходит</td><td>фиксируйте встречу или следы; поимки не ожидайте</td></tr></table></div>
+<p class="note">Отнесено по массе до 6500 г — намного выше животных, на которых рассчитана самая крупная модель. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/marmota_baibacina_animal.jpg" alt="Grey marmot, Tomskiy rayon, RU-TO, RU"><figcaption>Серый сурок, Tomskiy rayon, RU-TO, RU<span class="credit"><a href="https://www.inaturalist.org/observations/369258980">Andrew Bazdyrev · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Пологие открытые или усеянные валунами горные степи, луга и скальные выходы на высотах до примерно 4000 м.</p>
+<div class="qh">Активность</div><p class="qt">Серый сурок дневной и активен лишь 4-5 месяцев каждое лето; остальные 7-8 месяцев года проводит в спячке в норах.</p>
+<div class="qh">Нора</div><p class="qt">Серый сурок социален и живёт многонорными колониями, обычно группами до десяти особей, которые могут зимовать совместно. Зверьки часто сидят на выбросах у нор и остаются настороже; тревожные крики — короткие высокие свисты.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818. Plazi treatment, <a href="https://zenodo.org/records/6840688">10.5281/zenodo.6840688</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Ни в какую ловушку Шермана не войдёт. Включён, чтобы его системы нор и тревожные крики узнавались и не принимались за следы целевого вида.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Длиннохвостый сурок</h2>
+<p class="sci">Marmota caudata</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-day">Дневной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">500 мм</td><td class="n">182 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">3000-5000 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Дневной</td><td>Поздней весной или ранним летом</td><td>Уходит под землю. На поверхности только 4-5 месяцев.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-too_large">Слишком крупный</td><td>ни одна модель Шермана не подходит</td><td>фиксируйте встречу или следы; поимки не ожидайте</td></tr></table></div>
+<p class="note">Отнесено по массе до 5000 г — намного выше животных, на которых рассчитана самая крупная модель. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/marmota_caudata_animal.jpg" alt="Long-tailed marmot, Kyrgyzstan, Osh Region, Bardobo Border Outpost"><figcaption>Длиннохвостый сурок, Kyrgyzstan, Osh Region, Bardobo Border Outpost<span class="credit"><a href="https://www.inaturalist.org/observations/238343631">Alexander A. Fomichev · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Высокогорные малопродуктивные альпийские равнины и луга, часто связанные с ледниковыми и конечными моренами. Выбирает также альпийские кустарники с карликовым можжевельником.</p>
+<div class="qh">Активность</div><p class="qt">Длиннохвостые сурки дневные. На поверхности проводят лишь 4-5 месяцев, выходя из нор поздней весной или ранним летом. Зверьки часто греются на камнях или у входов в норы.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 818. Plazi treatment, <a href="https://zenodo.org/records/6840690">10.5281/zenodo.6840690</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Источник даёт «масса 3-5 кг» — это может быть 3-5 кг или 3.5 кг. Сверить со стр. 818.</li>
+<li>Ни в какую ловушку Шермана не войдёт.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Жёлтый суслик</h2>
+<p class="sci">Spermophilus fulvus</p>
+<div class="tags">
+<span class="tag t-grp">Sciuridae</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-day">Дневной</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">224-284 мм</td><td class="n">71-85 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">273-1100 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Дневной</td><td>На поверхности с марта-апреля</td><td>Практически недоступен. Взрослые начинают спячку с конца июля по сентябрь; молодые — в сентябре или октябре.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-large">Large (большая)</td><td>XLKR / XLKSD, 3 x 3.5 x 13 in (7.6 x 8.9 x 33 см)</td><td>кенгуровые крысы, суслики, белки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 284 мм, до 1100 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/spermophilus_fulvus_animal.jpg" alt="Yellow ground squirrel, Turkistan, Kazakhstan"><figcaption>Жёлтый суслик, Turkistan, Kazakhstan<span class="credit"><a href="https://www.inaturalist.org/observations/266349349">Maxim Shashkov · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Полупустынные и пустынные аридные злаковники, иногда заходя в открытые аридные леса.</p>
+<div class="qh">Активность</div><p class="qt">Жёлтые суслики дневные; на поверхности активны с поздней весны, обычно с марта-апреля. Облигатные зимоспящие в норах: взрослые начинают спячку с конца июля по сентябрь, молодые — в сентябре или октябре.</p>
+<div class="qh">Нора</div><p class="qt">Территориален и защищает большую площадь вокруг единственной норы; участки взрослых самцов около 3 га.</p>
+<div class="cite">HMW Vol. 6 (Sciuridae, pp. 648-837), p. 812. Plazi treatment, <a href="https://zenodo.org/records/6819002">10.5281/zenodo.6819002</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Источник читается как «длина тела в среднем 284-3 мм (самцы) и 224 мм (самки)» — это 284.3 мм</li>
+<li>Масса «0-29-11 кг (самцы)» искажена; вероятно, 0.29-1.1 кг. Сверить со стр. 812</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Тяньшанская мышовка</h2>
+<p class="sci">Sicista tianshanica</p>
+<div class="tags">
+<span class="tag t-grp">Sminthidae - мышовки</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-both">В основном сумеречная и ночная, иногда дневная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">57-73 мм</td><td class="n">102-113 мм</td><td class="n">12.5-15 мм</td><td class="n">17-19 мм</td><td class="n">7.2-13 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>В основном сумеречная и ночная, иногда дневная</td><td>Сумерки и ночь</td><td>Только молодые. Взрослые, вероятно, уходят в спячку в августе.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 73 мм, до 13 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">От предгорий до субальпийского пояса на высотах 400-3500 м. Наибольшие плотности тяньшанских мышовок обнаружены у верхних границ лесов в субальпийском поясе, но их ловили в самых разных местообитаниях: на опушках еловых лесов, пастбищах, высокотравных лугах, высокогорных лугах, остепнённых южных склонах, лесных полянах и субальпийских лугах с можжевельником.</p>
+<div class="qh">Активность</div><p class="qt">Тяньшанские мышовки в основном сумеречные и ночные, хотя иногда активны днём, особенно молодые. В ловчих конусах после холодной ночи, обычной в высокогорье, регулярно находили зверьков, лежащих свернувшись на боку с закрытыми глазами, по-видимому в оцепенении. Согретые в руке, они обычно быстро становились активными. Взрослые, вероятно, уходят в спячку в августе, поскольку в сентябре ловятся только молодые.</p>
+<div class="cite">HMW Vol. 7 (Sminthidae, pp. 9-48), p. 40. Plazi treatment, <a href="https://zenodo.org/records/6603420">10.5281/zenodo.6603420</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>БЛАГОПОЛУЧИЕ: зверёк, найденный в оцепенении после холодной ночи, выглядит мёртвым, но оживает, согретый в руке. Не записывайте оцепеневшую мышовку как погибшую.</li>
+<li>Питание с уклоном в насекомых, поэтому чисто семенная приманка плохо подходит</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Малая белозубка</h2>
+<p class="sci">Crocidura suaveolens</p>
+<div class="tags">
+<span class="tag t-grp">Soricidae - землеройки</span>
+<span class="tag t-here">отмечен в пределах 100 км</span>
+<span class="tag t-night">Преимущественно ночная</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">47-80 мм</td><td class="n">25-40 мм</td><td class="n">не указано</td><td class="n">не указано</td><td class="n">6.5-9.4 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Преимущественно ночная</td><td>10-14 периодов активности за тёмные часы</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 80 мм, до ? г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig"><img src="images/crocidura_suaveolens_animal.jpg" alt="Lesser white-toothed shrew, Голосіївський район, Київ, Україна, 02000"><figcaption>Малая белозубка, Голосіївський район, Київ, Україна, 02000<span class="credit"><a href="https://www.inaturalist.org/observations/311671571">olha_chusova · CC BY 4.0</a></span></figcaption></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Пустынная, степная и лесная зоны; предпочитает местообитания с кустарниками или высокотравьем у воды и рудеральную растительность на местах брошенного жилья и обрабатываемых полей. Малая белозубка встречается в разных жилищах человека: от кочевых юрт в Гоби до квартир в московских многоэтажках, включая сельские дома от европейской России до Тянь-Шаня.</p>
+<div class="qh">Активность</div><p class="qt">Малая белозубка активна в основном ночью. В Туркменистане за тёмные часы наблюдали 10-14 периодов активности, в среднем по 24 минуты; максимальная длительность периода активности — 155 минут.</p>
+<div class="cite">HMW Vol. 8 (Soricidae, pp. 332-551), pp. 496-497. Plazi treatment, <a href="https://zenodo.org/records/6870217">10.5281/zenodo.6870217</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>БЛАГОПОЛУЧИЕ И ПРИМАНКА: насекомоядное, съедающее более 100% массы тела в сутки, быстро гибнет от голода в ловушке, а семенная приманка его не кормит. Этому виду больше всех нужны компонент животного белка в приманке и короткий интервал проверки.</li>
+</ul></div>
+</div>
+<div class="card">
+<h2>Тундряная бурозубка</h2>
+<p class="sci">Sorex tundrensis</p>
+<div class="tags">
+<span class="tag t-grp">Soricidae - землеройки</span>
+<span class="tag t-here">региональный, возможен по ареалу</span>
+<span class="tag t-both">Активна днём и ночью</span>
+</div>
+<div class="sec">Промеры</div><div class="scroll"><table><tr>
+<th>Тело</th><th>Хвост</th><th>Ухо</th><th>Ступня</th><th>Масса</th>
+</tr><tr>
+<td class="n">61-86 мм</td><td class="n">20-38 мм</td><td class="n">7-8 мм</td><td class="n">13-15 мм</td><td class="n">8-11.5 г</td>
+</tr></table></div>
+<div class="sec">Когда ловить</div><div class="scroll"><table>
+<tr><th>Активность</th><th>Выход</th><th>Сентябрь в Мерке</th></tr>
+<tr><td>Активна днём и ночью</td><td>Круглые сутки</td><td>Активна.</td></tr></table></div>
+<div class="sec">Какая ловушка Шермана</div><div class="scroll"><table>
+<tr><th>Категория</th><th>Модель и размер</th><th>По каталогу производителя</th></tr>
+<tr><td class="verdict v-small">Small (малая)</td><td>SFA / SNA, 2 x 2.5 x 6.5 in (5.1 x 6.4 x 16.5 см)</td><td>мыши, землеройки, полёвки</td></tr></table></div>
+<p class="note">Отнесено по длине тела до 86 мм, до 8 г. Категории и размеры — производителя; отнесение вида к категории — наше суждение.</p>
+<div class="sec">Фотографии</div><div class="figs">
+<figure class="fig empty"><div class="ph"><span class="phlab">Всё животное</span><span class="phbrief">В руках, вид со спины, всё животное в кадре с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Диагностический признак</span><span class="phbrief">Признак, отличающий этот вид от вида-двойника, с масштабной линейкой.</span></div></figure>
+<figure class="fig empty"><div class="ph"><span class="phlab">Нора или следы</span><span class="phbrief">Вход в нору, тропа, выброс или запас сена, с предметом для масштаба.</span></div></figure>
+</div>
+<div class="sec">Текст источника</div><div class="quoted">
+<div class="qhead">Перевод дословной цитаты из источника</div>
+<div class="qh">Местообитание</div><p class="qt">Большое разнообразие альпийских, субальпийских и арктических местообитаний, кустарников и лугов, часто с преобладанием невысоких деревьев и кустарников, таких как ива и берёза; в целом предпочитает открытые кустарниковые местообитания. Предпочитает жить в поймах по всей тайге, избегая лесов, и на открытых участках между лесами.</p>
+<div class="qh">Активность</div><p class="qt">Тундряные бурозубки активны днём и ночью, преимущественно наземные.</p>
+<div class="cite">HMW Vol. 8 (Soricidae, pp. 332-551), pp. 402-403. Plazi treatment, <a href="https://zenodo.org/records/6869623">10.5281/zenodo.6869623</a>, licence CC0.</div>
+</div>
+<div class="check"><b>Сверьте с печатной страницей до использования в поле</b><ul>
+<li>Активна днём и ночью, поэтому линия, закрытая днём, пропускает часть активности этого вида</li>
+<li>Насекомоядное — см. примечание о приманке у Crocidura suaveolens</li>
+</ul></div>
+</div>
+</div>
